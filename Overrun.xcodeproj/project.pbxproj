@@ -12,9 +12,11 @@
 		158BCA6B1DB17A480058B340 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA691DB17A480058B340 /* Main.storyboard */; };
 		158BCA6D1DB17A490058B340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA6C1DB17A490058B340 /* Assets.xcassets */; };
 		158BCA701DB17A490058B340 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA6E1DB17A490058B340 /* LaunchScreen.storyboard */; };
+		AC24A4C22F33162DFFB8F38C /* Pods_Overrun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.debug.xcconfig"; sourceTree = "<group>"; };
 		158BCA621DB17A480058B340 /* Overrun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overrun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158BCA651DB17A480058B340 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		158BCA671DB17A480058B340 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +24,8 @@
 		158BCA6C1DB17A490058B340 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		158BCA6F1DB17A490058B340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		158BCA711DB17A490058B340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		31E83FA20E8330ADFE3CDC68 /* Pods-Overrun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.release.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.release.xcconfig"; sourceTree = "<group>"; };
+		CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overrun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC24A4C22F33162DFFB8F38C /* Pods_Overrun.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +45,8 @@
 			children = (
 				158BCA641DB17A480058B340 /* Overrun */,
 				158BCA631DB17A480058B340 /* Products */,
+				BFC4F1F5A64ED832C1E2946E /* Pods */,
+				8C36BE798F5CDAF88268C5FE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +71,23 @@
 			path = Overrun;
 			sourceTree = "<group>";
 		};
+		8C36BE798F5CDAF88268C5FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BFC4F1F5A64ED832C1E2946E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */,
+				31E83FA20E8330ADFE3CDC68 /* Pods-Overrun.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -71,9 +95,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 158BCA741DB17A490058B340 /* Build configuration list for PBXNativeTarget "Overrun" */;
 			buildPhases = (
+				30CB1FD76E570F4A77970FB2 /* [CP] Check Pods Manifest.lock */,
 				158BCA5E1DB17A480058B340 /* Sources */,
 				158BCA5F1DB17A480058B340 /* Frameworks */,
 				158BCA601DB17A480058B340 /* Resources */,
+				8833C2A57F14D736E4246A4C /* [CP] Embed Pods Frameworks */,
+				DBC946810212BACB4A9F0E83 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,6 +158,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		30CB1FD76E570F4A77970FB2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		8833C2A57F14D736E4246A4C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overrun/Pods-Overrun-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DBC946810212BACB4A9F0E83 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Overrun/Pods-Overrun-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		158BCA5E1DB17A480058B340 /* Sources */ = {
@@ -259,6 +334,7 @@
 		};
 		158BCA751DB17A490058B340 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B9P6859THW;
@@ -272,6 +348,7 @@
 		};
 		158BCA761DB17A490058B340 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 31E83FA20E8330ADFE3CDC68 /* Pods-Overrun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = B9P6859THW;
@@ -302,6 +379,7 @@
 				158BCA761DB17A490058B340 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
