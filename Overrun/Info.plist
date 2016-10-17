@@ -2,12 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>enable location</string>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1Ijoib3ZlcnJ1biIsImEiOiJjaXVkZWRtZ3EwMDk1MnRud3EycTVobm1kIn0.9DKoNQjag_BkrDCZ36n6Qw</string>
 	<key>NSLocationUsageDescription</key>
 	<string>And this</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Need this</string>
 	<key>CFBundleDisplayName</key>
 	<string></string>
 	<key>LSApplicationCategoryType</key>

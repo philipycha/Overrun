@@ -1,0 +1,73 @@
+//
+//  LocationManager.swift
+//  Overrun
+//
+//  Created by Tevin Maker on 2016-10-17.
+//  Copyright © 2016 Philip Ha. All rights reserved.
+//
+
+import UIKit
+import CoreLocation
+
+protocol LocationManagerDelegate {
+    func updateCamera()
+}
+
+class LocationManager: NSObject, CLLocationManagerDelegate {
+    
+    let locationManger = CLLocationManager()
+    var currentLocation = CLLocation()
+    var delegate: LocationManagerDelegate?
+    
+    private let sharedLocationManager = LocationManager()
+    class LocationManager {
+        class var sharedInstance: LocationManager {
+            return self.sharedInstance
+        }
+    }
+
+    func startLocationMonitoring() {
+        
+        if CLLocationManager.locationServicesEnabled() {
+            
+            if !(CLLocationManager.authorizationStatus() == CLAuthorizationStatus.denied) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.restricted) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.notDetermined) {
+                setupLocationManager()
+            } else{
+                
+                let alertController = UIAlertController(title: "Location services are disabled, Please go into Settings > Privacy > Location to enable them for Play", message: "", preferredStyle: .alert)
+                
+                let ok = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
+                    //
+                })
+                alertController.addAction(ok)
+            }
+        }
+    }
+    
+    func setupLocationManager() {
+        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        locationManger.distanceFilter = 10
+        locationManger.delegate = self
+        locationManger.requestWhenInUseAuthorization()
+        locationManger.startUpdatingLocation()
+        
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        guard let location = locations.last else{
+            print("no location")
+            return
+        }
+        
+        let eventDate = location.timestamp
+        let howRecent = eventDate.timeIntervalSinceNow
+        
+        
+        if howRecent < 15 {
+            currentLocation = location
+            delegate?.updateCamera()
+            
+        }
+    }
+}
