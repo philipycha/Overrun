@@ -8,23 +8,52 @@
 
 import Mapbox
 
-class ViewController: UIViewController, MGLMapViewDelegate {
+class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDelegate {
+    
+    let locationManager = LocationManager()
+    let mapView = MGLMapView()
+    var centerCoordinate: CLLocationCoordinate2D?
+    var camera: MGLMapCamera?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        locationManager.startLocationMonitoring()
         
         let mapView = MGLMapView(frame: view.bounds)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.delegate = self
         
+        mapView.showsUserLocation = true
+        
         mapView.styleURL = MGLStyle.outdoorsStyleURL(withVersion: 9);
         
-        // Mauna Kea, Hawaii
-        let center = CLLocationCoordinate2D(latitude: 19.820689, longitude: -155.468038)
+        // User Location
+        centerCoordinate = locationManager.currentLocation.coordinate
+        
+//        guard let centerCoordinate = centerCoordinate else {
+//            print("no centerCoordinate")
+//            return
+//        }
         
         // Optionally set a starting point.
-        mapView.setCenter(center, zoomLevel: 7, direction: 0, animated: false)
         
         view.addSubview(mapView)
+    }
+    
+    func updateCamera() {
+        // User Location
+        centerCoordinate = locationManager.currentLocation.coordinate
+        
+        guard let centerCoordinate = centerCoordinate else {
+            print("no centerCoordinate")
+            return
+        }
+        let updatedCamera = MGLMapCamera(lookingAtCenter: centerCoordinate, fromDistance: 100, pitch: 20, heading: 0)
+
+        mapView.camera = updatedCamera
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
