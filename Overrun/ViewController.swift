@@ -40,15 +40,27 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     }
     func updateCamera() {
         
-       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 6, bearing: 0, viewingAngle: 0)
+       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 0)
         mapView.camera = updatedCamera
-        
     }
  
     
+    
+    
     @IBAction func startRunButtonPressed(_ sender: AnyObject) {
-        activeRun = Run()
-        locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
+        if activeRun == nil {
+            activeRun = Run()
+            locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
+            startRunButton.titleLabel?.text = "End Run"
+        }
+        else {
+//          store run and send to DB
+//          create shape
+            activeRun = nil
+            
+        }
+        
+        
     }
     
     
