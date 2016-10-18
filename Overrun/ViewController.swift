@@ -14,6 +14,7 @@ class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDeleg
     let mapView = MGLMapView()
     var centerCoordinate: CLLocationCoordinate2D?
     var camera: MGLMapCamera?
+    var userTrackingMode: MGLUserTrackingMode?
     
     
     override func viewDidLoad() {
@@ -26,9 +27,11 @@ class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDeleg
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.delegate = self
         
+        mapView.setUserTrackingMode(.follow, animated: false)
+        
         mapView.showsUserLocation = true
         
-        mapView.styleURL = MGLStyle.outdoorsStyleURL(withVersion: 9);
+        mapView.styleURL = MGLStyle.darkStyleURL(withVersion: 8);
         
         // User Location
         centerCoordinate = locationManager.currentLocation.coordinate
@@ -53,7 +56,11 @@ class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDeleg
         }
         let updatedCamera = MGLMapCamera(lookingAtCenter: centerCoordinate, fromDistance: 100, pitch: 20, heading: 0)
 
-        mapView.camera = updatedCamera
+//        mapView.camera = updatedCamera
+        
+//        mapView.setCamera(updatedCamera, animated: false)
+        mapView.setCamera(updatedCamera, withDuration: 3, animationTimingFunction: CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseIn))
+        
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
@@ -61,10 +68,11 @@ class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDeleg
         
         // Create a camera that rotates around the same center point, rotating 180°.
         // `fromDistance:` is meters above mean sea level that an eye would have to be in order to see what the map view is showing.
-        let camera = MGLMapCamera(lookingAtCenter: mapView.centerCoordinate, fromDistance: 4500, pitch: 15, heading: 180)
+        let camera = MGLMapCamera(lookingAtCenter: centerCoordinate!, fromDistance: 2000, pitch: 15, heading: 180)
         
         // Animate the camera movement over 5 seconds.
         mapView.setCamera(camera, withDuration: 5, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        
     }
 }
 
