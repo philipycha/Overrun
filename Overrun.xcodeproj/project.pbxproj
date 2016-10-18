@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1501D8C31DB6E4DA00BBEEC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1501D8C21DB6E4DA00BBEEC7 /* GoogleService-Info.plist */; };
 		158BCA661DB17A480058B340 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BCA651DB17A480058B340 /* AppDelegate.swift */; };
 		158BCA681DB17A480058B340 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BCA671DB17A480058B340 /* ViewController.swift */; };
 		158BCA6B1DB17A480058B340 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA691DB17A480058B340 /* Main.storyboard */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.debug.xcconfig"; sourceTree = "<group>"; };
+		1501D8C21DB6E4DA00BBEEC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		158BCA621DB17A480058B340 /* Overrun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overrun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158BCA651DB17A480058B340 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		158BCA671DB17A480058B340 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -73,6 +75,7 @@
 				158BCA6C1DB17A490058B340 /* Assets.xcassets */,
 				158BCA6E1DB17A490058B340 /* LaunchScreen.storyboard */,
 				158BCA711DB17A490058B340 /* Info.plist */,
+				1501D8C21DB6E4DA00BBEEC7 /* GoogleService-Info.plist */,
 			);
 			path = Overrun;
 			sourceTree = "<group>";
@@ -159,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				158BCA701DB17A490058B340 /* LaunchScreen.storyboard in Resources */,
+				1501D8C31DB6E4DA00BBEEC7 /* GoogleService-Info.plist in Resources */,
 				158BCA6D1DB17A490058B340 /* Assets.xcassets in Resources */,
 				158BCA6B1DB17A480058B340 /* Main.storyboard in Resources */,
 			);
