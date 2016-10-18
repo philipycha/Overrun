@@ -9,6 +9,7 @@
 import Mapbox
 
 class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDelegate {
+
     
     let locationManager = LocationManager()
     let mapView = MGLMapView()
@@ -26,34 +27,29 @@ class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDeleg
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         mapView.delegate = self
         
-        mapView.showsUserLocation = true
-        
         mapView.styleURL = MGLStyle.outdoorsStyleURL(withVersion: 9);
         
-        // User Location
-        centerCoordinate = locationManager.currentLocation.coordinate
+        mapView.setUserTrackingMode(.follow, animated: false)
         
-//        guard let centerCoordinate = centerCoordinate else {
-//            print("no centerCoordinate")
-//            return
-//        }
+        let center = locationManager.currentLocation.coordinate
         
-        // Optionally set a starting point.
+        mapView.setCenter(center, zoomLevel: 7, direction: 0, animated: false)
+        
+//        mapView.setTargetCoordinate(, animated: false)
+        
         
         view.addSubview(mapView)
     }
     
-    func updateCamera() {
-        // User Location
-        centerCoordinate = locationManager.currentLocation.coordinate
+    func locationDidLoad() {
         
-        guard let centerCoordinate = centerCoordinate else {
-            print("no centerCoordinate")
-            return
-        }
-        let updatedCamera = MGLMapCamera(lookingAtCenter: centerCoordinate, fromDistance: 100, pitch: 20, heading: 0)
-
-        mapView.camera = updatedCamera
+//        locationManager.firedOnce = true
+    }
+    
+    func updateCamera() {
+        
+//        print("\(locationManager.currentLocation)")
+//        mapView.setCenter(locationManager.currentLocation.coordinate, zoomLevel: 7, direction: 359, animated: true)
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MGLMapView) {
@@ -61,10 +57,13 @@ class ViewController: UIViewController, MGLMapViewDelegate, LocationManagerDeleg
         
         // Create a camera that rotates around the same center point, rotating 180°.
         // `fromDistance:` is meters above mean sea level that an eye would have to be in order to see what the map view is showing.
-        let camera = MGLMapCamera(lookingAtCenter: mapView.centerCoordinate, fromDistance: 4500, pitch: 15, heading: 180)
         
-        // Animate the camera movement over 5 seconds.
+        let camera = MGLMapCamera(lookingAtCenter: mapView.centerCoordinate, fromDistance: 500, pitch: 15, heading: 180)
+//
+//        //         Animate the camera movement over 5 seconds.
         mapView.setCamera(camera, withDuration: 5, animationTimingFunction: CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut))
+        
+        
     }
 }
 

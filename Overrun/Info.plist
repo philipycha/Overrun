@@ -6,8 +6,6 @@
 	<string>enable location</string>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1Ijoib3ZlcnJ1biIsImEiOiJjaXVkZWRtZ3EwMDk1MnRud3EycTVobm1kIn0.9DKoNQjag_BkrDCZ36n6Qw</string>
-	<key>NSLocationUsageDescription</key>
-	<string>And this</string>
 	<key>CFBundleDisplayName</key>
 	<string></string>
 	<key>LSApplicationCategoryType</key>
