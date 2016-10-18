@@ -19,6 +19,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var currentLocation = CLLocation()
     var delegate: LocationManagerDelegate?
     var firedOnce = false
+    var activeRun: Run!
     
     private let sharedLocationManager = LocationManager()
     class LocationManager {
@@ -68,13 +69,15 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         if howRecent < 15 {
             currentLocation = location
             
-//            if !firedOnce {
-//                delegate?.locationDidLoad()
-//            }
-            
             delegate?.updateCamera()
             
-            
+            if activeRun != nil {
+                activeRun.runCoordinates.append(currentLocation)
+            }
         }
+    }
+    
+    func passRunToLocationManagerForTracking(activeRun: Run) {
+        self.activeRun = activeRun
     }
 }
