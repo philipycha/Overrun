@@ -44,6 +44,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         polyline.map = mapView
         polylineArray.append(polyline)
     }
+    
+    func displayNewShapeWith(newShape: GMSPolygon) {
+        newShape.strokeColor = UIColor.blue
+        newShape.fillColor = UIColor.orange
+        newShape.map = mapView
+    }
 
     func updateCamera() {
         
@@ -65,16 +71,21 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         if activeRun != nil {
 //          store run and send to DB
 //          create shape
-            activeRun = nil
-            locationManager.activeRun = activeRun
+            
+            
             startRunButtonView.isHidden = false
             endRunButtonView.isHidden = true
+            
+            displayNewShapeWith(newShape: activeRun.createNewShape())
+
+            
             for polyline in polylineArray {
                 polyline.map = nil
             }
             
+            activeRun = nil
+            locationManager.activeRun = activeRun
         }
-        
     }
     
 }
