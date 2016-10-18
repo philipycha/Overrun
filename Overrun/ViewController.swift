@@ -9,6 +9,8 @@
 import GoogleMaps
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
+    
+
 
     @IBOutlet var startRunButton: UIButton!
     @IBOutlet var startRunButtonView: UIView!
