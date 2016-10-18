@@ -11,6 +11,7 @@ import CoreLocation
 
 protocol LocationManagerDelegate {
     func updateCamera()
+    func locationDidLoad()
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -18,6 +19,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     let locationManger = CLLocationManager()
     var currentLocation = CLLocation()
     var delegate: LocationManagerDelegate?
+    var firedOnce = false
     
     private let sharedLocationManager = LocationManager()
     class LocationManager {
@@ -45,7 +47,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func setupLocationManager() {
-        locationManger.desiredAccuracy = kCLLocationAccuracyBest
+        locationManger.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManger.distanceFilter = 10
         locationManger.delegate = self
         locationManger.requestWhenInUseAuthorization()
@@ -66,7 +68,13 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         
         if howRecent < 15 {
             currentLocation = location
+            
+//            if !firedOnce {
+//                delegate?.locationDidLoad()
+//            }
+            
             delegate?.updateCamera()
+            
             
         }
     }
