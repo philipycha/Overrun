@@ -14,18 +14,21 @@
 
 /* Begin PBXFileReference section */
 		02D0B9108658AE1A77079E1F690A7AAA /* Pods-Overrun.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-Overrun.modulemap"; sourceTree = "<group>"; };
+		0717A53FA3146A1C539652799CFFFCB1 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Subspecs/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		23D977C8294A4D80F1FE58B4BCEE8849 /* Pods-Overrun-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Overrun-acknowledgements.markdown"; sourceTree = "<group>"; };
 		3A3231FC46278E4B1352AB3CA3130278 /* Pods-Overrun-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Overrun-dummy.m"; sourceTree = "<group>"; };
 		57319F10B5A857E6BA4A75F4BFE79075 /* Pods_Overrun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overrun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EB4F7543C139A241563089F4E31EAB5 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A96742FFAC6754BBC1ABD7D4638EAF1 /* GoogleMapsBase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsBase.framework; path = Subspecs/Base/Frameworks/GoogleMapsBase.framework; sourceTree = "<group>"; };
 		913C3670561C6A90F09D43C65D9EE34B /* Pods-Overrun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Overrun.release.xcconfig"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9BC0EEC24B7854CA83D1BB6A57028B31 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Subspecs/Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
+		BEC993795583B87B1EC31F69AA6F331A /* GoogleMapsCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMapsCore.framework; path = Subspecs/Maps/Frameworks/GoogleMapsCore.framework; sourceTree = "<group>"; };
 		C8821911C2A31C8F7030CE9078A5E4D0 /* Pods-Overrun-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Overrun-umbrella.h"; sourceTree = "<group>"; };
 		CEC22C73C1608DFA5D5D78BDCB218219 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D46B7E135935460C5BB5B445AB0B9752 /* Pods-Overrun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Overrun.debug.xcconfig"; sourceTree = "<group>"; };
 		D813156BC85C7D5BA8F7138CBA1BCD93 /* Pods-Overrun-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Overrun-resources.sh"; sourceTree = "<group>"; };
 		DF302374E3983F8A925F2FB7EE68E468 /* Pods-Overrun-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-Overrun-frameworks.sh"; sourceTree = "<group>"; };
-		E3F3DEAC62E89F9ABAA5BE6404D5548E /* Mapbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Mapbox.framework; path = dynamic/Mapbox.framework; sourceTree = "<group>"; };
 		E74FFC3B8F6E0F7D31A1C5227E5198FF /* Pods-Overrun-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Overrun-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,12 +44,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03853DF8004FCD538DE122EB2387F73D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				7A96742FFAC6754BBC1ABD7D4638EAF1 /* GoogleMapsBase.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0D9FE1EFFAEEADBC1524CE719F1FC510 /* Targets Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				2BB00F3C55116951A42FA3DB559BF9C1 /* Pods-Overrun */,
 			);
 			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		1418B056D31B27EE2CEBA552B5ADFE56 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				03853DF8004FCD538DE122EB2387F73D /* Frameworks */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */ = {
+			isa = PBXGroup;
+			children = (
+				1418B056D31B27EE2CEBA552B5ADFE56 /* Base */,
+				6BC99F081C91F80679CFA5DDC6213D57 /* Maps */,
+			);
+			path = GoogleMaps;
 			sourceTree = "<group>";
 		};
 		2BB00F3C55116951A42FA3DB559BF9C1 /* Pods-Overrun */ = {
@@ -67,20 +95,12 @@
 			path = "Target Support Files/Pods-Overrun";
 			sourceTree = "<group>";
 		};
-		3433746FBB20361F7C06EA7E60ED2F4A /* Frameworks */ = {
+		3AEC177709F5E2CA8647760385A95C03 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E3F3DEAC62E89F9ABAA5BE6404D5548E /* Mapbox.framework */,
+				0717A53FA3146A1C539652799CFFFCB1 /* GoogleMaps.bundle */,
 			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		3B6AD4FFE66908FCA51F294DF844D59F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C622644E73922BB231E29AB8457EFB83 /* Mapbox-iOS-SDK */,
-			);
-			name = Pods;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		3DCAB2B7CDE207B3958B6CB957FCC758 /* iOS */ = {
@@ -91,15 +111,41 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				243FAC914C81DCF02EFAD12598762AD5 /* GoogleMaps */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6BC99F081C91F80679CFA5DDC6213D57 /* Maps */ = {
+			isa = PBXGroup;
+			children = (
+				8B88C91FA4176430C15D1E9BF028871B /* Frameworks */,
+				3AEC177709F5E2CA8647760385A95C03 /* Resources */,
+			);
+			name = Maps;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				3B6AD4FFE66908FCA51F294DF844D59F /* Pods */,
+				6B9DDBFD34805D0CECB3FE7AA6B7B594 /* Pods */,
 				BF51F78763C8E5E7AD799A916BF026F3 /* Products */,
 				0D9FE1EFFAEEADBC1524CE719F1FC510 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		8B88C91FA4176430C15D1E9BF028871B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BC0EEC24B7854CA83D1BB6A57028B31 /* GoogleMaps.framework */,
+				BEC993795583B87B1EC31F69AA6F331A /* GoogleMapsCore.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -116,14 +162,6 @@
 				57319F10B5A857E6BA4A75F4BFE79075 /* Pods_Overrun.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C622644E73922BB231E29AB8457EFB83 /* Mapbox-iOS-SDK */ = {
-			isa = PBXGroup;
-			children = (
-				3433746FBB20361F7C06EA7E60ED2F4A /* Frameworks */,
-			);
-			path = "Mapbox-iOS-SDK";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

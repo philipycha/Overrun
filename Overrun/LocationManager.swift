@@ -11,7 +11,6 @@ import CoreLocation
 
 protocol LocationManagerDelegate {
     func updateCamera()
-    func locationDidLoad()
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
