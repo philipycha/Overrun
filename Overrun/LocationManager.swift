@@ -8,9 +8,11 @@
 
 import UIKit
 import CoreLocation
+import GoogleMaps
 
 protocol LocationManagerDelegate {
     func updateCamera()
+    func displayRunLineWith(polyline: GMSPolyline)
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -19,6 +21,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var currentLocation = CLLocation()
     var delegate: LocationManagerDelegate?
     var firedOnce = false
+    var activeRun: Run!
     
     private let sharedLocationManager = LocationManager()
     class LocationManager {
@@ -68,13 +71,17 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         if howRecent < 15 {
             currentLocation = location
             
-//            if !firedOnce {
-//                delegate?.locationDidLoad()
-//            }
-            
             delegate?.updateCamera()
             
-            
+            if activeRun != nil {
+                activeRun.runLocations.append(currentLocation)
+                delegate?.displayRunLineWith(polyline: activeRun.createRunningLine())
+            }
         }
+    }
+    
+    func passRunToLocationManagerForTracking(activeRun: Run) {
+        self.activeRun = activeRun
+        
     }
 }

@@ -10,44 +10,82 @@ import GoogleMaps
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
 
+    @IBOutlet var startRunButton: UIButton!
+    @IBOutlet var startRunButtonView: UIView!
+    @IBOutlet var endRunButtonView: UIView!
+    @IBOutlet var endRunButton: UIButton!
     
     let locationManager = LocationManager()
     var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
+    var activeRun: Run! = nil
+    var polylineArray: [GMSPolyline] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView = GMSMapView()
-
+        
+        endRunButtonView.isHidden = true
         
         locationManager.delegate = self
         locationManager.startLocationMonitoring()
         
         let camera = GMSCameraPosition.camera(withLatitude: locationManager.currentLocation.coordinate.latitude, longitude: locationManager.currentLocation.coordinate.longitude, zoom: 6.0)
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.isMyLocationEnabled = true
-        view = mapView
-    }
-    
-//    override func loadView() {
-//        // Create a GMSCameraPosition that tells the map to display the
-//        // coordinate -33.86,151.20 at zoom level 6.
-//        
-//        
-//    }
-
-    
-    func locationDidLoad() {
+        view.insertSubview(mapView, at: 0)
         
-//        locationManager.firedOnce = true
+    }
+
+    func displayRunLineWith(polyline: GMSPolyline) {
+        polyline.strokeColor = UIColor.black
+        polyline.strokeWidth = 5
+        polyline.map = mapView
+        polylineArray.append(polyline)
     }
     
+    func displayNewShapeWith(newShape: GMSPolygon) {
+        newShape.strokeColor = UIColor.blue
+        newShape.fillColor = UIColor.orange
+        newShape.map = mapView
+    }
+
     func updateCamera() {
         
-       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 6, bearing: 0, viewingAngle: 0)
+       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 0)
         mapView.camera = updatedCamera
-        
+    }
+ 
+    @IBAction func startRunButtonPressed(_ sender: AnyObject) {
+        if activeRun == nil {
+            activeRun = Run()
+            locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
+            startRunButtonView.isHidden = true
+            endRunButtonView.isHidden = false
+            
+        }
+    }
+    
+    @IBAction func endRunButtonPressed(_ sender: AnyObject) {
+        if activeRun != nil {
+//          store run and send to DB
+//          create shape
+            
+            
+            startRunButtonView.isHidden = false
+            endRunButtonView.isHidden = true
+            
+            displayNewShapeWith(newShape: activeRun.createNewShape())
+
+            
+            for polyline in polylineArray {
+                polyline.map = nil
+            }
+            
+            activeRun = nil
+            locationManager.activeRun = activeRun
+        }
     }
     
 }
