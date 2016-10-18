@@ -12,11 +12,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
 
     
     let locationManager = LocationManager()
-    var mapView = GMSMapView()
+    var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapView = GMSMapView()
+
         
         locationManager.delegate = self
         locationManager.startLocationMonitoring()
@@ -25,8 +28,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.isMyLocationEnabled = true
         view = mapView
-        
-        view.addSubview(mapView)
     }
     
 //    override func loadView() {
