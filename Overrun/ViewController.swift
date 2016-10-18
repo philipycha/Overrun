@@ -11,18 +11,22 @@ import GoogleMaps
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
 
     @IBOutlet var startRunButton: UIButton!
+    @IBOutlet var startRunButtonView: UIView!
+    @IBOutlet var endRunButtonView: UIView!
+    @IBOutlet var endRunButton: UIButton!
     
     let locationManager = LocationManager()
     var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
     var activeRun: Run! = nil
-    
+    var polylineArray: [GMSPolyline] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mapView = GMSMapView()
         
+        endRunButtonView.isHidden = true
         
         locationManager.delegate = self
         locationManager.startLocationMonitoring()
@@ -31,37 +35,46 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.isMyLocationEnabled = true
         view.insertSubview(mapView, at: 0)
+        
     }
 
-    
-    func locationDidLoad() {
-        
-//        locationManager.firedOnce = true
+    func displayRunLineWith(polyline: GMSPolyline) {
+        polyline.strokeColor = UIColor.black
+        polyline.strokeWidth = 5
+        polyline.map = mapView
+        polylineArray.append(polyline)
     }
+
     func updateCamera() {
         
        let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 0)
         mapView.camera = updatedCamera
     }
  
-    
-    
-    
     @IBAction func startRunButtonPressed(_ sender: AnyObject) {
         if activeRun == nil {
             activeRun = Run()
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
-            startRunButton.titleLabel?.text = "End Run"
+            startRunButtonView.isHidden = true
+            endRunButtonView.isHidden = false
+            
         }
-        else {
+    }
+    
+    @IBAction func endRunButtonPressed(_ sender: AnyObject) {
+        if activeRun != nil {
 //          store run and send to DB
 //          create shape
             activeRun = nil
+            locationManager.activeRun = activeRun
+            startRunButtonView.isHidden = false
+            endRunButtonView.isHidden = true
+            for polyline in polylineArray {
+                polyline.map = nil
+            }
             
         }
         
-        
     }
-    
     
 }

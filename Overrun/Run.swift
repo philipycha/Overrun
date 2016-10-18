@@ -8,9 +8,20 @@
 
 import UIKit
 import CoreLocation
+import GoogleMaps
 
 class Run: NSObject {
 
-    var runCoordinates: [CLLocation] = []
+    var runLocations: [CLLocation] = []
     
+    func createRunningLine() -> GMSPolyline {
+        
+        let runPath = GMSMutablePath()
+        
+        for location in runLocations {
+            runPath.add(location.coordinate)
+        }
+        let polyline = GMSPolyline(path: runPath)
+        return polyline
+    }
 }

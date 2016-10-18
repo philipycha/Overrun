@@ -18,25 +18,59 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-eg-KnN">
-                                <state key="normal" title="Start Run"/>
-                                <connections>
-                                    <action selector="startRunButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NOL-mt-py5"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pU9-Ul-i7W">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-eg-KnN">
+                                        <state key="normal" title="Start Run"/>
+                                        <connections>
+                                            <action selector="startRunButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NOL-mt-py5"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="HiY-sr-a4F"/>
+                                    <constraint firstAttribute="height" constant="40" id="QJp-mW-VqT"/>
+                                    <constraint firstItem="wAP-eg-KnN" firstAttribute="centerY" secondItem="pU9-Ul-i7W" secondAttribute="centerY" id="YAy-ny-hsj"/>
+                                    <constraint firstItem="wAP-eg-KnN" firstAttribute="centerX" secondItem="pU9-Ul-i7W" secondAttribute="centerX" id="yiA-ua-m1g"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dW-NP-DjU">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YCG-7c-quU">
+                                        <state key="normal" title="End Run"/>
+                                        <connections>
+                                            <action selector="endRunButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hrJ-3e-5xB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="YCG-7c-quU" firstAttribute="centerX" secondItem="9dW-NP-DjU" secondAttribute="centerX" id="SO7-ll-IAG"/>
+                                    <constraint firstItem="YCG-7c-quU" firstAttribute="centerY" secondItem="9dW-NP-DjU" secondAttribute="centerY" id="XW2-wJ-FRs"/>
+                                    <constraint firstAttribute="height" constant="40" id="fF9-yg-0bM"/>
+                                    <constraint firstAttribute="width" constant="100" id="wUW-Bw-5Eg"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wAP-eg-KnN" secondAttribute="bottom" constant="35" id="bT4-f0-zji"/>
-                            <constraint firstItem="wAP-eg-KnN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="buD-7H-XE5"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pU9-Ul-i7W" secondAttribute="bottom" constant="30" id="4Eb-kI-ff5"/>
+                            <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JC4-Oh-Xpo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9dW-NP-DjU" secondAttribute="bottom" constant="40" id="RjY-m1-Isq"/>
+                            <constraint firstItem="9dW-NP-DjU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHW-K7-COo"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="endRunButton" destination="YCG-7c-quU" id="3Io-VN-XbK"/>
+                        <outlet property="endRunButtonView" destination="9dW-NP-DjU" id="x2E-di-kpv"/>
                         <outlet property="startRunButton" destination="wAP-eg-KnN" id="J2f-pk-va2"/>
+                        <outlet property="startRunButtonView" destination="pU9-Ul-i7W" id="2fR-Ol-vXc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="66.11694152923539"/>
         </scene>
     </scenes>
 </document>
