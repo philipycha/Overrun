@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 
+
 class Run: NSObject {
 
     var runLocations: [CLLocation] = []

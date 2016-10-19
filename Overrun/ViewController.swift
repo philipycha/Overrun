@@ -12,14 +12,13 @@ import Firebase
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
     
-
-
     @IBOutlet var startRunButton: UIButton!
     @IBOutlet var startRunButtonView: UIView!
     @IBOutlet var endRunButtonView: UIView!
     @IBOutlet var endRunButton: UIButton!
     
     let locationManager = LocationManager()
+    let ref = FIR
     var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
     var activeRun: Run! = nil
