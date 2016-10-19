@@ -14,19 +14,23 @@ class Run: NSObject {
 
     var runLocations: [CLLocation] = []
     var smartArray:[CLLocation] = []
-//    func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
-//        
-//        var previousLocation: CLLocation?
-//        
-//        for location in runLocations {
-//            
-//            if previousLocation != nil {
-//                if !((location.course - previousLocation?.course > -10) && (location.course - previousLocation?.course < 10))
-//                
-//            }
-//            
-//        }
-//    }
+    
+    
+    func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
+        var smartArray: [CLLocation] = []
+        var previousLocation: CLLocation?
+        
+        for location in runLocations {
+            
+            if previousLocation != nil {
+                if !((location.course - (previousLocation?.course)! > -5) && (location.course - (previousLocation?.course)! < 5)){
+                    smartArray.append(previousLocation!)
+                }
+            }
+            previousLocation = location
+        }
+        return smartArray
+    }
     
     
     func createRunningLine() -> GMSPolyline {
@@ -41,9 +45,11 @@ class Run: NSObject {
     }
     
     func createNewShape() -> GMSPolygon {
+        smartArray = makeSmartCoordinateArrayfrom(runLocations: runLocations)
+        
         let runPath = GMSMutablePath()
         
-        for location in runLocations {
+        for location in smartArray {
             runPath.add(location.coordinate)
         }
         let newShape = GMSPolygon(path: runPath)
