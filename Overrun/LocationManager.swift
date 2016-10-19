@@ -13,6 +13,7 @@ import GoogleMaps
 protocol LocationManagerDelegate {
     func updateCamera()
     func displayRunLineWith(polyline: GMSPolyline)
+    func displayDistance(distance: Double)
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -76,6 +77,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             if activeRun != nil {
                 activeRun.runLocations.append(currentLocation)
                 delegate?.displayRunLineWith(polyline: activeRun.createRunningLine())
+                activeRun.calculateDistance()
+                delegate?.displayDistance(distance:activeRun.totalDistance)
             }
         }
     }
