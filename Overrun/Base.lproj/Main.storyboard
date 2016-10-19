@@ -21,14 +21,20 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HQM-UX-vDb">
                                 <state key="normal" title="Sign In"/>
                                 <connections>
-                                    <segue destination="BYZ-38-t0r" kind="show" identifier="showMapSegue" id="I2N-k9-VjO"/>
+                                    <action selector="didTapSignIn:" destination="k9m-FD-Lye" eventType="touchUpInside" id="J9p-iC-4iQ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sFA-Wo-8qE">
                                 <state key="normal" title="Forgot Password"/>
+                                <connections>
+                                    <action selector="didRequestPasswordReset:" destination="k9m-FD-Lye" eventType="touchUpInside" id="o1C-1f-MN9"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yyC-UU-1vp">
                                 <state key="normal" title="Create Account"/>
+                                <connections>
+                                    <action selector="didTapSignUp:" destination="k9m-FD-Lye" eventType="touchUpInside" id="O17-z5-aKd"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hr3-vG-1XL">
                                 <constraints>
@@ -44,7 +50,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OVERRUN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXF-uF-Nh8">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -71,6 +77,7 @@
                     <connections>
                         <outlet property="emailField" destination="hr3-vG-1XL" id="bba-Cr-OIv"/>
                         <outlet property="passwordField" destination="egn-Is-S0E" id="9PM-l6-bMJ"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showMapView" id="zn6-ru-hKy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SAm-HU-7IT" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -129,6 +136,9 @@
                                     <constraint firstAttribute="width" constant="60" id="NvX-oS-PeR"/>
                                 </constraints>
                                 <state key="normal" title="Sign Out"/>
+                                <connections>
+                                    <action selector="signOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p04-Uf-RYg"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

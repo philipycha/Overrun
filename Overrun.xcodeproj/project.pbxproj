@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		1501D8C31DB6E4DA00BBEEC7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1501D8C21DB6E4DA00BBEEC7 /* GoogleService-Info.plist */; };
+		150C18741DB6EE950008460F /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C18731DB6EE950008460F /* AppState.swift */; };
+		150C18761DB6EEF20008460F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C18751DB6EEF20008460F /* Constants.swift */; };
+		150C18781DB6EF250008460F /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 150C18771DB6EF250008460F /* MeasurementHelper.swift */; };
 		153D0A591DB6E89B0034CBB8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D0A571DB6E89B0034CBB8 /* SignInViewController.swift */; };
 		158BCA661DB17A480058B340 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BCA651DB17A480058B340 /* AppDelegate.swift */; };
 		158BCA681DB17A480058B340 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 158BCA671DB17A480058B340 /* ViewController.swift */; };
@@ -22,6 +25,9 @@
 /* Begin PBXFileReference section */
 		05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.debug.xcconfig"; sourceTree = "<group>"; };
 		1501D8C21DB6E4DA00BBEEC7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		150C18731DB6EE950008460F /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = "../../friendlychat/ios-starter/swift-starter/FriendlyChatSwift/AppState.swift"; sourceTree = "<group>"; };
+		150C18751DB6EEF20008460F /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "../../friendlychat/ios-starter/swift-starter/FriendlyChatSwift/Constants.swift"; sourceTree = "<group>"; };
+		150C18771DB6EF250008460F /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MeasurementHelper.swift; path = "../../friendlychat/ios-starter/swift-starter/FriendlyChatSwift/MeasurementHelper.swift"; sourceTree = "<group>"; };
 		153D0A571DB6E89B0034CBB8 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		158BCA621DB17A480058B340 /* Overrun.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Overrun.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158BCA651DB17A480058B340 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +80,9 @@
 				7D3B78DC1DB5469F001061D1 /* LocationManager.swift */,
 				7DC6139E1DB6AF7900B4CD69 /* Run.swift */,
 				153D0A571DB6E89B0034CBB8 /* SignInViewController.swift */,
+				150C18771DB6EF250008460F /* MeasurementHelper.swift */,
+				150C18731DB6EE950008460F /* AppState.swift */,
+				150C18751DB6EEF20008460F /* Constants.swift */,
 				158BCA691DB17A480058B340 /* Main.storyboard */,
 				158BCA6C1DB17A490058B340 /* Assets.xcassets */,
 				158BCA6E1DB17A490058B340 /* LaunchScreen.storyboard */,
@@ -239,9 +248,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				150C18781DB6EF250008460F /* MeasurementHelper.swift in Sources */,
 				158BCA681DB17A480058B340 /* ViewController.swift in Sources */,
 				7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */,
 				158BCA661DB17A480058B340 /* AppDelegate.swift in Sources */,
+				150C18741DB6EE950008460F /* AppState.swift in Sources */,
+				150C18761DB6EEF20008460F /* Constants.swift in Sources */,
 				153D0A591DB6E89B0034CBB8 /* SignInViewController.swift in Sources */,
 				7D3B78DD1DB5469F001061D1 /* LocationManager.swift in Sources */,
 			);

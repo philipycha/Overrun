@@ -7,6 +7,8 @@
 //
 
 import GoogleMaps
+import FirebaseAuth
+import Firebase
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
     
@@ -69,6 +71,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         }
     }
     
+    
     @IBAction func endRunButtonPressed(_ sender: AnyObject) {
         if activeRun != nil {
 //          store run and send to DB
@@ -88,6 +91,20 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             activeRun = nil
             locationManager.activeRun = activeRun
         }
+    }
+    
+    @IBAction func signOut(_ sender: UIButton) {
+//        AppState.sharedInstance.signedIn = false
+//        dismiss(animated: true, completion: nil)
+        let firebaseAuth = FIRAuth.auth()
+        do {
+            try firebaseAuth?.signOut()
+            AppState.sharedInstance.signedIn = false
+            dismiss(animated: true, completion: nil)
+        } catch let signOutError as NSError {
+            print ("Error signing out: \(signOutError.localizedDescription)")
+        }
+        
     }
     
 }
