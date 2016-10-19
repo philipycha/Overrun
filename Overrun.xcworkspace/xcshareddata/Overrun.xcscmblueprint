@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "EF96206D8B4F0F5DB72F8B0592DA79FBC0EBC0D3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "EF96206D8B4F0F5DB72F8B0592DA79FBC0EBC0D3" : 9223372036854775807,
+    "EDE978B054832EB498028C3CC646998BE3FB2B78" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "332D0951-3A3C-48C8-BFEC-8112CBD1C876",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "EF96206D8B4F0F5DB72F8B0592DA79FBC0EBC0D3" : "Overrun\/",
+    "EDE978B054832EB498028C3CC646998BE3FB2B78" : "friendlychat\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Overrun",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Overrun.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/firebase\/friendlychat",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EDE978B054832EB498028C3CC646998BE3FB2B78"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/philipycha\/Overrun.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "EF96206D8B4F0F5DB72F8B0592DA79FBC0EBC0D3"
+    }
+  ]
+}
