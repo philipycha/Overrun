@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k9m-FD-Lye">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k9m-FD-Lye">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -140,10 +141,30 @@
                                     <action selector="signOut:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p04-Uf-RYg"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5T-Kp-O9W">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EiY-6k-sQZ">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="115" id="DUK-vQ-qMs"/>
+                                    <constraint firstAttribute="height" constant="35" id="Erx-Q6-1DQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="EiY-6k-sQZ" secondAttribute="bottom" constant="-5" id="Fqo-uX-wt6"/>
+                                    <constraint firstItem="EiY-6k-sQZ" firstAttribute="top" secondItem="y5T-Kp-O9W" secondAttribute="top" constant="5" id="nc9-Db-K7f"/>
+                                    <constraint firstAttribute="trailing" secondItem="EiY-6k-sQZ" secondAttribute="trailing" id="pwq-fq-TDD"/>
+                                    <constraint firstItem="EiY-6k-sQZ" firstAttribute="leading" secondItem="y5T-Kp-O9W" secondAttribute="leading" id="z1N-d5-Iga"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pU9-Ul-i7W" secondAttribute="bottom" constant="30" id="4Eb-kI-ff5"/>
+                            <constraint firstItem="y5T-Kp-O9W" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="9mg-80-UWB"/>
+                            <constraint firstItem="y5T-Kp-O9W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ijr-pT-7R9"/>
                             <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JC4-Oh-Xpo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9dW-NP-DjU" secondAttribute="bottom" constant="40" id="RjY-m1-Isq"/>
                             <constraint firstAttribute="trailing" secondItem="W0T-KQ-yLW" secondAttribute="trailing" constant="13" id="bHp-YL-HoZ"/>
@@ -152,6 +173,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="distanceLabel" destination="EiY-6k-sQZ" id="Tqs-Vk-o9Z"/>
+                        <outlet property="distanceView" destination="y5T-Kp-O9W" id="7Xb-3z-ofA"/>
                         <outlet property="endRunButton" destination="YCG-7c-quU" id="3Io-VN-XbK"/>
                         <outlet property="endRunButtonView" destination="9dW-NP-DjU" id="x2E-di-kpv"/>
                         <outlet property="startRunButton" destination="wAP-eg-KnN" id="J2f-pk-va2"/>

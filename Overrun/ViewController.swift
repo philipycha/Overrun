@@ -12,6 +12,8 @@ import Firebase
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
     
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var distanceView: UIView!
 
 
     @IBOutlet var startRunButton: UIButton!
@@ -40,9 +42,18 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         mapView.isMyLocationEnabled = true
         view.insertSubview(mapView, at: 0)
         
+        distanceView.isHidden = true
+        
     }
     
     func displayDistance(distance: Double) {
+
+            let distanceInt = Int(distance)
+            
+            let distanceStr = String(format: "%i", distanceInt)
+            
+            distanceLabel.text = distanceStr
+        
         
     }
 
@@ -71,7 +82,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
             startRunButtonView.isHidden = true
             endRunButtonView.isHidden = false
-            
+            distanceView.isHidden = false
         }
     }
     
@@ -84,6 +95,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             
             startRunButtonView.isHidden = false
             endRunButtonView.isHidden = true
+            distanceView.isHidden = true
             
             displayNewShapeWith(newShape: activeRun.createNewShape())
 

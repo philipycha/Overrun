@@ -122,7 +122,6 @@
 				158BCA601DB17A480058B340 /* Resources */,
 				8833C2A57F14D736E4246A4C /* [CP] Embed Pods Frameworks */,
 				DBC946810212BACB4A9F0E83 /* [CP] Copy Pods Resources */,
-				15EF3CEE1DB464FF0014DC09 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -183,19 +182,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		15EF3CEE1DB464FF0014DC09 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework/strip-frameworks.sh\"";
-		};
 		30CB1FD76E570F4A77970FB2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
