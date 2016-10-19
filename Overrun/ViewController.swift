@@ -41,6 +41,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         view.insertSubview(mapView, at: 0)
         
     }
+    
+    func displayDistance(distance: Double) {
+        
+    }
 
     func displayRunLineWith(polyline: GMSPolyline) {
         polyline.strokeColor = UIColor.black

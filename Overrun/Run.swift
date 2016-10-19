@@ -14,8 +14,8 @@ class Run: NSObject {
 
     var runLocations: [CLLocation] = []
     var smartArray:[CLLocation] = []
-    
-    
+    var totalDistance:Double = 0
+    var lastKnownLocation = CLLocation()
     func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
         var smartArray: [CLLocation] = []
         var previousLocation: CLLocation?
@@ -54,5 +54,12 @@ class Run: NSObject {
         }
         let newShape = GMSPolygon(path: runPath)
         return newShape
+    }
+    
+    func calculateDistance() {
+        if runLocations.count > 1 {
+            totalDistance += (runLocations.last?.distance(from: lastKnownLocation))!
+        }
+        lastKnownLocation = runLocations.last!
     }
 }
