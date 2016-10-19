@@ -10,12 +10,11 @@ import GoogleMaps
 import FirebaseAuth
 import Firebase
 
-class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate {
     
+    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceView: UIView!
-
-
     @IBOutlet var startRunButton: UIButton!
     @IBOutlet var startRunButtonView: UIView!
     @IBOutlet var endRunButtonView: UIView!
@@ -24,11 +23,17 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     let locationManager = LocationManager()
     var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
+    
     var activeRun: Run! = nil
     var polylineArray: [GMSPolyline] = []
 
+    var currentUser: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameLabel.text = currentUser.uid
+        
         
         mapView = GMSMapView()
         
@@ -44,6 +49,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         
         distanceView.isHidden = true
         
+    }
+    
+    func assignCurrentUser(currentUser: User) {
+        self.currentUser = currentUser
     }
     
     func displayDistance(distance: Double) {

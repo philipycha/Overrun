@@ -18,6 +18,7 @@
 		158BCA6D1DB17A490058B340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA6C1DB17A490058B340 /* Assets.xcassets */; };
 		158BCA701DB17A490058B340 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA6E1DB17A490058B340 /* LaunchScreen.storyboard */; };
 		7D3B78DD1DB5469F001061D1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B78DC1DB5469F001061D1 /* LocationManager.swift */; };
+		7D6E8E9E1DB832E400B7F23B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E8E9D1DB832E400B7F23B /* User.swift */; };
 		7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6139E1DB6AF7900B4CD69 /* Run.swift */; };
 		AC24A4C22F33162DFFB8F38C /* Pods_Overrun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */; };
 /* End PBXBuildFile section */
@@ -38,6 +39,7 @@
 		158BCA711DB17A490058B340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E83FA20E8330ADFE3CDC68 /* Pods-Overrun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.release.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.release.xcconfig"; sourceTree = "<group>"; };
 		7D3B78DC1DB5469F001061D1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7D6E8E9D1DB832E400B7F23B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7DC6139E1DB6AF7900B4CD69 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overrun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -79,6 +81,7 @@
 				158BCA671DB17A480058B340 /* ViewController.swift */,
 				7D3B78DC1DB5469F001061D1 /* LocationManager.swift */,
 				7DC6139E1DB6AF7900B4CD69 /* Run.swift */,
+				7D6E8E9D1DB832E400B7F23B /* User.swift */,
 				153D0A571DB6E89B0034CBB8 /* SignInViewController.swift */,
 				15561FE31DB7EF3F009DFB10 /* AppState.swift */,
 				15561FE41DB7EF3F009DFB10 /* Constants.swift */,
@@ -239,6 +242,7 @@
 				7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */,
 				158BCA661DB17A480058B340 /* AppDelegate.swift in Sources */,
 				15561FE61DB7EF3F009DFB10 /* AppState.swift in Sources */,
+				7D6E8E9E1DB832E400B7F23B /* User.swift in Sources */,
 				15561FE71DB7EF3F009DFB10 /* Constants.swift in Sources */,
 				153D0A591DB6E89B0034CBB8 /* SignInViewController.swift in Sources */,
 				7D3B78DD1DB5469F001061D1 /* LocationManager.swift in Sources */,
