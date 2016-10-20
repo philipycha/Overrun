@@ -8,12 +8,13 @@
 
 import GoogleMaps
 import FirebaseAuth
-import Firebase
+import FirebaseDatabase
 
-class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate {
+
+class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate {
     
-
-
+    @IBOutlet weak var distanceLabel: UILabel!
+    @IBOutlet weak var distanceView: UIView!
     @IBOutlet var startRunButton: UIButton!
     @IBOutlet var startRunButtonView: UIView!
     @IBOutlet var endRunButtonView: UIView!
@@ -22,9 +23,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     let locationManager = LocationManager()
     var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
+    
     var activeRun: Run! = nil
     var polylineArray: [GMSPolyline] = []
 
+    var currentUser: User!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,9 +44,28 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         mapView.isMyLocationEnabled = true
         view.insertSubview(mapView, at: 0)
         
+        distanceView.isHidden = true
+        
+        let rootRef = FIRDatabase.database().reference()
+        rootRef.child("Runs").observe(FIRDataEventType.childAdded) { (runSnap: FIRDataSnapshot) in
+            print("NEW SHAPE")
+        }
+        
+        
+    }
+    
+    func assignCurrentUser(currentUser: User) {
+        self.currentUser = currentUser
     }
     
     func displayDistance(distance: Double) {
+
+            let distanceInt = Int(distance)
+            
+            let distanceStr = String(format: "%i", distanceInt)
+            
+            distanceLabel.text = distanceStr
+        
         
     }
 
@@ -71,7 +94,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
             startRunButtonView.isHidden = true
             endRunButtonView.isHidden = false
-            
+            distanceView.isHidden = false
         }
     }
     
@@ -84,6 +107,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             
             startRunButtonView.isHidden = false
             endRunButtonView.isHidden = true
+            distanceView.isHidden = true
             
             displayNewShapeWith(newShape: activeRun.createNewShape())
 

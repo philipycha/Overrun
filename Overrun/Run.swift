@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import GoogleMaps
+import FirebaseDatabase
 
 class Run: NSObject {
 
@@ -53,7 +54,43 @@ class Run: NSObject {
             runPath.add(location.coordinate)
         }
         let newShape = GMSPolygon(path: runPath)
+        
+        storeNewShapes()
+        
         return newShape
+        
+    }
+    
+    func storeNewShapes() {
+        
+        let ref = FIRDatabase.database().reference()
+        
+        var i = 0
+        
+//        var dbCoordinates = [[ String : [[String : String]]]]()
+        var dbCoordinates = [[[String : String]]]()
+        
+        for coordinate in smartArray {
+            i += 1
+            
+            let long = String(format: "%f", coordinate.coordinate.longitude)
+            let lat = String(format: "%f", coordinate.coordinate.latitude)
+            
+//            let indexStr = String(format: "%i", i)
+            
+//            let indexValue = [, ["lat" : lat]]
+            
+            dbCoordinates.append([["long" : long],["lat" : lat]])
+
+        }
+        
+        let key = ref.child("Runs").childByAutoId().key
+        let run = ["coordinates" : dbCoordinates]
+        
+        let childUpdates = ["/Runs/\(key)" : run]
+        ref.updateChildValues(childUpdates)
+    
+        
     }
     
     func calculateDistance() {

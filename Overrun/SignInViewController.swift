@@ -2,17 +2,24 @@
 //  SignInViewController.swift
 //  Overrun
 //
-//  Created by Philip Ha on 2016-10-18.
+//  Created by Philip Hahaha on 2016-10-18.
 //  Copyright © 2016 Philip Ha. All rights reserved.
 //
 
 import UIKit
 import Firebase
 
+protocol SignInDelegate {
+    func assignCurrentUser(currentUser: User)
+}
+
 class SignInViewController: UIViewController {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    
+    var delegate: ViewController?
+    var currentUser: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,12 +94,30 @@ class SignInViewController: UIViewController {
     func signedIn(_ user: FIRUser?) {
         MeasurementHelper.sendLoginEvent()
         
+        //      create username property
+        
+        guard let email = user?.email, let uid = user?.uid else {
+            print("user is nil")
+            return
+        }
+        let currentUser = User.init(userName: "PHIL!!!", email: email, uid: uid)
+        self.currentUser = currentUser
+
+        
+        
         AppState.sharedInstance.displayName = user?.displayName ?? user?.email
         AppState.sharedInstance.photoURL = user?.photoURL
         AppState.sharedInstance.signedIn = true
         let notificationName = Notification.Name(rawValue: Constants.NotificationKeys.SignedIn)
         NotificationCenter.default.post(name: notificationName, object: nil, userInfo: nil)
         performSegue(withIdentifier: Constants.Segues.showMapView, sender: nil)
+        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        self.delegate = segue.destination as? ViewController
+        delegate?.assignCurrentUser(currentUser: currentUser)
+    }
+    
     
 }
