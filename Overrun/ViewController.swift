@@ -8,11 +8,11 @@
 
 import GoogleMaps
 import FirebaseAuth
-import Firebase
+import FirebaseDatabase
+
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate {
     
-    @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceView: UIView!
     @IBOutlet var startRunButton: UIButton!
@@ -32,9 +32,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        usernameLabel.text = currentUser.uid
-        
-        
         mapView = GMSMapView()
         
         endRunButtonView.isHidden = true
@@ -48,6 +45,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         view.insertSubview(mapView, at: 0)
         
         distanceView.isHidden = true
+        
+        let rootRef = FIRDatabase.database().reference()
+        rootRef.child("Runs").observe(FIRDataEventType.childAdded) { (runSnap: FIRDataSnapshot) in
+            print("NEW SHAPE")
+        }
+        
         
     }
     

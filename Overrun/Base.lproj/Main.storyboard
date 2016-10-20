@@ -159,15 +159,6 @@
                                     <constraint firstItem="EiY-6k-sQZ" firstAttribute="leading" secondItem="y5T-Kp-O9W" secondAttribute="leading" id="z1N-d5-Iga"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GJb-eo-HGR">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="235" id="oMi-6J-psN"/>
-                                    <constraint firstAttribute="height" constant="72" id="uCd-uF-buE"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="39"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -175,8 +166,6 @@
                             <constraint firstItem="y5T-Kp-O9W" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="9mg-80-UWB"/>
                             <constraint firstItem="y5T-Kp-O9W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ijr-pT-7R9"/>
                             <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JC4-Oh-Xpo"/>
-                            <constraint firstItem="GJb-eo-HGR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Jdv-IC-imp"/>
-                            <constraint firstItem="GJb-eo-HGR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P84-ow-eW6"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9dW-NP-DjU" secondAttribute="bottom" constant="40" id="RjY-m1-Isq"/>
                             <constraint firstAttribute="trailing" secondItem="W0T-KQ-yLW" secondAttribute="trailing" constant="13" id="bHp-YL-HoZ"/>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHW-K7-COo"/>
@@ -190,7 +179,6 @@
                         <outlet property="endRunButtonView" destination="9dW-NP-DjU" id="x2E-di-kpv"/>
                         <outlet property="startRunButton" destination="wAP-eg-KnN" id="J2f-pk-va2"/>
                         <outlet property="startRunButtonView" destination="pU9-Ul-i7W" id="2fR-Ol-vXc"/>
-                        <outlet property="usernameLabel" destination="GJb-eo-HGR" id="D3n-hq-3qs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
