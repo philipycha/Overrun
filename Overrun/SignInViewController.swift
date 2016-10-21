@@ -103,8 +103,6 @@ class SignInViewController: UIViewController {
         let currentUser = User.init(userName: "PHIL!!!", email: email, uid: uid)
         self.currentUser = currentUser
 
-        
-        
         AppState.sharedInstance.displayName = user?.displayName ?? user?.email
         AppState.sharedInstance.photoURL = user?.photoURL
         AppState.sharedInstance.signedIn = true
@@ -118,6 +116,4 @@ class SignInViewController: UIViewController {
         self.delegate = segue.destination as? ViewController
         delegate?.assignCurrentUser(currentUser: currentUser)
     }
-    
-    
 }
