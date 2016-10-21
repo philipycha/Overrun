@@ -15,8 +15,11 @@ class Run: NSObject {
 
     var runLocations: [CLLocation] = []
     var smartArray:[CLLocation] = []
+    var coorArray: [CLLocationCoordinate2D]? = []
     var totalDistance:Double = 0
     var lastKnownLocation = CLLocation()
+    var uID: String?
+    
     func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
         var smartArray: [CLLocation] = []
         var previousLocation: CLLocation?
@@ -33,6 +36,11 @@ class Run: NSObject {
         return smartArray
     }
     
+    convenience init(uID: String, coorArray: [CLLocationCoordinate2D]) {
+        self.init()
+        self.uID = uID
+        self.coorArray = coorArray
+    }
     
     func createRunningLine() -> GMSPolyline {
         
@@ -43,6 +51,16 @@ class Run: NSObject {
         }
         let polyline = GMSPolyline(path: runPath)
         return polyline
+    }
+    
+    func createPulledShape() -> GMSPolygon{
+        let path = GMSMutablePath()
+        
+        for coordinate in coorArray!{
+            path.add(coordinate)
+        }
+        let shape = GMSPolygon(path: path)
+        return shape
     }
     
     func createNewShape() -> GMSPolygon {
@@ -67,7 +85,6 @@ class Run: NSObject {
         
         var i = 0
         
-//        var dbCoordinates = [[ String : [[String : String]]]]()
         var dbCoordinates = [[[String : String]]]()
         
         for coordinate in smartArray {
@@ -76,12 +93,7 @@ class Run: NSObject {
             let long = String(format: "%f", coordinate.coordinate.longitude)
             let lat = String(format: "%f", coordinate.coordinate.latitude)
             
-//            let indexStr = String(format: "%i", i)
-            
-//            let indexValue = [, ["lat" : lat]]
-            
             dbCoordinates.append([["long" : long],["lat" : lat]])
-
         }
         
         let key = ref.child("Runs").childByAutoId().key
@@ -89,7 +101,6 @@ class Run: NSObject {
         
         let childUpdates = ["/Runs/\(key)" : run]
         ref.updateChildValues(childUpdates)
-    
         
     }
     
