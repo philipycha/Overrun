@@ -165,7 +165,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             endRunButtonView.isHidden = true
             distanceView.isHidden = true
             
-            displayNewShapeWith(newShape: activeRun.createNewShape())
+            displayNewShapeWith(newShape: activeRun.createNewShape(user: currentUser))
 
             for polyline in polylineArray {
                 polyline.map = nil
