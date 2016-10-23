@@ -42,7 +42,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 let alertController = UIAlertController(title: "Location services are disabled, Please go into Settings > Privacy > Location to enable them for Play", message: "", preferredStyle: .alert)
                 
                 let ok = UIAlertAction(title: "OK", style: .default, handler: { (UIAlertAction) in
-                    //
+                    
+                    
                 })
                 alertController.addAction(ok)
             }
@@ -66,7 +67,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         }
         
         let eventDate = location.timestamp
-        let howRecent = eventDate.timeIntervalSinceNow
+        let howRecent = Double.abs(eventDate.timeIntervalSinceNow)
         
         
         if howRecent < 15 {

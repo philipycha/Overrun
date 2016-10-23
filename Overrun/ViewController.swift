@@ -128,14 +128,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     }
 
     func displayRunLineWith(polyline: GMSPolyline) {
-        polyline.strokeColor = UIColor.black
+        polyline.strokeColor = UIColor.white
         polyline.strokeWidth = 5
         polyline.map = mapView
         polylineArray.append(polyline)
     }
     
     func displayNewShapeWith(newShape: GMSPolygon) {
-        newShape.strokeColor = UIColor.blue
+        newShape.strokeColor = UIColor.white
         newShape.fillColor = UIColor.orange
         newShape.map = mapView
     }

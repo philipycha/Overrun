@@ -14,6 +14,8 @@ protocol SignInDelegate {
 }
 
 class SignInViewController: UIViewController {
+    
+    var userName: String?
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
@@ -94,13 +96,15 @@ class SignInViewController: UIViewController {
     func signedIn(_ user: FIRUser?) {
         MeasurementHelper.sendLoginEvent()
         
-        //      create username property
+        // create username property
         
-        guard let email = user?.email, let uid = user?.uid else {
+//        self.userName = user?.displayName
+        
+        guard let email = user?.email, let uid = user?.uid, let userName = user?.displayName else {
             print("user is nil")
             return
         }
-        let currentUser = User.init(userName: "PHIL!!!", email: email, uid: uid)
+        let currentUser = User.init(userName: userName, email: email, uid: uid)
         self.currentUser = currentUser
 
         AppState.sharedInstance.displayName = user?.displayName ?? user?.email
