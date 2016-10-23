@@ -43,17 +43,28 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         let camera = GMSCameraPosition.camera(withLatitude: locationManager.currentLocation.coordinate.latitude, longitude: locationManager.currentLocation.coordinate.longitude, zoom: 6.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.isMyLocationEnabled = true
+        
+        do{
+            
+            if let styleUrl = Bundle.main.url(forResource: "style", withExtension: "json"){
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleUrl)
+                
+            }else{
+                print("unable to find json")
+            }
+            
+        }catch _ {
+            print("error loading GMSMapStyle Json")
+        }
+        
+        
+        
         view.insertSubview(mapView, at: 0)
         
         distanceView.isHidden = true
         
         pullRunsFromFirebase()
         
-        let rootRef = FIRDatabase.database().reference()
-        
-        rootRef.child("Runs").observe(FIRDataEventType.childAdded) { (runSnap: FIRDataSnapshot) in
-            print("NEW SHAPE")
-        }
     }
     
     func pullRunsFromFirebase() {
@@ -101,8 +112,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             }
         }
     }
-
-
+    
+    
     func assignCurrentUser(currentUser: User) {
         self.currentUser = currentUser
     }
@@ -117,21 +128,21 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     }
 
     func displayRunLineWith(polyline: GMSPolyline) {
-        polyline.strokeColor = UIColor.black
+        polyline.strokeColor = UIColor.white
         polyline.strokeWidth = 5
         polyline.map = mapView
         polylineArray.append(polyline)
     }
     
     func displayNewShapeWith(newShape: GMSPolygon) {
-        newShape.strokeColor = UIColor.blue
+        newShape.strokeColor = UIColor.white
         newShape.fillColor = UIColor.orange
         newShape.map = mapView
     }
 
     func updateCamera() {
         
-       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 0)
+       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 30)
         mapView.camera = updatedCamera
     }
  
@@ -154,7 +165,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             endRunButtonView.isHidden = true
             distanceView.isHidden = true
             
-            displayNewShapeWith(newShape: activeRun.createNewShape())
+            displayNewShapeWith(newShape: activeRun.createNewShape(user: currentUser))
 
             for polyline in polylineArray {
                 polyline.map = nil

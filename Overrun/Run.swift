@@ -19,6 +19,10 @@ class Run: NSObject {
     var totalDistance:Double = 0
     var lastKnownLocation = CLLocation()
     var uID: String?
+    var runTime: Double = 0
+    var averageSpeed: Double = 0
+    var currentUser: User?
+    
     
     func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
         var smartArray: [CLLocation] = []
@@ -63,14 +67,32 @@ class Run: NSObject {
         return shape
     }
     
-    func createNewShape() -> GMSPolygon {
+    func createNewShape(user: User) -> GMSPolygon {
         smartArray = makeSmartCoordinateArrayfrom(runLocations: runLocations)
+    
+        currentUser = user
         
+        var averageSpeed: Double = 0
+        
+        for location in runLocations {
+            averageSpeed += location.speed
+        }
+        
+        self.averageSpeed = averageSpeed
+        
+        let startTime = runLocations.first?.timestamp
+        let endTime = runLocations.last?.timestamp
+        
+        let runTime = endTime?.timeIntervalSince(startTime!)
+        
+        self.runTime = runTime!
+
         let runPath = GMSMutablePath()
         
         for location in smartArray {
             runPath.add(location.coordinate)
         }
+        
         let newShape = GMSPolygon(path: runPath)
         
         storeNewShapes()
@@ -96,11 +118,21 @@ class Run: NSObject {
             dbCoordinates.append([["long" : long],["lat" : lat]])
         }
         
-        let key = ref.child("Runs").childByAutoId().key
-        let run = ["coordinates" : dbCoordinates]
+        guard let userName = currentUser?.userName else {
+            print("username is nil")
+            return
+        }
         
-        let childUpdates = ["/Runs/\(key)" : run]
-        ref.updateChildValues(childUpdates)
+        
+        let key = ref.child("Runs").childByAutoId().key
+        let run = ["coordinates" : dbCoordinates,
+                   "username" : userName,
+                   "speed" : self.averageSpeed,
+                   "time" : self.runTime
+                    ] as [String : Any]
+
+        let runsUpdates = ["/Runs/\(key)" : run]
+        ref.updateChildValues(runsUpdates)
         
     }
     
