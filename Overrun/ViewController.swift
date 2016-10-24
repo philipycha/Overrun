@@ -44,6 +44,10 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.isMyLocationEnabled = true
         
+        mapView.settings.zoomGestures = false
+        mapView.settings.scrollGestures = false
+        
+        
         do{
             
             if let styleUrl = Bundle.main.url(forResource: "style", withExtension: "json"){
@@ -136,13 +140,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     
     func displayNewShapeWith(newShape: GMSPolygon) {
         newShape.strokeColor = UIColor.white
-        newShape.fillColor = UIColor.orange
+        newShape.fillColor = UIColor(colorLiteralRed: 0, green: 0, blue: 50, alpha: 0.4)
+        
+        newShape.geodesic = true
         newShape.map = mapView
     }
 
     func updateCamera() {
         
-       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17, bearing: 0, viewingAngle: 30)
+       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17.5, bearing: 0, viewingAngle: 45)
         mapView.camera = updatedCamera
     }
  
