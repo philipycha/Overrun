@@ -9,9 +9,11 @@
 import GoogleMaps
 import FirebaseAuth
 import FirebaseDatabase
+import SceneKit
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate {
     
+    @IBOutlet weak var PlayerAnimationView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceView: UIView!
     @IBOutlet var startRunButton: UIButton!
@@ -33,6 +35,61 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
+        
+        // create a new scene
+        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        
+        // create and add a camera to the scene
+        let cameraNode = SCNNode()
+        cameraNode.camera = SCNCamera()
+        scene.rootNode.addChildNode(cameraNode)
+        
+        // place the camera
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        
+        // create and add a light to the scene
+        let lightNode = SCNNode()
+        lightNode.light = SCNLight()
+        lightNode.light!.type = .omni
+        lightNode.position = SCNVector3(x: 0, y: 5, z: 10)
+        scene.rootNode.addChildNode(lightNode)
+        
+        // create and add an ambient light to the scene
+        let ambientLightNode = SCNNode()
+        ambientLightNode.light = SCNLight()
+        ambientLightNode.light!.type = .ambient
+        ambientLightNode.light!.color = UIColor.darkGray
+        scene.rootNode.addChildNode(ambientLightNode)
+        
+        // retrieve the ship node
+        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
+        
+        // animate the 3d object
+        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
+        
+        // retrieve the SCNView
+        let scnView = PlayerAnimationView as! SCNView
+        
+        // set the scene to the view
+        scnView.scene = scene
+        
+        // allows the user to manipulate the camera
+        scnView.allowsCameraControl = true
+        
+        // show statistics such as fps and timing information
+        scnView.showsStatistics = false
+        
+        // configure the view
+        scnView.backgroundColor = UIColor.clear
+        
+        // add a tap gesture recognizer
+//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+//        scnView.addGestureRecognizer(tapGesture)
+        
+        
+        
         mapView = GMSMapView()
         
         endRunButtonView.isHidden = true
@@ -42,7 +99,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         
         let camera = GMSCameraPosition.camera(withLatitude: locationManager.currentLocation.coordinate.latitude, longitude: locationManager.currentLocation.coordinate.longitude, zoom: 6.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
-        mapView.isMyLocationEnabled = true
+//        mapView.isMyLocationEnabled = true
         
         mapView.settings.zoomGestures = false
         mapView.settings.scrollGestures = false
@@ -60,8 +117,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         }catch _ {
             print("error loading GMSMapStyle Json")
         }
-        
-        
         
         view.insertSubview(mapView, at: 0)
         
@@ -141,8 +196,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     func displayNewShapeWith(newShape: GMSPolygon) {
         newShape.strokeColor = UIColor.white
         newShape.fillColor = UIColor(colorLiteralRed: 0, green: 0, blue: 50, alpha: 0.4)
-        
-        newShape.geodesic = true
         newShape.map = mapView
     }
 
@@ -171,7 +224,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             endRunButtonView.isHidden = true
             distanceView.isHidden = true
             
-            displayNewShapeWith(newShape: activeRun.createNewShape(user: currentUser))
+            displayNewShapeWith(newShape: activeRun.createNewShape(user: currentUser, runsArray: pulledRunArray))
 
             for polyline in polylineArray {
                 polyline.map = nil

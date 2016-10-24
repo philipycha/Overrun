@@ -67,15 +67,31 @@ class Run: NSObject {
         return shape
     }
     
-    func createNewShape(user: User) -> GMSPolygon {
+    func convertToPath(coordinates: [CLLocationCoordinate2D]) -> GMSPath {
+        
+        let path = GMSMutablePath()
+        for coor in coordinates {
+            path.add(coor)
+        }
+        return path
+    }
+    
+    func createNewShape(user: User, runsArray: [Run]) -> GMSPolygon {
         smartArray = makeSmartCoordinateArrayfrom(runLocations: runLocations)
     
         currentUser = user
+        
+        var pulledPathArray = [GMSMutablePath]()
+        
+        for run in runsArray {
+            pulledPathArray.append(convertToPath(coordinates: run.coorArray!) as! GMSMutablePath)
+        }
         
         var averageSpeed: Double = 0
         
         for location in runLocations {
             averageSpeed += location.speed
+            averageSpeed = averageSpeed / Double(runLocations.count)
         }
         
         self.averageSpeed = averageSpeed
@@ -94,6 +110,8 @@ class Run: NSObject {
         }
         
         let newShape = GMSPolygon(path: runPath)
+        
+        newShape.holes = pulledPathArray
         
         storeNewShapes()
         
