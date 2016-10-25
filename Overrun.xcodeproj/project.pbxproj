@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		153D0A591DB6E89B0034CBB8 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 153D0A571DB6E89B0034CBB8 /* SignInViewController.swift */; };
+		1540CE6E1DBFDB9700B015A4 /* RunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1540CE6D1DBFDB9700B015A4 /* RunManager.swift */; };
 		15561FE61DB7EF3F009DFB10 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15561FE31DB7EF3F009DFB10 /* AppState.swift */; };
 		15561FE71DB7EF3F009DFB10 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15561FE41DB7EF3F009DFB10 /* Constants.swift */; };
 		15561FE81DB7EF3F009DFB10 /* MeasurementHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15561FE51DB7EF3F009DFB10 /* MeasurementHelper.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.debug.xcconfig"; sourceTree = "<group>"; };
 		153D0A571DB6E89B0034CBB8 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		1540CE6D1DBFDB9700B015A4 /* RunManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunManager.swift; sourceTree = "<group>"; };
 		15561FE31DB7EF3F009DFB10 /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		15561FE41DB7EF3F009DFB10 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		15561FE51DB7EF3F009DFB10 /* MeasurementHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeasurementHelper.swift; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 				7DA6BCA51DB9B91500041C73 /* style.json */,
 				158BCA651DB17A480058B340 /* AppDelegate.swift */,
 				158BCA671DB17A480058B340 /* ViewController.swift */,
+				1540CE6D1DBFDB9700B015A4 /* RunManager.swift */,
 				7D3B78DC1DB5469F001061D1 /* LocationManager.swift */,
 				7DC6139E1DB6AF7900B4CD69 /* Run.swift */,
 				7D6E8E9D1DB832E400B7F23B /* User.swift */,
@@ -244,6 +247,7 @@
 				15561FE81DB7EF3F009DFB10 /* MeasurementHelper.swift in Sources */,
 				158BCA681DB17A480058B340 /* ViewController.swift in Sources */,
 				7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */,
+				1540CE6E1DBFDB9700B015A4 /* RunManager.swift in Sources */,
 				158BCA661DB17A480058B340 /* AppDelegate.swift in Sources */,
 				15561FE61DB7EF3F009DFB10 /* AppState.swift in Sources */,
 				7D6E8E9E1DB832E400B7F23B /* User.swift in Sources */,

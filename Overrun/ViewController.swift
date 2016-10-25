@@ -117,7 +117,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         }
     }
     
-    
     func assignCurrentUser(currentUser: User) {
         self.currentUser = currentUser
     }
@@ -171,7 +170,19 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             endRunButtonView.isHidden = true
             distanceView.isHidden = true
             
-            displayNewShapeWith(newShape: activeRun.createNewShape(user: currentUser))
+            let newShape = activeRun.createNewShape(user: currentUser)
+            
+            activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
+            
+            let intersectingCoor = activeRun.checkShapeIntersection(existingRuns: pulledRunArray)
+            for point in intersectingCoor {
+                let marker = GMSMarker(position: point)
+                marker.map = mapView
+            }
+            
+            
+            
+            displayNewShapeWith(newShape: newShape)
 
             for polyline in polylineArray {
                 polyline.map = nil
