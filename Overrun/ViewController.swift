@@ -201,7 +201,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
 
     func updateCamera() {
         
-       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17.5, bearing: 0, viewingAngle: 45)
+       let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17.5, bearing: mapView.camera.bearing, viewingAngle: 45)
         mapView.camera = updatedCamera
     }
  

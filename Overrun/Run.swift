@@ -53,6 +53,7 @@ class Run: NSObject {
         for location in runLocations {
             runPath.add(location.coordinate)
         }
+
         let polyline = GMSPolyline(path: runPath)
         return polyline
     }
