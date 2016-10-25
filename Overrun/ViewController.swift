@@ -34,10 +34,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        
-        
+    
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
         
@@ -172,7 +169,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         }
     }
     
-    
     func assignCurrentUser(currentUser: User) {
         self.currentUser = currentUser
     }
@@ -224,7 +220,18 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             endRunButtonView.isHidden = true
             distanceView.isHidden = true
             
-            displayNewShapeWith(newShape: activeRun.createNewShape(user: currentUser, runsArray: pulledRunArray))
+
+            let newShape = activeRun.createNewShape(user: currentUser)
+            
+            activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
+            
+            let intersectingCoor = activeRun.checkShapeIntersection(existingRuns: pulledRunArray)
+            for point in intersectingCoor {
+                let marker = GMSMarker(position: point)
+                marker.map = mapView
+            }
+            
+            displayNewShapeWith(newShape: newShape)
 
             for polyline in polylineArray {
                 polyline.map = nil
