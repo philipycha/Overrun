@@ -53,6 +53,7 @@ class Run: NSObject {
         for location in runLocations {
             runPath.add(location.coordinate)
         }
+
         let polyline = GMSPolyline(path: runPath)
         return polyline
     }
@@ -67,6 +68,15 @@ class Run: NSObject {
         return shape
     }
     
+    func convertToPath(coordinates: [CLLocationCoordinate2D]) -> GMSPath {
+        
+        let path = GMSMutablePath()
+        for coor in coordinates {
+            path.add(coor)
+        }
+        return path
+    }
+    
     func createNewShape(user: User) -> GMSPolygon {
         smartArray = makeSmartCoordinateArrayfrom(runLocations: runLocations)
     
@@ -76,6 +86,7 @@ class Run: NSObject {
         
         for location in runLocations {
             averageSpeed += location.speed
+            averageSpeed = averageSpeed / Double(runLocations.count)
         }
         
         self.averageSpeed = averageSpeed
