@@ -22,6 +22,7 @@
 		7D6E8E9E1DB832E400B7F23B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E8E9D1DB832E400B7F23B /* User.swift */; };
 		7DA6BCA61DB9B91500041C73 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6BCA51DB9B91500041C73 /* style.json */; };
 		7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6139E1DB6AF7900B4CD69 /* Run.swift */; };
+		7DF7304E1DC0413800888C39 /* RunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF7304D1DC0413800888C39 /* RunManager.swift */; };
 		AC24A4C22F33162DFFB8F38C /* Pods_Overrun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		7D6E8E9D1DB832E400B7F23B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7DA6BCA51DB9B91500041C73 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = style.json; path = ../style.json; sourceTree = "<group>"; };
 		7DC6139E1DB6AF7900B4CD69 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
+		7DF7304D1DC0413800888C39 /* RunManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunManager.swift; sourceTree = "<group>"; };
 		CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overrun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -85,6 +87,7 @@
 				158BCA651DB17A480058B340 /* AppDelegate.swift */,
 				7D5483B61DBEBF69006E9C74 /* art.scnassets */,
 				158BCA671DB17A480058B340 /* ViewController.swift */,
+				7DF7304D1DC0413800888C39 /* RunManager.swift */,
 				7D3B78DC1DB5469F001061D1 /* LocationManager.swift */,
 				7DC6139E1DB6AF7900B4CD69 /* Run.swift */,
 				7D6E8E9D1DB832E400B7F23B /* User.swift */,
@@ -248,6 +251,7 @@
 				15561FE81DB7EF3F009DFB10 /* MeasurementHelper.swift in Sources */,
 				158BCA681DB17A480058B340 /* ViewController.swift in Sources */,
 				7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */,
+				7DF7304E1DC0413800888C39 /* RunManager.swift in Sources */,
 				158BCA661DB17A480058B340 /* AppDelegate.swift in Sources */,
 				15561FE61DB7EF3F009DFB10 /* AppState.swift in Sources */,
 				7D6E8E9E1DB832E400B7F23B /* User.swift in Sources */,
