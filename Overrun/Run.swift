@@ -166,10 +166,20 @@ class Run: NSObject {
             
              for _ in 0..<(smartArray.count) - 1{
                 
+                if indexNewP2 == smartArray.count - 1{
+                    
+                    indexNewP1 = 0
+                }
+                
                 var indexPulledP3 = 0
                 var indexPulledP4 = 1
                 
                 for _ in 0..<(specificRun.coorArray?.count)! - 1{
+                    
+                    if indexPulledP4 == (specificRun.coorArray?.count)! - 1{
+                        
+                        indexPulledP3 = 0
+                    }
                     
                     let newP1 = self.smartArray[indexNewP1].coordinate
                     let newP2 = self.smartArray[indexNewP2].coordinate
