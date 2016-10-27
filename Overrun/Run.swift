@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import GoogleMaps
 import FirebaseDatabase
+import MapKit
 
 class Run: NSObject {
 
@@ -22,9 +23,20 @@ class Run: NSObject {
     var runTime: Double = 0
     var averageSpeed: Double = 0
     var currentUser: User?
+    var shapeArray: [MyCoordinate2D]?
     
     
     func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
+        
+        var averageSpeed: Double = 0
+        
+        for location in runLocations {
+            averageSpeed += location.speed
+            averageSpeed = averageSpeed / Double(runLocations.count)
+        }
+        
+        self.averageSpeed = averageSpeed
+        
         var smartArray: [CLLocation] = []
         var previousLocation: CLLocation?
         
@@ -106,14 +118,27 @@ class Run: NSObject {
         
         let newShape = GMSPolygon(path: runPath)
         
-        storeNewShapes()
+//        storeNewShape()
         
         
         return newShape
         
     }
     
-    func storeNewShapes() {
+//    func updateExistingShape() {
+//        
+//        let ref = FIRDatabase.database().reference()
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//        
+//    }
+    
+    func storeNewShape() {
         
         let ref = FIRDatabase.database().reference()
         
@@ -121,11 +146,13 @@ class Run: NSObject {
         
         var dbCoordinates = [[[String : String]]]()
         
-        for coordinate in smartArray {
+        for coordinateValue in shapeArray! {
             i += 1
             
-            let long = String(format: "%f", coordinate.coordinate.longitude)
-            let lat = String(format: "%f", coordinate.coordinate.latitude)
+            let coordinate = coordinateValue.coordinate()
+            
+            let long = String(format: "%f", coordinate.longitude)
+            let lat = String(format: "%f", coordinate.latitude)
             
             dbCoordinates.append([["long" : long],["lat" : lat]])
         }

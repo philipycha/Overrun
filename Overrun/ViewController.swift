@@ -182,12 +182,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             
             activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
             
-            let intersectingCoor = runManager.checkShapeIntersection(existingRuns: pulledRunArray, activeRun: activeRun)
+//          **//Only comparing first run//**
             
-            for point in intersectingCoor {
-                let marker = GMSMarker(position: point)
-                marker.map = mapView
-            }
+            runManager.checkShapeIntersection(existingRun: pulledRunArray.first!, activeRun: activeRun)
+            
+//            for point in intersectingCoor {
+//                let marker = GMSMarker(position: point)
+//                marker.map = mapView
+//            }
             
             displayNewShapeWith(newShape: newShape)
 
