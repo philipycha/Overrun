@@ -9,10 +9,22 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>OverrunTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>158BCA611DB17A480058B340</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7DF730521DC3E97700888C39</key>
 		<dict>
 			<key>primary</key>
 			<true/>
