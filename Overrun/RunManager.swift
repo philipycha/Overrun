@@ -4,7 +4,8 @@
 //
 //  Created by Tevin Maker on 2016-10-25.
 //  Copyright © 2016 Philip Ha. All rights reserved.
-//
+
+
 
 import UIKit
 import Firebase
@@ -19,20 +20,20 @@ protocol RunManagerDelegate {
     
 }
 
-extension Dictionary {
-    
-    func invert() -> Dictionary <Any:Hashable, Any:Hashable> {
-        
-        var invertedDictionary = [Any: Any]()
-        
-        for (key, value) in self{
-            invertedDictionary[value] = key
-        }
-        
-        return invertedDictionary
-    }
-    
-}
+//extension Dictionary {
+//    
+//    func invert() -> Dictionary <Any:Hashable, Any:Hashable> {
+//        
+//        var invertedDictionary = [Any: Any]()
+//        
+//        for (key, value) in self{
+//            invertedDictionary[value] = key
+//        }
+//        
+//        return invertedDictionary
+//    }
+//    
+//}
 
 class MyCoordinate2D: NSObject {
     
@@ -75,6 +76,7 @@ class RunManager: NSObject {
     var pulledRunsArray = [Run]()
     var winningRun = Run()
     var losingRun = Run()
+    var onWinningPath = false
     
     private let sharedRunManager = RunManager()
     class RunManager {
@@ -174,14 +176,17 @@ class RunManager: NSObject {
                         
                         let p4Coor = MyCoordinate2D(with: pulledP4!)
                         let p3Coor = MyCoordinate2D(with: pulledP3!)
-                        
-                        p4Coor.index = indexPulledP4
-                        p3Coor.index = indexPulledP3
-                        
-                        pulledShapeDict[p3Coor] = p4Coor
-                        
-                        print("KeyP3: \(p3Coor)")
-                        print("ValueP4: \(p4Coor)")
+                       
+                        if pulledShapeDict[p3Coor] == nil {
+                            
+                            // No intersection
+                            
+                            pulledShapeDict[p3Coor] = p4Coor
+                            
+                            print("KeyP3: \(p3Coor)")
+                            print("ValueP4: \(p4Coor)")
+                            
+                        }
                     }
                     
                     indexPulledP3 += 1
@@ -207,13 +212,15 @@ class RunManager: NSObject {
                             let p4Coor = MyCoordinate2D(with: pulledP4!)
                             let p3Coor = MyCoordinate2D(with: pulledP3!)
                             
-                            p4Coor.index = indexPulledP4
-                            p3Coor.index = indexPulledP3
-                            
-                            pulledShapeDict[p3Coor] = p4Coor
-                            
-                            print("KeyP3: \(p3Coor)")
-                            print("ValueP4: \(p4Coor)")
+                            if pulledShapeDict[p3Coor] == nil {
+                                
+                                // No intersection
+                                
+                                pulledShapeDict[p3Coor] = p4Coor
+                                
+                                print("KeyP3: \(p3Coor)")
+                                print("ValueP4: \(p4Coor)")
+                            }
                         }
                         
                         indexPulledP3 += 1
@@ -232,11 +239,16 @@ class RunManager: NSObject {
                             p4Coor.index = indexPulledP4
                             p3Coor.index = indexPulledP3
                             
-                            pulledShapeDict[p3Coor] = p4Coor
-                            
-                            print("KeyP3: \(p3Coor)")
-                            print("ValueP4: \(p4Coor)")
-                            
+                            if pulledShapeDict[p3Coor] == nil {
+                                
+                                // No intersection
+                                
+                                pulledShapeDict[p3Coor] = p4Coor
+                                
+                                print("KeyP3: \(p3Coor)")
+                                print("ValueP4: \(p4Coor)")
+                                
+                            }
                         }
                         
                         indexPulledP3 += 1
@@ -276,12 +288,12 @@ class RunManager: NSObject {
                         p4Coor.index = indexPulledP4
                         p3Coor.index = indexPulledP3
                         
-                        pulledShapeDict[p3Coor] = intersectCoor
+                        pulledShapeDict[p3Coor] = intersectCoor ///////
                         
                         print("KeyP3: \(p3Coor)")
                         print("ValueIntersect: \(intersectCoor)")
                         
-                        pulledShapeDict[intersectCoor] = p4Coor
+                        pulledShapeDict[intersectCoor] = p4Coor ////////
                         
                         print("KeyIntersect: \(intersectCoor)")
                         print("ValueP3: \(p3Coor)")
@@ -329,6 +341,8 @@ class RunManager: NSObject {
     }
     
     func checkShapeIntersection(existingRun: Run, activeRun: Run, previousCoor: MyCoordinate2D, newShapeDict: [MyCoordinate2D :MyCoordinate2D], pulledShapeDict: [MyCoordinate2D : MyCoordinate2D]) {
+     
+        
         
         let losingRun = findLoserWithSpeed(activeRun: activeRun, existingRun: existingRun)
         
@@ -342,12 +356,6 @@ class RunManager: NSObject {
                 existingRun.shapeArray?.append(location)
             }
         } else {
-            
-//            let existingCoor = CLLocation(latitude: (existingRun.coorArray?.last?.latitude)!, longitude: (existingRun.coorArray?.first?.longitude)!)
-//            
-//            let myExistingCoor = MyCoordinate2D(with: existingCoor.coordinate)
-            
-            
             
             cutLoserShapeBeginningWith(previousCoor: pulledShapeDict.keys.first!, losingDict: pulledShapeDict, winningDict: newShapeDict)
             
@@ -376,27 +384,57 @@ class RunManager: NSObject {
                 
                 nextCoor = losingDict[previousCoor]
                 losingShapeArray.append(nextCoor!)
-                self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: winningDict, winningDict: losingDict)
+                self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: losingDict, winningDict: winningDict)
                 
             } else {
-                nextCoor = winningDict[previousCoor]
-                losingShapeArray.append(nextCoor!)
-                self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: losingDict, winningDict: winningDict)
+//
+//                var invertedWinningDict = [MyCoordinate2D : MyCoordinate2D]()
+//                
+//                if onWinningPath == false{
+//                    invertedWinningDict = invert(originalDict: winningDict)
+//                    onWinningPath = true
+//                
+                    nextCoor = winningDict[previousCoor]
+                    losingShapeArray.append(nextCoor!)
+                    self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: winningDict, winningDict: losingDict)
+                
+//                } else {
+//                    self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: winningDict, winningDict: losingDict)
+//
+//                }
             }
+        
         } else if losingDict[previousCoor] != losingShapeArray.first!   {
             
             if nextCoor == nil {
                 
                 nextCoor = losingDict[previousCoor]
                 losingShapeArray.append(nextCoor!)
-                self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: winningDict, winningDict: losingDict)
+                self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: losingDict, winningDict: winningDict)
+                
                 
             } else {
-            
+                
                 nextCoor = winningDict[previousCoor]
                 losingShapeArray.append(nextCoor!)
-                self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: losingDict, winningDict: winningDict)
+                self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: winningDict, winningDict: losingDict)
+
+                
+//                var invertedWinningDict = [MyCoordinate2D : MyCoordinate2D]()
+                
+//                if onWinningPath == false{
+//                    invertedWinningDict = invert(originalDict: winningDict)
+//                    onWinningPath = true
+//                } else {
+//                    self.cutLoserShapeBeginningWith(previousCoor: nextCoor!, losingDict: winningDict, winningDict: losingDict)
+//                    
+//                }
             }
+        }
+        
+        for coordinate in losingShapeArray{
+            
+            print("lat: \(coordinate.latitude) long: \(coordinate.longitude)")
         }
     }
     

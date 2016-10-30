@@ -29,29 +29,33 @@ class OverrunTests: XCTestCase {
         let pulledRun = Run()
         let activeRun = Run()
         
-        let coorArray = [
-                        CLLocationCoordinate2D(latitude: 40, longitude: 40),
-                        CLLocationCoordinate2D(latitude: 60, longitude: 40),
-                        CLLocationCoordinate2D(latitude: 70, longitude: 60),
-                        CLLocationCoordinate2D(latitude: 60, longitude: 80),
-                        CLLocationCoordinate2D(latitude: 40, longitude: 80)
+        let smartArray = [
+                        CLLocation(latitude: 40, longitude: 40),
+                        CLLocation(latitude: 60, longitude: 40),
+                        CLLocation(latitude: 70, longitude: 60),
+                        CLLocation(latitude: 60, longitude: 100),
+                        CLLocation(latitude: 40, longitude: 100)
         ]
         
-        let smartArray = [
-                            CLLocation(latitude: 50, longitude: 50),
-                            CLLocation(latitude: 50, longitude: 80),
-                            CLLocation(latitude: 80, longitude: 80),
-                            CLLocation(latitude: 80, longitude: 50)
+        let coorArray = [
+                            CLLocationCoordinate2D(latitude: 50, longitude: 50),
+                            CLLocationCoordinate2D(latitude: 50, longitude: 80),
+                            CLLocationCoordinate2D(latitude: 80, longitude: 80),
+                            CLLocationCoordinate2D(latitude: 80, longitude: 50)
         ]
         
         pulledRun.coorArray = coorArray
         activeRun.smartArray = smartArray
-        
+        pulledRun.averageSpeed = 10
+        activeRun.averageSpeed = 50
         
         
         let (previousCoor, newShapeDict, pullShapeDict) = runManager.createIntersectingDictionaries(existingRun: pulledRun, activeRun: activeRun)
-        
+            
         runManager.checkShapeIntersection(existingRun: pulledRun, activeRun: activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+        
+        
+        
         
         for coor in coorArray {
             

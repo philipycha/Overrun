@@ -52,7 +52,7 @@ class Run: NSObject {
         return smartArray
     }
     
-    func resverseArrayIfArrayIsClockwise(locationArray: [CLLocation]) -> [CLLocation] {
+    func resverseArrayIfArrayIsNotClockwise(locationArray: [CLLocation]) -> [CLLocation] {
         
         let currentIndex = 0
         var nextIndex = 1
