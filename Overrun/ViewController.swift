@@ -184,7 +184,18 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             
 //          **//Only comparing first run//**
             
-            runManager.checkShapeIntersection(existingRun: pulledRunArray.first!, activeRun: activeRun)
+//            runManager.checkShapeIntersection(existingRun: pulledRunArray.first!, activeRun: activeRun)
+            
+            DispatchQueue.global().async {
+                
+                let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun)
+                
+                
+                
+                self.runManager.checkShapeIntersection(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+                
+            }
+            
             
 //            for point in intersectingCoor {
 //                let marker = GMSMarker(position: point)

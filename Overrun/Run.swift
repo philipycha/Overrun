@@ -52,6 +52,30 @@ class Run: NSObject {
         return smartArray
     }
     
+    func resverseArrayIfArrayIsNotClockwise(locationArray: [CLLocation]) -> [CLLocation] {
+        
+        let currentIndex = 0
+        var nextIndex = 1
+        var bearingCounter: Double = 0
+        
+        for _ in 0 ..< locationArray.count {
+            
+            var currentBearing = locationArray[currentIndex].course 
+            let nextBearing = locationArray[nextIndex].course 
+            
+            bearingCounter = nextBearing - currentBearing
+            currentBearing += 1
+            nextIndex += 1
+        }
+        
+        if bearingCounter > 0 {
+            return locationArray
+        } else {
+            
+            return locationArray.reversed()
+        }
+    }
+    
     convenience init(uID: String, coorArray: [CLLocationCoordinate2D]) {
         self.init()
         self.uID = uID
@@ -125,18 +149,6 @@ class Run: NSObject {
         
     }
     
-//    func updateExistingShape() {
-//        
-//        let ref = FIRDatabase.database().reference()
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//        
-//    }
     
     func storeNewShape() {
         

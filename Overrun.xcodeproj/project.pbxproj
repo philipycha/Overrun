@@ -23,8 +23,20 @@
 		7DA6BCA61DB9B91500041C73 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6BCA51DB9B91500041C73 /* style.json */; };
 		7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6139E1DB6AF7900B4CD69 /* Run.swift */; };
 		7DF7304E1DC0413800888C39 /* RunManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF7304D1DC0413800888C39 /* RunManager.swift */; };
+		7DF730561DC3E97800888C39 /* OverrunTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DF730551DC3E97800888C39 /* OverrunTests.swift */; };
+		881345017FD9EFD5FC49475D /* Pods_OverrunTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCC45AAFF27A1B214691745F /* Pods_OverrunTests.framework */; };
 		AC24A4C22F33162DFFB8F38C /* Pods_Overrun.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7DF730581DC3E97800888C39 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 158BCA5A1DB17A480058B340 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 158BCA611DB17A480058B340;
+			remoteInfo = Overrun;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.debug.xcconfig"; sourceTree = "<group>"; };
@@ -47,7 +59,13 @@
 		7DA6BCA51DB9B91500041C73 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = style.json; path = ../style.json; sourceTree = "<group>"; };
 		7DC6139E1DB6AF7900B4CD69 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
 		7DF7304D1DC0413800888C39 /* RunManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RunManager.swift; sourceTree = "<group>"; };
+		7DF730531DC3E97700888C39 /* OverrunTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OverrunTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7DF730551DC3E97800888C39 /* OverrunTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverrunTests.swift; sourceTree = "<group>"; };
+		7DF730571DC3E97800888C39 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FE1DBE57489DEF9422FC773 /* Pods-OverrunTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverrunTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-OverrunTests/Pods-OverrunTests.release.xcconfig"; sourceTree = "<group>"; };
+		B12361E05F716A339692D60F /* Pods-OverrunTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OverrunTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-OverrunTests/Pods-OverrunTests.debug.xcconfig"; sourceTree = "<group>"; };
 		CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Overrun.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC45AAFF27A1B214691745F /* Pods_OverrunTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_OverrunTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +77,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7DF730501DC3E97700888C39 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				881345017FD9EFD5FC49475D /* Pods_OverrunTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -66,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				158BCA641DB17A480058B340 /* Overrun */,
+				7DF730541DC3E97800888C39 /* OverrunTests */,
 				158BCA631DB17A480058B340 /* Products */,
 				BFC4F1F5A64ED832C1E2946E /* Pods */,
 				8C36BE798F5CDAF88268C5FE /* Frameworks */,
@@ -76,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				158BCA621DB17A480058B340 /* Overrun.app */,
+				7DF730531DC3E97700888C39 /* OverrunTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,10 +132,20 @@
 			path = Overrun;
 			sourceTree = "<group>";
 		};
+		7DF730541DC3E97800888C39 /* OverrunTests */ = {
+			isa = PBXGroup;
+			children = (
+				7DF730551DC3E97800888C39 /* OverrunTests.swift */,
+				7DF730571DC3E97800888C39 /* Info.plist */,
+			);
+			path = OverrunTests;
+			sourceTree = "<group>";
+		};
 		8C36BE798F5CDAF88268C5FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				CD7436F478F6D5AA8FABE634 /* Pods_Overrun.framework */,
+				DCC45AAFF27A1B214691745F /* Pods_OverrunTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -117,6 +155,8 @@
 			children = (
 				05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */,
 				31E83FA20E8330ADFE3CDC68 /* Pods-Overrun.release.xcconfig */,
+				B12361E05F716A339692D60F /* Pods-OverrunTests.debug.xcconfig */,
+				7FE1DBE57489DEF9422FC773 /* Pods-OverrunTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -144,6 +184,27 @@
 			productReference = 158BCA621DB17A480058B340 /* Overrun.app */;
 			productType = "com.apple.product-type.application";
 		};
+		7DF730521DC3E97700888C39 /* OverrunTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7DF7305A1DC3E97800888C39 /* Build configuration list for PBXNativeTarget "OverrunTests" */;
+			buildPhases = (
+				6F7BE2E231E5CC98E9FDF66B /* [CP] Check Pods Manifest.lock */,
+				7DF7304F1DC3E97700888C39 /* Sources */,
+				7DF730501DC3E97700888C39 /* Frameworks */,
+				7DF730511DC3E97700888C39 /* Resources */,
+				1B90F0C29D85E9CC269649F2 /* [CP] Embed Pods Frameworks */,
+				4CDE4B0C9F6110C3A4049DC8 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7DF730591DC3E97800888C39 /* PBXTargetDependency */,
+			);
+			name = OverrunTests;
+			productName = OverrunTests;
+			productReference = 7DF730531DC3E97700888C39 /* OverrunTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -158,6 +219,12 @@
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = 3PXE3KNKL4;
 						ProvisioningStyle = Automatic;
+					};
+					7DF730521DC3E97700888C39 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = 3PXE3KNKL4;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 158BCA611DB17A480058B340;
 					};
 				};
 			};
@@ -175,6 +242,7 @@
 			projectRoot = "";
 			targets = (
 				158BCA611DB17A480058B340 /* Overrun */,
+				7DF730521DC3E97700888C39 /* OverrunTests */,
 			);
 		};
 /* End PBXProject section */
@@ -193,10 +261,62 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7DF730511DC3E97700888C39 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1B90F0C29D85E9CC269649F2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OverrunTests/Pods-OverrunTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		30CB1FD76E570F4A77970FB2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4CDE4B0C9F6110C3A4049DC8 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-OverrunTests/Pods-OverrunTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6F7BE2E231E5CC98E9FDF66B /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -261,7 +381,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7DF7304F1DC3E97700888C39 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DF730561DC3E97800888C39 /* OverrunTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7DF730591DC3E97800888C39 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 158BCA611DB17A480058B340 /* Overrun */;
+			targetProxy = 7DF730581DC3E97800888C39 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		158BCA691DB17A480058B340 /* Main.storyboard */ = {
@@ -404,6 +540,36 @@
 			};
 			name = Release;
 		};
+		7DF7305B1DC3E97800888C39 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B12361E05F716A339692D60F /* Pods-OverrunTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3PXE3KNKL4;
+				INFOPLIST_FILE = OverrunTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LHLTM.OverrunTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Overrun.app/Overrun";
+			};
+			name = Debug;
+		};
+		7DF7305C1DC3E97800888C39 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7FE1DBE57489DEF9422FC773 /* Pods-OverrunTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 3PXE3KNKL4;
+				INFOPLIST_FILE = OverrunTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = LHLTM.OverrunTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Overrun.app/Overrun";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -421,6 +587,15 @@
 			buildConfigurations = (
 				158BCA751DB17A490058B340 /* Debug */,
 				158BCA761DB17A490058B340 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7DF7305A1DC3E97800888C39 /* Build configuration list for PBXNativeTarget "OverrunTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7DF7305B1DC3E97800888C39 /* Debug */,
+				7DF7305C1DC3E97800888C39 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
