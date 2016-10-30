@@ -315,22 +315,25 @@ class RunManager: NSObject {
             let p1Coor = MyCoordinate2D(with: newP1)
             let p2Coor = MyCoordinate2D(with: newP2)
             
+
             p1Coor.index = indexNewP1
             p2Coor.index = indexNewP2
             
             if newShapeDict[p1Coor] == nil {
                 
                 // No intersection
+
                 
                 newShapeDict[p1Coor] = p2Coor
                 
                 print("KeyP1: \(p1Coor)")
                 print("ValueP2: \(p2Coor)")
-            
+
             }
             
             indexNewP1 += 1
             indexNewP2 += 1
+
             
 
 //            print("P1: %d", indexNewP1)
@@ -448,6 +451,7 @@ class RunManager: NSObject {
         
     }
     
+
     func invert(originalDict: [MyCoordinate2D : MyCoordinate2D]) -> [MyCoordinate2D : MyCoordinate2D] {
         
         var invertedDictionary = [MyCoordinate2D : MyCoordinate2D]()
@@ -491,5 +495,37 @@ class RunManager: NSObject {
         //        return shapeCoorArray
         //    }
         
+    
+    func isPointInPolygon(point: CLLocationCoordinate2D, path: [MyCoordinate2D], isInPolygon: Bool) -> Bool{
+        let myPath = GMSMutablePath()
+        for coor in path{
+            
+            let myCoor = CLLocationCoordinate2D(latitude: coor.latitude, longitude: coor.longitude)
+            myPath.add(myCoor)
+        }
+    
+        if (GMSGeometryContainsLocation(point, myPath, true)) {
+           return true
+        } else {
+           return false
+        }
+    }
+    
+    func isPointOnPath(point: CLLocationCoordinate2D, path: [MyCoordinate2D], isOnPath: Bool) -> Bool{
+        let myPath = GMSMutablePath()
+        for coor in path{
+            
+            let myCoor = CLLocationCoordinate2D(latitude: coor.latitude, longitude: coor.longitude)
+            myPath.add(myCoor)
+        }
         
+        if (GMSGeometryIsLocationOnPath(point, myPath, true)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    
+
 }
