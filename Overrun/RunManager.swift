@@ -265,13 +265,22 @@ class RunManager: NSObject {
             let p1Coor = MyCoordinate2D(with: newP1)
             let p2Coor = MyCoordinate2D(with: newP2)
             
-            newShapeDict[p1Coor] = p2Coor
-            
-            print("KeyP1: \(p1Coor)")
-            print("ValueP2: \(p2Coor)")
-            
-            indexNewP1 += 1
-            indexNewP2 += 1
+            if newShapeDict[p1Coor] != nil {
+                
+                newShapeDict[p1Coor] = p2Coor
+                
+                print("KeyP1: \(p1Coor)")
+                print("ValueP2: \(p2Coor)")
+                
+                indexNewP1 += 1
+                indexNewP2 += 1
+                
+            } else {
+                
+                indexNewP1 += 1
+                indexNewP2 += 1
+                
+            }
             
 //            print("P1: %d", indexNewP1)
 //            print("P2: %d", indexNewP2)
@@ -356,4 +365,37 @@ class RunManager: NSObject {
         }
         
     }
+    
+    func isPointInPolygon(point: CLLocationCoordinate2D, path: [MyCoordinate2D], isInPolygon: Bool) -> Bool{
+        let myPath = GMSMutablePath()
+        for coor in path{
+            
+            let myCoor = CLLocationCoordinate2D(latitude: coor.latitude, longitude: coor.longitude)
+            myPath.add(myCoor)
+        }
+    
+        if (GMSGeometryContainsLocation(point, myPath, true)) {
+           return true
+        } else {
+           return false
+        }
+    }
+    
+    func isPointOnPath(point: CLLocationCoordinate2D, path: [MyCoordinate2D], isOnPath: Bool) -> Bool{
+        let myPath = GMSMutablePath()
+        for coor in path{
+            
+            let myCoor = CLLocationCoordinate2D(latitude: coor.latitude, longitude: coor.longitude)
+            myPath.add(myCoor)
+        }
+        
+        if (GMSGeometryIsLocationOnPath(point, myPath, true)) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    
+    
 }
