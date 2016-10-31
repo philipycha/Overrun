@@ -149,6 +149,34 @@ class Run: NSObject {
         
     }
     
+    func overwriteExistingShape() {
+        
+        let ref = FIRDatabase.database().reference()
+        
+        let key = ref.child("Runs").child(uID!).key
+        
+        
+        var dbCoordinates = [[[String : String]]]()
+        
+        var i = 0
+        for coordinateValue in shapeArray! {
+            i += 1
+            
+            let coordinate = coordinateValue.coordinate()
+            
+            let long = String(format: "%f", coordinate.longitude)
+            let lat = String(format: "%f", coordinate.latitude)
+            
+            dbCoordinates.append([["long" : long],["lat" : lat]])
+        }
+        
+        let run = ["coordinates" : dbCoordinates]
+
+        let childUpdates = ["/Runs/\(key)" : run]
+        
+        ref.updateChildValues(childUpdates)
+    }
+    
     
     func storeNewShape() {
         

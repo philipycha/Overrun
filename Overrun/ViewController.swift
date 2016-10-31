@@ -190,9 +190,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
                 
                 let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun)
                 
-                
-                
                 self.runManager.checkShapeIntersection(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+                
+                self.activeRun = nil
+                self.locationManager.activeRun = self.activeRun
+                
+                DispatchQueue.main.async {
+                    view.setNeedsDisplay()
+                }
                 
             }
             
@@ -208,8 +213,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
                 polyline.map = nil
             }
             
-            activeRun = nil
-            locationManager.activeRun = activeRun
+            
         }
     }
     
