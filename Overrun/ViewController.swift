@@ -160,7 +160,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
  
     @IBAction func startRunButtonPressed(_ sender: AnyObject) {
         if activeRun == nil {
-            activeRun = Run()
+            activeRun = Run(user: currentUser)
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
             startRunButtonView.isHidden = true
             endRunButtonView.isHidden = false
@@ -170,50 +170,53 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     
     @IBAction func endRunButtonPressed(_ sender: AnyObject) {
         if activeRun != nil {
-//          store run and send to DB
-//          create shape
             
             startRunButtonView.isHidden = false
             endRunButtonView.isHidden = true
             distanceView.isHidden = true
             
-
-            let newShape = activeRun.createNewShape(user: currentUser)
-            
             activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
             
 //          **//Only comparing first run//**
             
-//            runManager.checkShapeIntersection(existingRun: pulledRunArray.first!, activeRun: activeRun)
             
-            DispatchQueue.global().async {
+            if pulledRunArray.count != 0 {
                 
-                let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun)
-                
-                self.runManager.checkShapeIntersection(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
-                
-                self.activeRun = nil
-                self.locationManager.activeRun = self.activeRun
-                
-                DispatchQueue.main.async {
-                    view.setNeedsDisplay()
+                DispatchQueue.global().async {
+                    
+                    let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun)
+                    
+                    self.runManager.checkShapeIntersection(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+                    
+                    self.activeRun = nil
+                    self.locationManager.activeRun = self.activeRun
+                    
+                    DispatchQueue.main.async {
+                        
+                        for polyline in self.polylineArray {
+                            polyline.map = nil
+                        }
+                        self.view.setNeedsDisplay()
+                        self.activeRun = nil
+                        self.locationManager.activeRun = nil
+                    }
+                    
                 }
+            } else {
                 
+                activeRun.assignSmartArrayAsShapeArray()
+                activeRun.storeNewShape()
+                
+                let newShape = activeRun.createNewShape()
+                displayNewShapeWith(newShape: newShape)
+                
+                for polyline in polylineArray {
+                    polyline.map = nil
+                }
+                activeRun = nil
+                locationManager.activeRun = nil
+                self.view.setNeedsDisplay()
             }
-            
-            
-//            for point in intersectingCoor {
-//                let marker = GMSMarker(position: point)
-//                marker.map = mapView
-//            }
-            
-            displayNewShapeWith(newShape: newShape)
-
-            for polyline in polylineArray {
-                polyline.map = nil
-            }
-            
-            
         }
     }
     
