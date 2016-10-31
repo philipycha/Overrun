@@ -22,6 +22,31 @@ class OverrunTests: XCTestCase {
         super.tearDown()
     }
     
+    
+//    
+//    func testIsAPointOnAShapeEdgeInSideTheShape() {
+//        
+//        let runManager = RunManager()
+//        
+//        let run = Run()
+//        
+//        let shapeArray = [
+//                            MyCoordinate2D(with: CLLocationCoordinate2D(latitude: 1, longitude: 1)),
+//                            MyCoordinate2D(with: CLLocationCoordinate2D(latitude: 1, longitude: 5)),
+//                            MyCoordinate2D(with: CLLocationCoordinate2D(latitude: 5, longitude: 1)),
+//                            MyCoordinate2D(with: CLLocationCoordinate2D(latitude: 5, longitude: 5)),
+//        ]
+//        
+//        let point = MyCoordinate2D(with: CLLocationCoordinate2D(latitude: 1, longitude: 1))
+//        
+//        
+//        let isPointInShape = runManager.isPointInPolygon(myPoint: point, path: shapeArray)
+//        
+//        
+//    
+//    }
+//    
+    
     func testToDetermineIfTwoDictionariesAreCreatedWithCyclicalArray() {
         
         let runManager = RunManager()
@@ -30,18 +55,18 @@ class OverrunTests: XCTestCase {
         let activeRun = Run()
         
         let smartArray = [
-                        CLLocation(latitude: 40, longitude: 40),
-                        CLLocation(latitude: 60, longitude: 40),
-                        CLLocation(latitude: 70, longitude: 60),
-                        CLLocation(latitude: 60, longitude: 100),
-                        CLLocation(latitude: 40, longitude: 100)
+                        CLLocation(latitude: 100, longitude: 100),
+                        CLLocation(latitude: 70, longitude: 30),
+                        CLLocation(latitude: 30, longitude: 30),
+                        CLLocation(latitude: 20, longitude: 70),
+                        CLLocation(latitude: 40, longitude: 90)
         ]
         
         let coorArray = [
-                            CLLocationCoordinate2D(latitude: 50, longitude: 50),
-                            CLLocationCoordinate2D(latitude: 50, longitude: 80),
-                            CLLocationCoordinate2D(latitude: 80, longitude: 80),
-                            CLLocationCoordinate2D(latitude: 80, longitude: 50)
+                            CLLocationCoordinate2D(latitude: 10, longitude: 10),
+                            CLLocationCoordinate2D(latitude: 50, longitude: 20),
+                            CLLocationCoordinate2D(latitude: 60, longitude: 60),
+                            CLLocationCoordinate2D(latitude: 30, longitude: 50)
         ]
         
         pulledRun.coorArray = coorArray
@@ -49,13 +74,30 @@ class OverrunTests: XCTestCase {
         pulledRun.averageSpeed = 10
         activeRun.averageSpeed = 50
         
+        let user1 = User(userName: "PHIL", email: "PHIL", uid: "PHIL")
+        let user2 = User(userName: "McTesterson", email: "McTesterson", uid: "McTesterson")
+        
+        activeRun.currentUser = user1
+        
+        pulledRun.currentUser = user2
         
         let (previousCoor, newShapeDict, pullShapeDict) = runManager.createIntersectingDictionaries(existingRun: pulledRun, activeRun: activeRun)
+        
+        for (key, value) in pullShapeDict{
+            
+            print("pulled -- key: \(key.coordinate()), value: \(value.coordinate())")
+            
+        }
+        
+        print("")
+        
+        for (key, value) in newShapeDict{
+            
+            print("new -- key: \(key.coordinate()), value: \(value.coordinate())")
+            
+        }
             
         runManager.checkShapeIntersection(existingRun: pulledRun, activeRun: activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
-        
-        
-        
         
         for coor in coorArray {
             
