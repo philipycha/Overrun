@@ -97,7 +97,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         
         let camera = GMSCameraPosition.camera(withLatitude: locationManager.currentLocation.coordinate.latitude, longitude: locationManager.currentLocation.coordinate.longitude, zoom: 6.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
-//        mapView.isMyLocationEnabled = true
+        mapView.isMyLocationEnabled = false
         
         endRunButtonView.isHidden = true
         distanceLabel.isHidden = true
@@ -163,7 +163,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
 
     func displayRunLineWith(polyline: GMSPolyline) {
         polyline.strokeColor = UIColor.white
-        polyline.strokeWidth = 5
+        polyline.strokeWidth = 3
         polyline.map = mapView
         polylineArray.append(polyline)
     }
@@ -194,14 +194,12 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             activeRun = Run(user: currentUser)
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
 //            startRunButtonView.isHidden = true
+            startRunButton.isHidden = true
             endRunButtonView.isHidden = false
             distanceView.isHidden = false
             dropDownAnimation(label: distanceLabel)
-            
-            animate.moveToPosition(view: startRunButtonView, startPoint: startRunButtonView.center, endPoint: mapView.center)
-            animate.moveToPosition(view: middleArchStandby, startPoint: middleArchStandby.center, endPoint: mapView.center)
-            animate.moveToPosition(view: bigArchStandby, startPoint: bigArchStandby.center, endPoint: mapView.center)
-            
+            mapView.isMyLocationEnabled = true
+  
         }
     }
     
@@ -273,8 +271,20 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
                 self.view.setNeedsDisplay()
             }
         }
+        
+        UIView.animate(withDuration: 1.0, delay: 0.1, options: [.curveEaseOut], animations: {
+            self.startRunButtonView.center.y = self.startRunButton.center.y
+            self.middleArchStandby.center.y = self.startRunButton.center.y
+            self.bigArchStandby.center.y = self.startRunButton.center.y
+            
+            self.animate.revertToNormalSize(view: self.startRunButtonView)
+            self.animate.revertToNormalSize(view: self.middleArchStandby)
+            self.animate.revertToNormalSize(view: self.bigArchStandby)
+            
+            }, completion: nil)
     }
     
+
     @IBAction func signOut(_ sender: UIButton) {
 //        AppState.sharedInstance.signedIn = false
 //        dismiss(animated: true, completion: nil)
