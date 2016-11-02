@@ -12,8 +12,6 @@ import GoogleMaps
 
 class TransitionAnimation: NSObject {
     
-    var mapView:GMSMapView!
-
     func rotateClockwise(view:UIView) {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = 0
@@ -42,7 +40,37 @@ class TransitionAnimation: NSObject {
         view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
     }
     
-    func drawLine(startPointX:CGFloat, startPointY:CGFloat, endPointX:CGFloat, endPointY:CGFloat) {
+    func shrink(view:UIView) {
+        let shrink = CABasicAnimation(keyPath: "transform.scale")
+        shrink.fromValue = 1.0
+        shrink.toValue = 0.3
+        shrink.duration = 2.0
+        shrink.fillMode=kCAFillModeForwards
+        shrink.isRemovedOnCompletion = false
+        view.layer.add(shrink, forKey: "transform.scale")
+    }
+    
+    func revertToNormalSize(view:UIView) {
+        let enlarge = CABasicAnimation(keyPath: "transform.scale")
+        enlarge.fromValue = 0.3
+        enlarge.toValue = 1
+        enlarge.duration = 2.0
+        enlarge.fillMode=kCAFillModeForwards
+        enlarge.isRemovedOnCompletion = false
+        view.layer.add(enlarge, forKey: "transform.scale")
+        
+    }
+    
+    func moveToPosition(view:UIView, path:CGPath) {
+        
+        let move = CAKeyframeAnimation(keyPath: "position")
+        move.duration = 1.0
+        move.path = path
+        view.layer.add(move, forKey: "position")
+        
+    }
+    
+    func drawLine(startPointX:CGFloat, startPointY:CGFloat, endPointX:CGFloat, endPointY:CGFloat, mapView:UIView) {
         
         let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
