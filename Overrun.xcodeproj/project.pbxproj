@@ -220,7 +220,7 @@
 				TargetAttributes = {
 					158BCA611DB17A480058B340 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 3PXE3KNKL4;
+						DevelopmentTeam = B9P6859THW;
 						ProvisioningStyle = Automatic;
 					};
 					7DF730521DC3E97700888C39 = {
@@ -521,7 +521,7 @@
 			baseConfigurationReference = 05A0B37DF79E4E11F9553D39 /* Pods-Overrun.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3PXE3KNKL4;
+				DEVELOPMENT_TEAM = B9P6859THW;
 				INFOPLIST_FILE = Overrun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Philip.Overrun;
@@ -535,7 +535,7 @@
 			baseConfigurationReference = 31E83FA20E8330ADFE3CDC68 /* Pods-Overrun.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3PXE3KNKL4;
+				DEVELOPMENT_TEAM = B9P6859THW;
 				INFOPLIST_FILE = Overrun/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Philip.Overrun;
