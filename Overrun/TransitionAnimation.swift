@@ -44,7 +44,7 @@ class TransitionAnimation: NSObject {
         let shrink = CABasicAnimation(keyPath: "transform.scale")
         shrink.fromValue = 1.0
         shrink.toValue = 0.3
-        shrink.duration = 2.0
+        shrink.duration = 1.0
         shrink.fillMode=kCAFillModeForwards
         shrink.isRemovedOnCompletion = false
         view.layer.add(shrink, forKey: "transform.scale")
@@ -54,21 +54,20 @@ class TransitionAnimation: NSObject {
         let enlarge = CABasicAnimation(keyPath: "transform.scale")
         enlarge.fromValue = 0.3
         enlarge.toValue = 1
-        enlarge.duration = 2.0
+        enlarge.duration = 1.0
         enlarge.fillMode=kCAFillModeForwards
         enlarge.isRemovedOnCompletion = false
         view.layer.add(enlarge, forKey: "transform.scale")
         
     }
     
-    func moveToPosition(buttonView:UIView, mapView:UIView, path:CGPath) {
+    func moveToPosition(buttonView:UIView, mapView:UIView) {
         
         let move = CAKeyframeAnimation(keyPath: "position")
         var newFrame = buttonView.frame
         newFrame.origin.x = mapView.center.x
         newFrame.origin.y = mapView.center.y
         move.duration = 1.0
-        move.path = path
         buttonView.layer.add(move, forKey: "position")
         
     }
