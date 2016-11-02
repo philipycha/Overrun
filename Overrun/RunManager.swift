@@ -243,7 +243,7 @@ class RunManager: NSObject {
                         
                         p1Coor.index = indexNewP1
                         p2Coor.index = indexNewP2
-                        intersectCoor.index = 9999999999999
+                        intersectCoor.index = 9999
                         
                         newShapeDict[p1Coor] = intersectCoor
 

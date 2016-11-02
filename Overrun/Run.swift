@@ -23,8 +23,14 @@ class Run: NSObject {
     var runTime: Double = 0
     var averageSpeed: Double = 0
     var currentUser: User?
-    var shapeArray: [MyCoordinate2D]?
+    var shapeArray = [MyCoordinate2D]()
     
+    
+    convenience init(user: User) {
+        self.init()
+        
+        self.currentUser = user
+    }
     
     func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
         
@@ -36,6 +42,13 @@ class Run: NSObject {
         }
         
         self.averageSpeed = averageSpeed
+        
+        let startTime = runLocations.first?.timestamp
+        let endTime = runLocations.last?.timestamp
+        
+        let runTime = endTime?.timeIntervalSince(startTime!)
+        
+        self.runTime = runTime!
         
         var smartArray: [CLLocation] = []
         var previousLocation: CLLocation?
@@ -50,6 +63,15 @@ class Run: NSObject {
             previousLocation = location
         }
         return smartArray
+    }
+    
+    func assignSmartArrayAsShapeArray(){
+        
+        for coor in smartArray{
+            
+            let myCoor = MyCoordinate2D(with: coor.coordinate)
+            shapeArray.append(myCoor)
+        }
     }
     
     func resverseArrayIfArrayIsNotClockwise(locationArray: [CLLocation]) -> [CLLocation] {
@@ -113,36 +135,17 @@ class Run: NSObject {
         return path
     }
     
-    func createNewShape(user: User) -> GMSPolygon {
-        smartArray = makeSmartCoordinateArrayfrom(runLocations: runLocations)
-    
-        currentUser = user
-        
-        var averageSpeed: Double = 0
-        
-        for location in runLocations {
-            averageSpeed += location.speed
-            averageSpeed = averageSpeed / Double(runLocations.count)
-        }
-        
-        self.averageSpeed = averageSpeed
-        
-        let startTime = runLocations.first?.timestamp
-        let endTime = runLocations.last?.timestamp
-        
-        let runTime = endTime?.timeIntervalSince(startTime!)
-        
-        self.runTime = runTime!
+    func createNewShape() -> GMSPolygon {
 
         let runPath = GMSMutablePath()
         
-        for location in smartArray {
-            runPath.add(location.coordinate)
+        for location in shapeArray {
+            let coor = CLLocationCoordinate2DMake(location.latitude, location.longitude)
+            
+            runPath.add(coor)
         }
         
         let newShape = GMSPolygon(path: runPath)
-        
-//        storeNewShape()
         
         
         return newShape
@@ -159,7 +162,7 @@ class Run: NSObject {
         var dbCoordinates = [[[String : String]]]()
         
         var i = 0
-        for coordinateValue in shapeArray! {
+        for coordinateValue in shapeArray {
             i += 1
             
             let coordinate = coordinateValue.coordinate()
@@ -186,7 +189,7 @@ class Run: NSObject {
         
         var dbCoordinates = [[[String : String]]]()
         
-        for coordinateValue in shapeArray! {
+        for coordinateValue in shapeArray {
             i += 1
             
             let coordinate = coordinateValue.coordinate()
