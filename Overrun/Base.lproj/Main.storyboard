@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k9m-FD-Lye">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k9m-FD-Lye">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -105,9 +105,9 @@
                                     <constraint firstItem="wXu-Rt-Nbg" firstAttribute="leading" secondItem="pU9-Ul-i7W" secondAttribute="leading" id="7Ti-Gh-WrC"/>
                                     <constraint firstAttribute="trailing" secondItem="wXu-Rt-Nbg" secondAttribute="trailing" id="9t3-2V-mjQ"/>
                                     <constraint firstAttribute="bottom" secondItem="wXu-Rt-Nbg" secondAttribute="bottom" id="abR-X3-5yk"/>
-                                    <constraint firstAttribute="height" constant="150" id="cH5-u4-n8b"/>
+                                    <constraint firstAttribute="height" constant="175" id="cH5-u4-n8b"/>
                                     <constraint firstItem="wXu-Rt-Nbg" firstAttribute="top" secondItem="pU9-Ul-i7W" secondAttribute="top" id="fw3-cW-zmQ"/>
-                                    <constraint firstAttribute="width" constant="150" id="urf-sG-c74"/>
+                                    <constraint firstAttribute="width" constant="175" id="urf-sG-c74"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dW-NP-DjU">
@@ -119,7 +119,6 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.36944863109999998" green="1" blue="0.28614649199999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="125" id="03V-2P-JJK"/>
                                     <constraint firstAttribute="width" constant="125" id="Fap-4z-mJn"/>
@@ -163,10 +162,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="UDz-LC-Zn7" secondAttribute="bottom" id="52E-gc-Tvo"/>
-                                    <constraint firstAttribute="height" constant="150" id="73L-XL-ude"/>
+                                    <constraint firstAttribute="height" constant="175" id="73L-XL-ude"/>
                                     <constraint firstItem="UDz-LC-Zn7" firstAttribute="top" secondItem="9Zr-NX-tmk" secondAttribute="top" id="EfZ-aJ-ct5"/>
                                     <constraint firstItem="UDz-LC-Zn7" firstAttribute="leading" secondItem="9Zr-NX-tmk" secondAttribute="leading" id="P2v-dt-HGY"/>
-                                    <constraint firstAttribute="width" constant="150" id="Znk-OW-beh"/>
+                                    <constraint firstAttribute="width" constant="175" id="Znk-OW-beh"/>
                                     <constraint firstAttribute="trailing" secondItem="UDz-LC-Zn7" secondAttribute="trailing" id="iMl-1h-yr1"/>
                                 </constraints>
                             </view>
@@ -176,10 +175,10 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="jNQ-0x-hTU" secondAttribute="bottom" id="3HT-gP-VBg"/>
-                                    <constraint firstAttribute="width" constant="150" id="Cik-RU-cta"/>
+                                    <constraint firstAttribute="width" constant="175" id="Cik-RU-cta"/>
                                     <constraint firstAttribute="trailing" secondItem="jNQ-0x-hTU" secondAttribute="trailing" id="Dme-gB-VUc"/>
                                     <constraint firstItem="jNQ-0x-hTU" firstAttribute="top" secondItem="CdG-tX-ZVq" secondAttribute="top" id="E40-s7-Bc6"/>
-                                    <constraint firstAttribute="height" constant="150" id="S1d-rQ-kfx"/>
+                                    <constraint firstAttribute="height" constant="175" id="S1d-rQ-kfx"/>
                                     <constraint firstItem="jNQ-0x-hTU" firstAttribute="leading" secondItem="CdG-tX-ZVq" secondAttribute="leading" id="nO1-Yi-XOX"/>
                                 </constraints>
                             </view>
@@ -187,15 +186,15 @@
                         <constraints>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="230" id="2Ex-jy-4OJ"/>
                             <constraint firstItem="y5T-Kp-O9W" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="9mg-80-UWB"/>
-                            <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="230" id="BC1-YR-Cog"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9Zr-NX-tmk" secondAttribute="bottom" constant="16" id="D0z-E6-qRE"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pU9-Ul-i7W" secondAttribute="bottom" constant="16" id="EAy-ET-GSW"/>
                             <constraint firstItem="y5T-Kp-O9W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ijr-pT-7R9"/>
                             <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JC4-Oh-Xpo"/>
-                            <constraint firstItem="CdG-tX-ZVq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="230" id="JeZ-8x-cGy"/>
-                            <constraint firstItem="9Zr-NX-tmk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="230" id="Kh7-Wc-lUr"/>
                             <constraint firstItem="CdG-tX-ZVq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MsG-V7-zmL"/>
                             <constraint firstAttribute="trailing" secondItem="W0T-KQ-yLW" secondAttribute="trailing" constant="13" id="bHp-YL-HoZ"/>
                             <constraint firstItem="9Zr-NX-tmk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cUj-vz-zbr"/>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHW-K7-COo"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CdG-tX-ZVq" secondAttribute="bottom" constant="16" id="iZy-Fv-inv"/>
                             <constraint firstItem="W0T-KQ-yLW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="zoG-Dq-4KM"/>
                         </constraints>
                     </view>
@@ -215,8 +214,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="OR-ButtonBackLayer" width="3317" height="3317"/>
-        <image name="OR-ButtonFrontLayer" width="3317" height="3317"/>
-        <image name="OR-ButtonMiddleLayer" width="3317" height="3317"/>
+        <image name="OR-ButtonBackLayer" width="836" height="836"/>
+        <image name="OR-ButtonFrontLayer" width="836" height="836"/>
+        <image name="OR-ButtonMiddleLayer" width="836" height="836"/>
     </resources>
 </document>
