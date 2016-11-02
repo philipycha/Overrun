@@ -70,7 +70,7 @@ class TransitionAnimation: NSObject {
         
     }
     
-    func drawLine(startPointX:CGFloat, startPointY:CGFloat, endPointX:CGFloat, endPointY:CGFloat) {
+    func drawLine(startPointX:CGFloat, startPointY:CGFloat, endPointX:CGFloat, endPointY:CGFloat, mapView:UIView) {
         
         let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
         
