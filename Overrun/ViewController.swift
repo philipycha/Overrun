@@ -11,7 +11,7 @@ import FirebaseAuth
 import FirebaseDatabase
 import SceneKit
 
-class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate, RunManagerDelegate {
+class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate, RunManagerDelegate, CAAnimationDelegate {
     
     @IBOutlet weak var PlayerAnimationView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
@@ -22,6 +22,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     @IBOutlet var endRunButton: UIButton!
     
     let locationManager = LocationManager()
+    let animate = TransitionAnimation()
     let runManager = RunManager()
     var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
@@ -38,6 +39,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         super.viewDidLoad()
         
         runManager.delegate = self
+    
         
         // create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -86,15 +88,17 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         scnView.backgroundColor = UIColor.clear
         
         mapView = GMSMapView()
-        
-        endRunButtonView.isHidden = true
-        
+
+    
         locationManager.delegate = self
         locationManager.startLocationMonitoring()
         
         let camera = GMSCameraPosition.camera(withLatitude: locationManager.currentLocation.coordinate.latitude, longitude: locationManager.currentLocation.coordinate.longitude, zoom: 6.0)
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
 //        mapView.isMyLocationEnabled = true
+        
+        endRunButtonView.isHidden = true
+        distanceLabel.isHidden = true
         
         mapView.settings.zoomGestures = false
         mapView.settings.scrollGestures = false
@@ -121,6 +125,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        
+        animate.rotateClockwise(view: startRunButtonView)
+        animate.rotateCounterClockwise(view: endRunButtonView)
+        
+        
+    }
+    
     func assignCurrentUser(currentUser: User) {
         self.currentUser = currentUser
     }
@@ -130,8 +142,18 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             let distanceInt = Int(distance)
             
             let distanceStr = String(format: "%i", distanceInt)
-            
             distanceLabel.text = distanceStr
+    }
+    
+    func dropDownAnimation(label: UILabel) {
+        distanceLabel.isHidden = false
+        
+        let transition = CATransition()
+        transition.type = kCATransitionFromTop
+        transition.duration = 1
+        transition.delegate = self
+        label.layer.add(transition, forKey: nil)
+        
     }
 
     func displayRunLineWith(polyline: GMSPolyline) {
@@ -161,6 +183,25 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
        let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17.5, bearing: mapView.camera.bearing, viewingAngle: 45)
         mapView.camera = updatedCamera
     }
+    
+//    func rotateClockwise(view:UIView) {
+//        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+//        rotateAnimation.fromValue = 0
+//        rotateAnimation.toValue = CGFloat(M_PI)
+//        rotateAnimation.duration = 5.0
+//        rotateAnimation.repeatCount = Float.infinity
+//        view.layer.add(rotateAnimation, forKey: "transform.rotation")
+//    }
+//    
+//    func rotateCounterClockwise(view:UIView) {
+//        let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
+//        rotateReverseAnimation.fromValue = 0
+//        rotateReverseAnimation.toValue = CGFloat(-M_PI)
+//        rotateReverseAnimation.duration = 3
+//        rotateReverseAnimation.repeatCount = Float.infinity
+//        
+//        view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
+//    }
  
     @IBAction func startRunButtonPressed(_ sender: AnyObject) {
         if activeRun == nil {
@@ -169,6 +210,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             startRunButtonView.isHidden = true
             endRunButtonView.isHidden = false
             distanceView.isHidden = false
+            dropDownAnimation(label: distanceLabel)
         }
     }
     

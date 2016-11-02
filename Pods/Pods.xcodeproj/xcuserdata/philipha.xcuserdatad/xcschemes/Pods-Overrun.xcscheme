@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "280450783A3F502A8666120A24A59730"
+               BlueprintIdentifier = "55C6E8400E09E209CB97F36C44B40B52"
                BuildableName = "Pods_Overrun.framework"
                BlueprintName = "Pods-Overrun"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "280450783A3F502A8666120A24A59730"
+            BlueprintIdentifier = "55C6E8400E09E209CB97F36C44B40B52"
             BuildableName = "Pods_Overrun.framework"
             BlueprintName = "Pods-Overrun"
             ReferencedContainer = "container:Pods.xcodeproj">
