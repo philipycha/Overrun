@@ -15,8 +15,8 @@ class TransitionAnimation: NSObject {
     func rotateClockwise(view:UIView) {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = 0
-        rotateAnimation.toValue = CGFloat(M_PI)
-        rotateAnimation.duration = 5.0
+        rotateAnimation.toValue = CGFloat(M_PI * 2)
+        rotateAnimation.duration = 10.0
         rotateAnimation.repeatCount = Float.infinity
         view.layer.add(rotateAnimation, forKey: "transform.rotation")
     }
@@ -24,8 +24,8 @@ class TransitionAnimation: NSObject {
     func rotateSlowClockwise(view:UIView) {
         let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateAnimation.fromValue = 0
-        rotateAnimation.toValue = CGFloat(M_PI)
-        rotateAnimation.duration = 20.0
+        rotateAnimation.toValue = CGFloat(M_PI * 2)
+        rotateAnimation.duration = 30.0
         rotateAnimation.repeatCount = Float.infinity
         view.layer.add(rotateAnimation, forKey: "transform.rotation")
     }
@@ -33,8 +33,8 @@ class TransitionAnimation: NSObject {
     func rotateCounterClockwise(view:UIView) {
         let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateReverseAnimation.fromValue = 0
-        rotateReverseAnimation.toValue = CGFloat(-M_PI)
-        rotateReverseAnimation.duration = 3
+        rotateReverseAnimation.toValue = CGFloat(-M_PI * 2)
+        rotateReverseAnimation.duration = 7
         rotateReverseAnimation.repeatCount = Float.infinity
         
         view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
