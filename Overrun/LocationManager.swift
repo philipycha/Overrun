@@ -14,6 +14,7 @@ protocol LocationManagerDelegate {
     func updateCamera()
     func displayRunLineWith(polyline: GMSPolyline)
     func displayDistance(distance: Double)
+    func findIntersectingShapes()
 }
 
 class LocationManager: NSObject, CLLocationManagerDelegate {
@@ -80,6 +81,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 delegate?.displayRunLineWith(polyline: activeRun.createRunningLine())
                 activeRun.calculateDistance()
                 delegate?.displayDistance(distance:activeRun.totalDistance)
+                delegate?.findIntersectingShapes()
             }
         }
     }
