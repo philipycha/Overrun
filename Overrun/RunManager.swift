@@ -15,7 +15,7 @@ import GoogleMaps
 import MapKit
 
 protocol RunManagerDelegate {
-    func displayNewShapeWith(newShape: GMSPolygon)
+    func displayNewShapeWith(newShape: GMSPolygon, username: String)
     var pulledRunArray : [Run] { get set }
     
 }
@@ -26,8 +26,6 @@ class MyCoordinate2D: NSObject {
     var latitude:Double!
     
     var index:Int?
-    
-    
     
     override var hash: Int {
         return (longitude + latitude).hashValue
@@ -62,6 +60,8 @@ class RunManager: NSObject {
     var winningRun = Run()
     var losingRun = Run()
     var onWinningPath = false
+    var activeRun: Run?
+    var existingRun: Run?
     
     private let sharedRunManager = RunManager()
     class RunManager {
@@ -85,8 +85,15 @@ class RunManager: NSObject {
                     
                     var coordinateArray = [CLLocationCoordinate2D]()
                     
+                    let username = run?.value(forKey: "username") as! String
+                    
+                    let averageSpeed = run?.value(forKey: "speed") as! Double
+                    
+                    let time = run?.value(forKey: "time") as! Double
+                    
                     let runCoordinates = run?.value(forKey: "coordinates") as! NSArray
                     
+                    var pulledShapeArray = [MyCoordinate2D]()
                     
                     for snapCoordinate in runCoordinates{
                         let coordinate = snapCoordinate as! NSArray
@@ -104,12 +111,13 @@ class RunManager: NSObject {
                         
                         let runCoordinate = CLLocationCoordinate2D(latitude: latCoor!, longitude: longCoor!)
                         
+                        pulledShapeArray.append(MyCoordinate2D(with: runCoordinate))
                         coordinateArray.append(runCoordinate)
                     }
                     
-                    let pulledRun = Run(uID: uID!, coorArray: coordinateArray)
+                    let pulledRun = Run(uID: uID!, coorArray: coordinateArray, shapeArray: pulledShapeArray, speed: averageSpeed, time: time, username: username)
                     
-                    self.delegate?.displayNewShapeWith(newShape: pulledRun.createPulledShape())
+                    self.delegate?.displayNewShapeWith(newShape: pulledRun.createPulledShape(), username: pulledRun.username!)
                     self.delegate?.pulledRunArray.append(pulledRun)
                     self.pulledRunsArray.append(pulledRun)
                     
@@ -157,6 +165,8 @@ class RunManager: NSObject {
                 if (d == 0) {
                     print("LINES ARE PARALLEL")
                     
+                    // insert code to not break if users are running along the same line
+                    
                     if (indexNewP2 == (activeRun.smartArray.count) - 1) {
                         
                         let p4Coor = MyCoordinate2D(with: pulledP4!)
@@ -202,8 +212,6 @@ class RunManager: NSObject {
                         
                         indexPulledP3 += 1
                         indexPulledP4 += 1
-                        print("P3: %d", indexPulledP3)
-                        print("P4: %d", indexPulledP4)
                         
                     } else if (v < 0.0 || v > 1.0){
                         print("INTERSECTION POINT NOT BETWEEN p3 and p4")
@@ -221,7 +229,7 @@ class RunManager: NSObject {
                                 // No intersection
                                 
                                 pulledShapeDict[p3Coor] = p4Coor
-                                
+            
                             }
                         }
                         
@@ -282,9 +290,6 @@ class RunManager: NSObject {
                 
                 newShapeDict[p1Coor] = p2Coor
                 
-                print("KeyP1: \(p1Coor)")
-                print("ValueP2: \(p2Coor)")
-                
             }
             
             indexNewP1 += 1
@@ -324,16 +329,22 @@ class RunManager: NSObject {
             existingRun.shapeArray = existingShapeArray
             activeRun.storeNewShape()
             
+            self.activeRun = activeRun
+            self.existingRun = existingRun
+            
         } else {
             
             cutLoserShapeBeginningWith(previousCoor: pulledShapeDict.keys.first!, currentDict: pulledShapeDict, otherDict: newShapeDict, winningShapePath: newShapeArray, losingShapePath: existingShapeArray, isOnWinningPath: false)
             
             existingRun.shapeArray = losingShapeArray
-            
-            
+        
             activeRun.shapeArray = newShapeArray
             activeRun.storeNewShape()
             existingRun.overwriteExistingShape()
+            
+            self.activeRun = activeRun
+            self.existingRun = existingRun
+            
             
         }
         
@@ -455,12 +466,6 @@ class RunManager: NSObject {
                 return
             }
         }
-        
-        for coordinate in losingShapeArray{
-            
-            print("lat: \(coordinate.latitude) long: \(coordinate.longitude)")
-        }
-        
     }
     
     func findLoserWithSpeed(activeRun: Run, existingRun: Run) -> Run{

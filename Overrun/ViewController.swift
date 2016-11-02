@@ -31,7 +31,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     var polylineArray: [GMSPolyline] = []
     
     var pulledRunArray = [Run]()
-
+    var intersectingRunSet: Set <Run> = Set()
+    
     var currentUser: User!
     
     override func viewDidLoad() {
@@ -69,7 +70,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
         
         // animate the 3d object
-        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: 0, z: 0, duration: 1)))
+        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 1, y: 1, z: 0, duration: 1)))
         
         // retrieve the SCNView
         let scnView = PlayerAnimationView as! SCNView
@@ -78,19 +79,13 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         scnView.scene = scene
         
         // allows the user to manipulate the camera
-        scnView.allowsCameraControl = true
+        scnView.allowsCameraControl = false
         
         // show statistics such as fps and timing information
         scnView.showsStatistics = false
         
         // configure the view
         scnView.backgroundColor = UIColor.clear
-        
-        // add a tap gesture recognizer
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-//        scnView.addGestureRecognizer(tapGesture)
-        
-        
         
         mapView = GMSMapView()
 
@@ -168,9 +163,18 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         polylineArray.append(polyline)
     }
     
-    func displayNewShapeWith(newShape: GMSPolygon) {
-        newShape.strokeColor = UIColor.white
-        newShape.fillColor = UIColor(colorLiteralRed: 0, green: 0, blue: 50, alpha: 0.4)
+    func displayNewShapeWith(newShape: GMSPolygon, username: String) {
+        
+        if username == currentUser.userName{
+            
+            newShape.strokeColor = UIColor(colorLiteralRed: 0, green: 2, blue: 25, alpha: 0.4)
+            newShape.fillColor = UIColor(colorLiteralRed: 0, green: 0, blue: 50, alpha: 0.2)
+            
+        } else {
+            newShape.strokeColor = UIColor(colorLiteralRed: 100, green: 1, blue: 1, alpha: 0.4)
+            newShape.fillColor = UIColor(colorLiteralRed: 50, green: 0, blue: 0, alpha: 0.2)
+        }
+        newShape.title = username
         newShape.map = mapView
     }
 
@@ -210,6 +214,17 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         }
     }
     
+    func findIntersectingShapes(){
+        DispatchQueue.global().async {
+            for run in self.pulledRunArray{
+                
+                if self.runManager.isPointInPolygon(myPoint: MyCoordinate2D(with: self.locationManager.currentLocation.coordinate), path: run.shapeArray) {
+                    self.intersectingRunSet.insert(run)
+                }
+            }
+        }
+    }
+    
     @IBAction func endRunButtonPressed(_ sender: AnyObject) {
         if activeRun != nil {
             
@@ -222,27 +237,34 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
 //          **//Only comparing first run//**
             
             
-            if pulledRunArray.count != 0 {
+            if intersectingRunSet.count != 0 {
                 
-                DispatchQueue.global().async {
+                for run in intersectingRunSet{
                     
-                    let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun)
-                    
-                    self.runManager.checkShapeIntersection(existingRun: self.pulledRunArray.first!, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
-                    
-                    self.activeRun = nil
-                    self.locationManager.activeRun = self.activeRun
-                    
-                    DispatchQueue.main.async {
+                    DispatchQueue.global().async {
                         
-                        for polyline in self.polylineArray {
-                            polyline.map = nil
-                        }
-                        self.view.setNeedsDisplay()
+                        let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: run, activeRun: self.activeRun)
+                        
+                        self.runManager.checkShapeIntersection(existingRun: run, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+                        
                         self.activeRun = nil
-                        self.locationManager.activeRun = nil
+                        self.locationManager.activeRun = self.activeRun
+                        
+                        DispatchQueue.main.async {
+                            
+                            for polyline in self.polylineArray {
+                                polyline.map = nil
+                            }
+                            
+                            self.activeRun = nil
+                            self.locationManager.activeRun = nil
+                            
+                            self.mapView.clear()
+                            self.runManager.pullRunsFromFirebase()
+                            
+                            self.view.setNeedsDisplay()
+                        }
                     }
-                    
                 }
             } else {
                 
@@ -250,7 +272,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
                 activeRun.storeNewShape()
                 
                 let newShape = activeRun.createNewShape()
-                displayNewShapeWith(newShape: newShape)
+                displayNewShapeWith(newShape: newShape, username: activeRun.username!)
                 
                 for polyline in polylineArray {
                     polyline.map = nil
