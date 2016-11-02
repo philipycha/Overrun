@@ -61,12 +61,15 @@ class TransitionAnimation: NSObject {
         
     }
     
-    func moveToPosition(view:UIView, path:CGPath) {
+    func moveToPosition(buttonView:UIView, mapView:UIView, path:CGPath) {
         
         let move = CAKeyframeAnimation(keyPath: "position")
+        var newFrame = buttonView.frame
+        newFrame.origin.x = mapView.center.x
+        newFrame.origin.y = mapView.center.y
         move.duration = 1.0
         move.path = path
-        view.layer.add(move, forKey: "position")
+        buttonView.layer.add(move, forKey: "position")
         
     }
     
