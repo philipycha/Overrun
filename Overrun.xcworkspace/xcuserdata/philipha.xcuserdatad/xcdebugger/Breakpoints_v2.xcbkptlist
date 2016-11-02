@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/ViewController.swift"
-            timestampString = "499805769.270386"
+            timestampString = "499809428.160309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
-            landmarkName = "rotateClockwise(view:)"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "updateCamera()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,13 +26,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/ViewController.swift"
-            timestampString = "499805769.270386"
+            timestampString = "499809428.160309"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
-            landmarkName = "rotateCounterClockwise(view:)"
-            landmarkType = "7">
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "ViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

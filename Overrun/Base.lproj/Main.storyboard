@@ -99,6 +99,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pU9-Ul-i7W">
                                 <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OR-ButtonFrontLayer" translatesAutoresizingMaskIntoConstraints="NO" id="wXu-Rt-Nbg"/>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wAP-eg-KnN">
                                         <state key="normal" title="Start Run"/>
                                         <connections>
@@ -106,11 +107,16 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="1" green="0.0" blue="0.060231345870000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="HiY-sr-a4F"/>
-                                    <constraint firstAttribute="height" constant="40" id="QJp-mW-VqT"/>
+                                    <constraint firstItem="wXu-Rt-Nbg" firstAttribute="leading" secondItem="pU9-Ul-i7W" secondAttribute="leading" id="7Ti-Gh-WrC"/>
+                                    <constraint firstAttribute="trailing" secondItem="wXu-Rt-Nbg" secondAttribute="trailing" id="9t3-2V-mjQ"/>
+                                    <constraint firstItem="wAP-eg-KnN" firstAttribute="centerY" secondItem="pU9-Ul-i7W" secondAttribute="centerY" id="JXk-dN-fWv"/>
                                     <constraint firstItem="wAP-eg-KnN" firstAttribute="centerY" secondItem="pU9-Ul-i7W" secondAttribute="centerY" id="YAy-ny-hsj"/>
+                                    <constraint firstAttribute="bottom" secondItem="wXu-Rt-Nbg" secondAttribute="bottom" id="abR-X3-5yk"/>
+                                    <constraint firstAttribute="height" constant="125" id="cH5-u4-n8b"/>
+                                    <constraint firstItem="wXu-Rt-Nbg" firstAttribute="top" secondItem="pU9-Ul-i7W" secondAttribute="top" id="fw3-cW-zmQ"/>
+                                    <constraint firstItem="wAP-eg-KnN" firstAttribute="centerX" secondItem="pU9-Ul-i7W" secondAttribute="centerX" id="quf-au-Tgv"/>
+                                    <constraint firstAttribute="width" constant="125" id="urf-sG-c74"/>
                                     <constraint firstItem="wAP-eg-KnN" firstAttribute="centerX" secondItem="pU9-Ul-i7W" secondAttribute="centerX" id="yiA-ua-m1g"/>
                                 </constraints>
                             </view>
@@ -125,10 +131,12 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.36944863109999998" green="1" blue="0.28614649199999997" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="03V-2P-JJK"/>
+                                    <constraint firstAttribute="width" constant="125" id="Fap-4z-mJn"/>
+                                    <constraint firstItem="YCG-7c-quU" firstAttribute="centerY" secondItem="9dW-NP-DjU" secondAttribute="centerY" id="QvI-29-iWv"/>
                                     <constraint firstItem="YCG-7c-quU" firstAttribute="centerX" secondItem="9dW-NP-DjU" secondAttribute="centerX" id="SO7-ll-IAG"/>
                                     <constraint firstItem="YCG-7c-quU" firstAttribute="centerY" secondItem="9dW-NP-DjU" secondAttribute="centerY" id="XW2-wJ-FRs"/>
-                                    <constraint firstAttribute="height" constant="40" id="fF9-yg-0bM"/>
-                                    <constraint firstAttribute="width" constant="100" id="wUW-Bw-5Eg"/>
+                                    <constraint firstItem="YCG-7c-quU" firstAttribute="centerX" secondItem="9dW-NP-DjU" secondAttribute="centerX" id="v0b-Kc-8pg"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0T-KQ-yLW">
@@ -159,32 +167,55 @@
                                     <constraint firstItem="EiY-6k-sQZ" firstAttribute="leading" secondItem="y5T-Kp-O9W" secondAttribute="leading" id="z1N-d5-Iga"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1F2-MF-Fmt" customClass="SCNView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Zr-NX-tmk" userLabel="BigArchStandby">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OR-ButtonBackLayer" translatesAutoresizingMaskIntoConstraints="NO" id="UDz-LC-Zn7"/>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="Pl3-34-sjB"/>
-                                    <constraint firstAttribute="width" constant="122" id="bzU-D3-L5W"/>
+                                    <constraint firstAttribute="bottom" secondItem="UDz-LC-Zn7" secondAttribute="bottom" id="52E-gc-Tvo"/>
+                                    <constraint firstAttribute="height" constant="125" id="73L-XL-ude"/>
+                                    <constraint firstItem="UDz-LC-Zn7" firstAttribute="top" secondItem="9Zr-NX-tmk" secondAttribute="top" id="EfZ-aJ-ct5"/>
+                                    <constraint firstItem="UDz-LC-Zn7" firstAttribute="leading" secondItem="9Zr-NX-tmk" secondAttribute="leading" id="P2v-dt-HGY"/>
+                                    <constraint firstAttribute="width" constant="125" id="Znk-OW-beh"/>
+                                    <constraint firstAttribute="trailing" secondItem="UDz-LC-Zn7" secondAttribute="trailing" id="iMl-1h-yr1"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CdG-tX-ZVq" userLabel="MiddleArchStandby">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OR-ButtonMiddleLayer" translatesAutoresizingMaskIntoConstraints="NO" id="jNQ-0x-hTU"/>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="jNQ-0x-hTU" secondAttribute="bottom" id="3HT-gP-VBg"/>
+                                    <constraint firstAttribute="width" constant="125" id="Cik-RU-cta"/>
+                                    <constraint firstAttribute="trailing" secondItem="jNQ-0x-hTU" secondAttribute="trailing" id="Dme-gB-VUc"/>
+                                    <constraint firstItem="jNQ-0x-hTU" firstAttribute="top" secondItem="CdG-tX-ZVq" secondAttribute="top" id="E40-s7-Bc6"/>
+                                    <constraint firstAttribute="height" constant="125" id="S1d-rQ-kfx"/>
+                                    <constraint firstItem="jNQ-0x-hTU" firstAttribute="leading" secondItem="CdG-tX-ZVq" secondAttribute="leading" id="nO1-Yi-XOX"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="pU9-Ul-i7W" secondAttribute="bottom" constant="30" id="4Eb-kI-ff5"/>
+                            <constraint firstItem="9dW-NP-DjU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="250" id="2Ex-jy-4OJ"/>
                             <constraint firstItem="y5T-Kp-O9W" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="topMargin" constant="20" id="9mg-80-UWB"/>
+                            <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="225" id="BC1-YR-Cog"/>
                             <constraint firstItem="y5T-Kp-O9W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ijr-pT-7R9"/>
                             <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JC4-Oh-Xpo"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9dW-NP-DjU" secondAttribute="bottom" constant="40" id="RjY-m1-Isq"/>
+                            <constraint firstItem="CdG-tX-ZVq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="225" id="JeZ-8x-cGy"/>
+                            <constraint firstItem="9Zr-NX-tmk" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="225" id="Kh7-Wc-lUr"/>
+                            <constraint firstItem="CdG-tX-ZVq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MsG-V7-zmL"/>
                             <constraint firstAttribute="trailing" secondItem="W0T-KQ-yLW" secondAttribute="trailing" constant="13" id="bHp-YL-HoZ"/>
-                            <constraint firstItem="1F2-MF-Fmt" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cn2-hu-xH7"/>
+                            <constraint firstItem="9Zr-NX-tmk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cUj-vz-zbr"/>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHW-K7-COo"/>
-                            <constraint firstItem="1F2-MF-Fmt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="tJ9-7d-sHp"/>
                             <constraint firstItem="W0T-KQ-yLW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="zoG-Dq-4KM"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="PlayerAnimationView" destination="1F2-MF-Fmt" id="16f-Xr-e2c"/>
+                        <outlet property="bigArchStandby" destination="9Zr-NX-tmk" id="9fs-VR-G5k"/>
                         <outlet property="distanceLabel" destination="EiY-6k-sQZ" id="Tqs-Vk-o9Z"/>
                         <outlet property="distanceView" destination="y5T-Kp-O9W" id="7Xb-3z-ofA"/>
                         <outlet property="endRunButton" destination="YCG-7c-quU" id="3Io-VN-XbK"/>
                         <outlet property="endRunButtonView" destination="9dW-NP-DjU" id="x2E-di-kpv"/>
+                        <outlet property="middleArchStandby" destination="CdG-tX-ZVq" id="e2g-tS-9Su"/>
                         <outlet property="startRunButton" destination="wAP-eg-KnN" id="J2f-pk-va2"/>
                         <outlet property="startRunButtonView" destination="pU9-Ul-i7W" id="2fR-Ol-vXc"/>
                     </connections>
@@ -194,4 +225,9 @@
             <point key="canvasLocation" x="108" y="63.418290854572717"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="OR-ButtonBackLayer" width="3317" height="3317"/>
+        <image name="OR-ButtonFrontLayer" width="3317" height="3317"/>
+        <image name="OR-ButtonMiddleLayer" width="3317" height="3317"/>
+    </resources>
 </document>

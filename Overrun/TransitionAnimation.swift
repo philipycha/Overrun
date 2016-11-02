@@ -23,6 +23,15 @@ class TransitionAnimation: NSObject {
         view.layer.add(rotateAnimation, forKey: "transform.rotation")
     }
     
+    func rotateSlowClockwise(view:UIView) {
+        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateAnimation.fromValue = 0
+        rotateAnimation.toValue = CGFloat(M_PI)
+        rotateAnimation.duration = 20.0
+        rotateAnimation.repeatCount = Float.infinity
+        view.layer.add(rotateAnimation, forKey: "transform.rotation")
+    }
+    
     func rotateCounterClockwise(view:UIView) {
         let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
         rotateReverseAnimation.fromValue = 0
