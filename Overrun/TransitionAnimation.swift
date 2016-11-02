@@ -61,11 +61,18 @@ class TransitionAnimation: NSObject {
         
     }
     
-    func moveToPosition(view:UIView, path:CGPath) {
+    func moveToPosition(view:UIView, startPoint: CGPoint, endPoint: CGPoint) {
+        
+        let path = UIBezierPath()
+        path.move(to: startPoint)
+        
+        path.addLine(to: endPoint)
         
         let move = CAKeyframeAnimation(keyPath: "position")
+        
         move.duration = 1.0
-        move.path = path
+        move.path = path.cgPath
+        move.isRemovedOnCompletion = false
         view.layer.add(move, forKey: "position")
         
     }

@@ -188,34 +188,20 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
        let updatedCamera = GMSCameraPosition(target: locationManager.currentLocation.coordinate, zoom: 17.5, bearing: mapView.camera.bearing, viewingAngle: 45)
         mapView.camera = updatedCamera
     }
-    
-//    func rotateClockwise(view:UIView) {
-//        let rotateAnimation = CABasicAnimation(keyPath: "transform.rotation")
-//        rotateAnimation.fromValue = 0
-//        rotateAnimation.toValue = CGFloat(M_PI)
-//        rotateAnimation.duration = 5.0
-//        rotateAnimation.repeatCount = Float.infinity
-//        view.layer.add(rotateAnimation, forKey: "transform.rotation")
-//    }
-//    
-//    func rotateCounterClockwise(view:UIView) {
-//        let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
-//        rotateReverseAnimation.fromValue = 0
-//        rotateReverseAnimation.toValue = CGFloat(-M_PI)
-//        rotateReverseAnimation.duration = 3
-//        rotateReverseAnimation.repeatCount = Float.infinity
-//        
-//        view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
-//    }
  
     @IBAction func startRunButtonPressed(_ sender: AnyObject) {
         if activeRun == nil {
             activeRun = Run(user: currentUser)
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
-            startRunButtonView.isHidden = true
+//            startRunButtonView.isHidden = true
             endRunButtonView.isHidden = false
             distanceView.isHidden = false
             dropDownAnimation(label: distanceLabel)
+            
+            animate.moveToPosition(view: startRunButtonView, startPoint: startRunButtonView.center, endPoint: mapView.center)
+            animate.moveToPosition(view: middleArchStandby, startPoint: middleArchStandby.center, endPoint: mapView.center)
+            animate.moveToPosition(view: bigArchStandby, startPoint: bigArchStandby.center, endPoint: mapView.center)
+            
         }
     }
     

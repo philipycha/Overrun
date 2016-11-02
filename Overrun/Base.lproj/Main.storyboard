@@ -182,6 +182,15 @@
                                     <constraint firstItem="jNQ-0x-hTU" firstAttribute="leading" secondItem="CdG-tX-ZVq" secondAttribute="leading" id="nO1-Yi-XOX"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dgp-rt-DJ9">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="175" id="5M6-dK-bhY"/>
+                                    <constraint firstAttribute="width" constant="175" id="mjx-an-N0Q"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="startRunButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EMf-Gc-Na7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="230" id="2Ex-jy-4OJ"/>
@@ -191,7 +200,9 @@
                             <constraint firstItem="y5T-Kp-O9W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ijr-pT-7R9"/>
                             <constraint firstItem="pU9-Ul-i7W" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JC4-Oh-Xpo"/>
                             <constraint firstItem="CdG-tX-ZVq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="MsG-V7-zmL"/>
+                            <constraint firstItem="dgp-rt-DJ9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Ogg-z0-HEP"/>
                             <constraint firstAttribute="trailing" secondItem="W0T-KQ-yLW" secondAttribute="trailing" constant="13" id="bHp-YL-HoZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dgp-rt-DJ9" secondAttribute="bottom" constant="16" id="cMh-Dd-VAD"/>
                             <constraint firstItem="9Zr-NX-tmk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cUj-vz-zbr"/>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHW-K7-COo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CdG-tX-ZVq" secondAttribute="bottom" constant="16" id="iZy-Fv-inv"/>
@@ -205,6 +216,7 @@
                         <outlet property="endRunButton" destination="YCG-7c-quU" id="3Io-VN-XbK"/>
                         <outlet property="endRunButtonView" destination="9dW-NP-DjU" id="x2E-di-kpv"/>
                         <outlet property="middleArchStandby" destination="CdG-tX-ZVq" id="e2g-tS-9Su"/>
+                        <outlet property="startRunButton" destination="dgp-rt-DJ9" id="CPg-lq-80r"/>
                         <outlet property="startRunButtonView" destination="pU9-Ul-i7W" id="2fR-Ol-vXc"/>
                     </connections>
                 </viewController>
