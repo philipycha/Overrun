@@ -24,7 +24,7 @@ class Run: NSObject {
     var averageSpeed: Double = 0
     var currentUser: User?
     var shapeArray = [MyCoordinate2D]()
-    
+    var username: String?
     
     convenience init(user: User) {
         self.init()
@@ -98,10 +98,14 @@ class Run: NSObject {
         }
     }
     
-    convenience init(uID: String, coorArray: [CLLocationCoordinate2D]) {
+    convenience init(uID: String, coorArray: [CLLocationCoordinate2D], shapeArray: [MyCoordinate2D], speed: Double, time: Double, username: String) {
         self.init()
         self.uID = uID
         self.coorArray = coorArray
+        self.shapeArray = shapeArray
+        self.averageSpeed = speed
+        self.username = username
+        self.runTime = time
     }
     
     func createRunningLine() -> GMSPolyline {
@@ -152,12 +156,22 @@ class Run: NSObject {
         
     }
     
+    
+    func deleteShape() {
+        
+        let ref = FIRDatabase.database().reference()
+        
+        let runRef = ref.child("Runs").child(uID!)
+        
+        runRef.removeValue()
+        
+    }
+    
     func overwriteExistingShape() {
         
         let ref = FIRDatabase.database().reference()
         
         let key = ref.child("Runs").child(uID!).key
-        
         
         var dbCoordinates = [[[String : String]]]()
         
@@ -172,8 +186,17 @@ class Run: NSObject {
             
             dbCoordinates.append([["long" : long],["lat" : lat]])
         }
+
+        guard let nameStr = username else{
+            
+            return
+        }
         
-        let run = ["coordinates" : dbCoordinates]
+        let run = ["coordinates" : dbCoordinates,
+                   "username" : nameStr,
+                   "speed" : self.averageSpeed,
+                   "time" : self.runTime
+                    ] as [String : Any]
 
         let childUpdates = ["/Runs/\(key)" : run]
         
