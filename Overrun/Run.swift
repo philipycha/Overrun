@@ -30,6 +30,7 @@ class Run: NSObject {
         self.init()
         
         self.currentUser = user
+        self.username = user.userName
     }
     
     func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
