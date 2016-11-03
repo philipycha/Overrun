@@ -198,8 +198,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             endRunButtonView.isHidden = false
             distanceView.isHidden = false
             dropDownAnimation(label: distanceLabel)
-            mapView.isMyLocationEnabled = true
-  
+            
+            UIView.animate(withDuration: 0.5, delay: 0.5, options: [.curveEaseIn], animations: {
+                self.mapView.isMyLocationEnabled = true
+                }, completion: nil)
+            
         }
     }
     

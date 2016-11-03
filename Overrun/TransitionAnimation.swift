@@ -72,30 +72,83 @@ class TransitionAnimation: NSObject {
         
     }
     
-    func drawLine(startPointX:CGFloat, startPointY:CGFloat, endPointX:CGFloat, endPointY:CGFloat, mapView:UIView) {
+    func drawLineFromPoint(start: CGPoint, end: CGPoint, lineColor: UIColor, view: UIView) {
         
         let pathAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        
+
+        //design the path
         let path = UIBezierPath()
-        path.move(to: CGPoint(x: startPointX, y: startPointY))
-        path.addLine(to: CGPoint(x: endPointX, y: endPointY))
+        path.move(to: start)
+        path.addLine(to: end)
         
-        let pathLayer = CAShapeLayer()
+        //design path in layer
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = path.cgPath
+        shapeLayer.strokeColor = lineColor.cgColor
+        shapeLayer.lineWidth = 0.5
+        view.layer.addSublayer(shapeLayer)
         
-        pathLayer.frame = mapView.bounds
-        pathLayer.path = path.cgPath
-        pathLayer.strokeColor = UIColor.white.cgColor
-        pathLayer.fillColor = nil
-        pathLayer.lineWidth = 2.0
-        pathLayer.lineJoin = kCALineJoinBevel
-        
-        pathAnimation.duration = 2
+        pathAnimation.duration = 0.3
         pathAnimation.fromValue = 0.0
         pathAnimation.toValue = 1.0
+        pathAnimation.autoreverses = true
         
-        ////Animation will happen right away
-        pathLayer.add(pathAnimation, forKey: nil)
-
+        shapeLayer.add(pathAnimation, forKey: "strokeEnd")
+        
+        
     }
+    
+    func pivot90CounterClockWise(view:UIView, centerX:CGFloat, centerY:CGFloat) {
+        
+        view.layer.anchorPoint = CGPoint(x: centerX, y: centerY)
+        
+        let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateReverseAnimation.fromValue = 0
+        rotateReverseAnimation.toValue = CGFloat(-M_PI / 2)
+        rotateReverseAnimation.duration = 1.0
+        rotateReverseAnimation.repeatCount = 1
+        rotateReverseAnimation.isRemovedOnCompletion = false
+        
+        view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
+        
+    }
+    
+    func pivotBackToOrigin(view:UIView, centerX:CGFloat, centerY:CGFloat) {
+        
+        view.layer.anchorPoint = CGPoint(x: centerX, y: centerY)
+        
+        let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
+        rotateReverseAnimation.fromValue = 0
+        rotateReverseAnimation.toValue = CGFloat(M_PI / 2)
+        rotateReverseAnimation.duration = 1.0
+        rotateReverseAnimation.repeatCount = 1
+        rotateReverseAnimation.isRemovedOnCompletion = false
+        
+        view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
+        
+    }
+    
+//    func drawLine(startPointX:CGFloat, startPointY:CGFloat, endPointX:CGFloat, endPointY:CGFloat, mapView:UIView) {
+//        
+//
+//        let path = UIBezierPath()
+//        path.move(to: CGPoint(x: startPointX, y: startPointY))
+//        path.addLine(to: CGPoint(x: endPointX, y: endPointY))
+//        
+//        let pathLayer = CAShapeLayer()
+//        
+//        pathLayer.frame = mapView.bounds
+//        pathLayer.path = path.cgPath
+//        pathLayer.strokeColor = UIColor.white.cgColor
+//        pathLayer.fillColor = UIColor.white.cgColor
+//        pathLayer.lineWidth = 1.5
+//        pathLayer.lineJoin = kCALineJoinBevel
+//        
+
+//        
+//        ////Animation will happen right away
+//
+//
+//    }
     
 }
