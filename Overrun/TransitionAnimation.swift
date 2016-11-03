@@ -102,7 +102,7 @@ class TransitionAnimation: NSObject {
         
         UIView.animate(withDuration: 1, animations: { 
             
-            view.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI / 2))
+            view.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2))
             
             }) { (false) in
                 
