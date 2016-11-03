@@ -98,34 +98,28 @@ class TransitionAnimation: NSObject {
         
     }
     
-    func pivot90CounterClockWise(view:UIView, centerX:CGFloat, centerY:CGFloat) {
+    func pivot90CounterClockWise(view:UIView) {
         
-        view.layer.anchorPoint = CGPoint(x: centerX, y: centerY)
-        
-        let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotateReverseAnimation.fromValue = 0
-        rotateReverseAnimation.toValue = CGFloat(-M_PI / 2)
-        rotateReverseAnimation.duration = 1.0
-        rotateReverseAnimation.repeatCount = 1
-        rotateReverseAnimation.isRemovedOnCompletion = false
-        
-        view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
-        
+        UIView.animate(withDuration: 1, animations: { 
+            
+            view.transform = CGAffineTransform(rotationAngle: CGFloat(-M_PI / 2))
+            
+            }) { (false) in
+                
+        }
+   
     }
     
-    func pivotBackToOrigin(view:UIView, centerX:CGFloat, centerY:CGFloat) {
+    func pivotBackToOrigin(view:UIView) {
         
-        view.layer.anchorPoint = CGPoint(x: centerX, y: centerY)
-        
-        let rotateReverseAnimation = CABasicAnimation(keyPath: "transform.rotation")
-        rotateReverseAnimation.fromValue = 0
-        rotateReverseAnimation.toValue = CGFloat(M_PI / 2)
-        rotateReverseAnimation.duration = 1.0
-        rotateReverseAnimation.repeatCount = 1
-        rotateReverseAnimation.isRemovedOnCompletion = false
-        
-        view.layer.add(rotateReverseAnimation, forKey: "transform.rotation")
-        
+        UIView.animate(withDuration: 1, animations: {
+            
+            view.transform = CGAffineTransform(rotationAngle: 0)
+            
+        }) { (false) in
+            
+        }
+    
     }
     
 //    func drawLine(startPointX:CGFloat, startPointY:CGFloat, endPointX:CGFloat, endPointY:CGFloat, mapView:UIView) {

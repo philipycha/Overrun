@@ -13,12 +13,14 @@ import SceneKit
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate, RunManagerDelegate, CAAnimationDelegate {
     
+    @IBOutlet weak var distanceRedUI: UIImageView!
+    @IBOutlet weak var distanceBlueUI: UIImageView!
+    @IBOutlet weak var distancePivotView: UIView!
     @IBOutlet weak var endButtonView: UIView!
     @IBOutlet weak var redBigArchStandby: UIView!
     @IBOutlet weak var redMiddleArchStandby: UIView!
     @IBOutlet weak var middleArchStandby: UIView!
     @IBOutlet weak var bigArchStandby: UIView!
-    @IBOutlet weak var PlayerAnimationView: UIView!
     @IBOutlet weak var distanceLabel: UILabel!
     @IBOutlet weak var distanceView: UIView!
     @IBOutlet var startRunButton: UIButton!
@@ -44,53 +46,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         super.viewDidLoad()
         
         runManager.delegate = self
-    
-        
-//        // create a new scene
-//        let scene = SCNScene(named: "art.scnassets/ship.scn")!
-//        
-//        // create and add a camera to the scene
-//        let cameraNode = SCNNode()
-//        cameraNode.camera = SCNCamera()
-//        scene.rootNode.addChildNode(cameraNode)
-//        
-//        // place the camera
-//        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
-//        
-//        // create and add a light to the scene
-//        let lightNode = SCNNode()
-//        lightNode.light = SCNLight()
-//        lightNode.light!.type = .omni
-//        lightNode.position = SCNVector3(x: 0, y: 5, z: 10)
-//        scene.rootNode.addChildNode(lightNode)
-//        
-//        // create and add an ambient light to the scene
-//        let ambientLightNode = SCNNode()
-//        ambientLightNode.light = SCNLight()
-//        ambientLightNode.light!.type = .ambient
-//        ambientLightNode.light!.color = UIColor.darkGray
-//        scene.rootNode.addChildNode(ambientLightNode)
-//        
-//        // retrieve the ship node
-//        let ship = scene.rootNode.childNode(withName: "ship", recursively: true)!
-//        
-//        // animate the 3d object
-//        ship.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 1, y: 1, z: 0, duration: 1)))
-//        
-//        // retrieve the SCNView
-//        let scnView = PlayerAnimationView as! SCNView
-//        
-//        // set the scene to the view
-//        scnView.scene = scene
-//        
-//        // allows the user to manipulate the camera
-//        scnView.allowsCameraControl = false
-//        
-//        // show statistics such as fps and timing information
-//        scnView.showsStatistics = false
-//        
-//        // configure the view
-//        scnView.backgroundColor = UIColor.clear
         
         mapView = GMSMapView()
 
@@ -102,8 +57,11 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
         mapView.isMyLocationEnabled = false
         
-        endRunButtonView.isHidden = true
+        
+        view.sendSubview(toBack: endRunButton)
+//        endRunButtonView.isHidden = true
         distanceLabel.isHidden = true
+        distanceRedUI.isHidden = true
         
         mapView.settings.zoomGestures = false
         mapView.settings.scrollGestures = false
@@ -143,10 +101,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         endButtonView.isHidden = true
         redBigArchStandby.isHidden = true
         redBigArchStandby.isHidden = true
-        
-//        animate.rotateCounterClockwise(view: endRunButtonView)
-        
-        
+    
     }
     
     func assignCurrentUser(currentUser: User) {
@@ -157,7 +112,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
 
             let distanceInt = Int(distance)
             
-            let distanceStr = String(format: "%i", distanceInt)
+            let distanceStr = String(format: "%i m", distanceInt)
             distanceLabel.text = distanceStr
     }
     
@@ -190,7 +145,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             newShape.strokeColor = UIColor(colorLiteralRed: 100, green: 1, blue: 1, alpha: 0.4)
             newShape.fillColor = UIColor(colorLiteralRed: 50, green: 0, blue: 0, alpha: 0.2)
         }
-        newShape.title = username
         newShape.map = mapView
     }
 
@@ -204,10 +158,38 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         if activeRun == nil {
             activeRun = Run(user: currentUser)
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
-//            startRunButtonView.isHidden = true
-            startRunButton.isHidden = true
+            
+            view.bringSubview(toFront: endRunButton)
+            view.sendSubview(toBack: startRunButton)
+//            startRunButton.isHidden = true
             distanceView.isHidden = false
-            dropDownAnimation(label: distanceLabel)
+            
+            distanceView.alpha = 0
+            
+            UIView.animate(withDuration: 0.75, delay: 1, options: [.curveEaseIn], animations: {
+                
+                self.distanceView.alpha = 1
+                
+                }, completion: { (false) in
+                    
+            })
+            
+            distanceLabel.isHidden = false
+            distanceLabel.text = "0 m"
+            
+            endButtonView.isHidden = false
+            redBigArchStandby.isHidden = false
+            animate.fadeIn(view: endButtonView)
+            animate.fadeIn(view: redBigArchStandby)
+            
+            animate.fadeOut(view: startRunButtonView)
+            animate.fadeOut(view: bigArchStandby)
+            
+            distanceRedUI.isHidden = false
+            animate.fadeIn(view: distanceRedUI)
+            animate.fadeOut(view: distanceBlueUI)
+            
+            animate.pivot90CounterClockWise(view: distancePivotView)
             
             UIView.animate(withDuration: 0.5, delay: 0.5, options: [.curveEaseIn], animations: {
                 self.mapView.isMyLocationEnabled = true
@@ -239,17 +221,28 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             animate.fadeIn(view: startRunButtonView)
             animate.fadeIn(view: bigArchStandby)
             
+            animate.pivotBackToOrigin(view: distancePivotView)
             
+            distanceBlueUI.isHidden = false
+            animate.fadeIn(view: distanceBlueUI)
+            animate.fadeOut(view: distanceRedUI)
             
             startRunButtonView.isHidden = false
             endRunButtonView.isHidden = true
+            
+            startRunButton.isHidden = false
+            view.bringSubview(toFront: startRunButton)
+            view.sendSubview(toBack: endRunButton)
+//            endRunButton.isHidden = true
+            
             distanceView.isHidden = true
             
-            activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
+            if activeRun.runLocations.count > 4 {
+                
+                activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
+            }
             
-//          **//Only comparing first run//**
-            
-            if intersectingRunSet.count != 0 {
+            if intersectingRunSet.count != 0 && activeRun.smartArray.count > 4{
                 
                 for run in intersectingRunSet{
                     
@@ -268,9 +261,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
                                 polyline.map = nil
                             }
                             
-                            self.activeRun = nil
-                            self.locationManager.activeRun = nil
-                            
                             self.mapView.clear()
                             self.runManager.pullRunsFromFirebase()
                             
@@ -278,7 +268,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
                         }
                     }
                 }
-            } else {
+            } else if activeRun.smartArray.count > 4{
                 
                 activeRun.assignSmartArrayAsShapeArray()
                 activeRun.storeNewShape()
@@ -289,22 +279,13 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
                 for polyline in polylineArray {
                     polyline.map = nil
                 }
-                activeRun = nil
+                
                 locationManager.activeRun = nil
                 self.view.setNeedsDisplay()
             }
         }
-        
-//        UIView.animate(withDuration: 1.0, delay: 0.1, options: [.curveEaseOut], animations: {
-//            self.startRunButtonView.center.y = self.startRunButton.center.y
-//            self.middleArchStandby.center.y = self.startRunButton.center.y
-//            self.bigArchStandby.center.y = self.startRunButton.center.y
-//            
-//            self.animate.revertToNormalSize(view: self.startRunButtonView)
-//            self.animate.revertToNormalSize(view: self.middleArchStandby)
-//            self.animate.revertToNormalSize(view: self.bigArchStandby)
-//            
-//            }, completion: nil)
+        activeRun = nil
+        locationManager.activeRun = nil
     }
     
 
