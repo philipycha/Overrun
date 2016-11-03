@@ -128,8 +128,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     }
 
     func displayRunLineWith(polyline: GMSPolyline) {
-        polyline.strokeColor = UIColor.white
-        polyline.strokeWidth = 3
+        polyline.strokeColor = UIColor(colorLiteralRed: 0, green: 2, blue: 25, alpha: 0.4)
+        polyline.strokeWidth = 2
         polyline.map = mapView
         polylineArray.append(polyline)
     }
