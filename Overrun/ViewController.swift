@@ -13,6 +13,9 @@ import SceneKit
 
 class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDelegate, SignInDelegate, RunManagerDelegate, CAAnimationDelegate {
     
+    @IBOutlet weak var endButtonView: UIView!
+    @IBOutlet weak var redBigArchStandby: UIView!
+    @IBOutlet weak var redMiddleArchStandby: UIView!
     @IBOutlet weak var middleArchStandby: UIView!
     @IBOutlet weak var bigArchStandby: UIView!
     @IBOutlet weak var PlayerAnimationView: UIView!
@@ -133,6 +136,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         animate.rotateCounterClockwise(view: middleArchStandby)
         animate.rotateClockwise(view: bigArchStandby)
         
+        animate.rotateSlowClockwise(view: endButtonView)
+        animate.rotateCounterClockwise(view: redMiddleArchStandby)
+        animate.rotateClockwise(view: redBigArchStandby)
+        
+        endButtonView.isHidden = true
+        redBigArchStandby.isHidden = true
+        redBigArchStandby.isHidden = true
+        
 //        animate.rotateCounterClockwise(view: endRunButtonView)
         
         
@@ -195,11 +206,23 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             locationManager.passRunToLocationManagerForTracking(activeRun: activeRun)
 //            startRunButtonView.isHidden = true
             startRunButton.isHidden = true
-            endRunButtonView.isHidden = false
             distanceView.isHidden = false
             dropDownAnimation(label: distanceLabel)
             mapView.isMyLocationEnabled = true
   
+            endButtonView.isHidden = false
+            redMiddleArchStandby.isHidden = false
+            redBigArchStandby.isHidden = false
+            
+            animate.fadeIn(view: endButtonView)
+            animate.fadeIn(view: redMiddleArchStandby)
+            animate.fadeIn(view: redBigArchStandby)
+            
+            animate.fadeOut(view: startRunButtonView)
+            animate.fadeOut(view: middleArchStandby)
+            animate.fadeOut(view: bigArchStandby)
+            
+            
         }
     }
     
@@ -217,6 +240,16 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     @IBAction func endRunButtonPressed(_ sender: AnyObject) {
         if activeRun != nil {
             
+            bigArchStandby.isHidden = false
+            
+            animate.fadeOut(view: endButtonView)
+            animate.fadeOut(view: redBigArchStandby)
+            
+            animate.fadeIn(view: startRunButtonView)
+            animate.fadeIn(view: bigArchStandby)
+            
+            
+            
             startRunButtonView.isHidden = false
             endRunButtonView.isHidden = true
             distanceView.isHidden = true
@@ -224,7 +257,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
             
 //          **//Only comparing first run//**
-            
             
             if intersectingRunSet.count != 0 {
                 
@@ -272,16 +304,16 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             }
         }
         
-        UIView.animate(withDuration: 1.0, delay: 0.1, options: [.curveEaseOut], animations: {
-            self.startRunButtonView.center.y = self.startRunButton.center.y
-            self.middleArchStandby.center.y = self.startRunButton.center.y
-            self.bigArchStandby.center.y = self.startRunButton.center.y
-            
-            self.animate.revertToNormalSize(view: self.startRunButtonView)
-            self.animate.revertToNormalSize(view: self.middleArchStandby)
-            self.animate.revertToNormalSize(view: self.bigArchStandby)
-            
-            }, completion: nil)
+//        UIView.animate(withDuration: 1.0, delay: 0.1, options: [.curveEaseOut], animations: {
+//            self.startRunButtonView.center.y = self.startRunButton.center.y
+//            self.middleArchStandby.center.y = self.startRunButton.center.y
+//            self.bigArchStandby.center.y = self.startRunButton.center.y
+//            
+//            self.animate.revertToNormalSize(view: self.startRunButtonView)
+//            self.animate.revertToNormalSize(view: self.middleArchStandby)
+//            self.animate.revertToNormalSize(view: self.bigArchStandby)
+//            
+//            }, completion: nil)
     }
     
 

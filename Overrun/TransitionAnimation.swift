@@ -98,4 +98,29 @@ class TransitionAnimation: NSObject {
 
     }
     
+    func fadeIn(view: UIView){
+        
+        view.alpha = 0
+        
+        UIView.animate(withDuration: 0.5) {
+            
+            view.alpha = 1
+            
+        }
+    }
+    
+    func  fadeOut(view: UIView) {
+        
+        view.alpha = 1
+        
+        UIView.animate(withDuration: 0.5, animations: { 
+            
+            view.alpha = 0
+            
+            }) { (true) in
+                view.isHidden = true
+        }
+        
+    }
+    
 }
