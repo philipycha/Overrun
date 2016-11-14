@@ -240,52 +240,64 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             if activeRun.runLocations.count > 4 {
                 
                 activeRun.smartArray = activeRun.makeSmartCoordinateArrayfrom(runLocations: activeRun.runLocations)
+                
+            } else {
+                
+                activeRun = nil
+                locationManager.activeRun = nil
             }
             
-            if intersectingRunSet.count != 0 && activeRun.smartArray.count > 4{
+            if activeRun != nil {
                 
-                for run in intersectingRunSet{
+                if intersectingRunSet.count != 0 && activeRun.smartArray.count > 4{
                     
-                    DispatchQueue.global().async {
+                    for run in intersectingRunSet{
                         
-                        let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: run, activeRun: self.activeRun)
-                        
-                        self.runManager.checkShapeIntersection(existingRun: run, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
-                        
-                        self.activeRun = nil
-                        self.locationManager.activeRun = self.activeRun
-                        
-                        DispatchQueue.main.async {
+                        DispatchQueue.global().async {
                             
-                            for polyline in self.polylineArray {
-                                polyline.map = nil
+                            let (previousCoor, newShapeDict, pullShapeDict) = self.runManager.createIntersectingDictionaries(existingRun: run, activeRun: self.activeRun)
+                            
+                            self.runManager.checkShapeIntersection(existingRun: run, activeRun: self.activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+                            
+                            self.activeRun = nil
+                            self.locationManager.activeRun = self.activeRun
+                            
+                            DispatchQueue.main.async {
+                                
+                                for polyline in self.polylineArray {
+                                    polyline.map = nil
+                                }
+                                
+                                self.mapView.clear()
+                                self.runManager.pullRunsFromFirebase()
+                                
+                                self.view.setNeedsDisplay()
+                                
+                                self.activeRun = nil
+                                self.locationManager.activeRun = nil
                             }
-                            
-                            self.mapView.clear()
-                            self.runManager.pullRunsFromFirebase()
-                            
-                            self.view.setNeedsDisplay()
                         }
                     }
+                } else if activeRun.smartArray.count > 4{
+                    
+                    activeRun.assignSmartArrayAsShapeArray()
+                    activeRun.storeNewShape()
+                    
+                    let newShape = activeRun.createNewShape()
+                    displayNewShapeWith(newShape: newShape, username: activeRun.username!)
+                    
+                    for polyline in polylineArray {
+                        polyline.map = nil
+                    }
+                    
+                    locationManager.activeRun = nil
+                    self.view.setNeedsDisplay()
+                    
+                    activeRun = nil
+                    locationManager.activeRun = nil
                 }
-            } else if activeRun.smartArray.count > 4{
-                
-                activeRun.assignSmartArrayAsShapeArray()
-                activeRun.storeNewShape()
-                
-                let newShape = activeRun.createNewShape()
-                displayNewShapeWith(newShape: newShape, username: activeRun.username!)
-                
-                for polyline in polylineArray {
-                    polyline.map = nil
-                }
-                
-                locationManager.activeRun = nil
-                self.view.setNeedsDisplay()
             }
         }
-        activeRun = nil
-        locationManager.activeRun = nil
     }
     
 
