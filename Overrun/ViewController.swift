@@ -212,7 +212,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     
     @IBAction func endRunButtonPressed(_ sender: AnyObject) {
         if activeRun != nil {
-            
+                        
             bigArchStandby.isHidden = false
             
             animate.fadeOut(view: endButtonView)

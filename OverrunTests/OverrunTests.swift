@@ -47,6 +47,98 @@ class OverrunTests: XCTestCase {
 //    }
 //    
     
+    func testClockwiseShape(){
+        
+        let runManager = RunManager()
+        
+        let activeRun = Run()
+        
+        let smartArray = [
+            CLLocation(latitude: 0, longitude: 0),
+            CLLocation(latitude: 30, longitude: 0),
+            CLLocation(latitude: 30, longitude: 100),
+            CLLocation(latitude: 0, longitude: 100)
+        ]
+        
+        activeRun.smartArray = smartArray
+        
+        runManager.activeRun = activeRun
+        
+        runManager.makeActiveShapeClockwise()
+        
+        for location in activeRun.smartArray{
+            
+            print(location.coordinate)
+        }
+        
+    }
+    
+    func testMultipleIntersectionCase() {
+        
+        let runManager = RunManager()
+        
+        let activeRun = Run()
+        let pulledRun = Run()
+        
+        let smartArray = [
+                            CLLocation(latitude: 0, longitude: 0),
+                            CLLocation(latitude: 30, longitude: 0),
+                            CLLocation(latitude: 30, longitude: 100),
+                            CLLocation(latitude: 0, longitude: 100)
+        ]
+        
+        let coorArray = [
+            CLLocationCoordinate2D(latitude: 10, longitude: 10),
+            CLLocationCoordinate2D(latitude: 50, longitude: 20),
+            CLLocationCoordinate2D(latitude: 20, longitude: 30),
+            CLLocationCoordinate2D(latitude: 50, longitude: 40),
+            CLLocationCoordinate2D(latitude: 20, longitude: 50),
+            CLLocationCoordinate2D(latitude: 50, longitude: 60),
+            CLLocationCoordinate2D(latitude: 20, longitude: 70),
+            CLLocationCoordinate2D(latitude: 50, longitude: 80),
+            CLLocationCoordinate2D(latitude: 10, longitude: 90)
+        ]
+        pulledRun.coorArray = coorArray
+        activeRun.smartArray = smartArray
+        pulledRun.averageSpeed = 10
+        activeRun.averageSpeed = 15
+        
+        let (previousCoor, newShapeDict, pullShapeDict) = runManager.createIntersectingDictionaries(existingRun: pulledRun, activeRun: activeRun)
+        
+        for (key, value) in pullShapeDict{
+            
+            print("pulled -- key: \(key.description), \(key.coordinate()) value: \(value.description), \(value.coordinate())")
+            
+        }
+        
+        print("")
+        
+        for (key, value) in newShapeDict{
+            
+            print("new -- key: \(key.coordinate()), value: \(value.coordinate())")
+            
+        }
+        
+        runManager.checkShapeIntersection(existingRun: pulledRun, activeRun: activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+        
+        for coor in coorArray {
+            
+            let myCoor = MyCoordinate2D(with: coor)
+            
+            XCTAssertNotNil(pullShapeDict[myCoor], "\(coor) has no value in pulledShapeDict")
+            
+        }
+        
+        for coor in smartArray {
+            
+            let myCoor = MyCoordinate2D(with: coor.coordinate)
+            
+            XCTAssertNotNil(newShapeDict[myCoor], "\(coor.coordinate) has no value in pulledShapeDict")
+            
+        }
+    }
+    
+    
     func testToDetermineIfTwoDictionariesAreCreatedWithCyclicalArray() {
         
         let runManager = RunManager()
@@ -85,7 +177,7 @@ class OverrunTests: XCTestCase {
         
         for (key, value) in pullShapeDict{
             
-            print("pulled -- key: \(key.coordinate()), value: \(value.coordinate())")
+            print("pulled -- key: \(key.description), \(key.coordinate()) value: \(value.description), \(value.coordinate())")
             
         }
         
