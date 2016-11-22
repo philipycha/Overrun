@@ -24,6 +24,7 @@ class MyCoordinate2D: NSObject {
     
     var longitude:Double!
     var latitude:Double!
+    var hasBeenChecked = false
     
     var index:Int?
     
@@ -62,6 +63,8 @@ class RunManager: NSObject {
     var onWinningPath = false
     var activeRun: Run?
     var existingRun: Run?
+    var losingShapeCheckArray = [MyCoordinate2D]()
+    
     
     private let sharedRunManager = RunManager()
     class RunManager {
@@ -128,6 +131,12 @@ class RunManager: NSObject {
     
     func createIntersectingDictionaries(existingRun: Run, activeRun: Run) -> (previousCoor: MyCoordinate2D, newShapeDict: [MyCoordinate2D :MyCoordinate2D], pulledShapeDict: [MyCoordinate2D : MyCoordinate2D]) {
         
+        var newShapeConArray = [MyCoordinate2D]()
+        var pulledShapeconArray = [MyCoordinate2D]()
+        
+        newShapeConArray.append(MyCoordinate2D(with: (activeRun.smartArray.first?.coordinate)!))
+        pulledShapeconArray.append(MyCoordinate2D(with: (existingRun.coorArray?.first)!))
+        
         var newShapeDict = [MyCoordinate2D : MyCoordinate2D]() // active run
         var pulledShapeDict = [MyCoordinate2D : MyCoordinate2D]() // existing run
         
@@ -176,7 +185,8 @@ class RunManager: NSObject {
                             
                             // No intersection
                             
-                            pulledShapeDict[p3Coor] = p4Coor
+                            pulledShapeDict[pulledShapeconArray.last!] = p4Coor
+                            pulledShapeconArray.append(p4Coor)
                             
                         }
                     }
@@ -206,7 +216,8 @@ class RunManager: NSObject {
                                 
                                 // No intersection
                                 
-                                pulledShapeDict[p3Coor] = p4Coor
+                                pulledShapeDict[pulledShapeconArray.last!] = p4Coor
+                                pulledShapeconArray.append(p4Coor)
                             }
                         }
                         
@@ -228,7 +239,8 @@ class RunManager: NSObject {
                                 
                                 // No intersection
                                 
-                                pulledShapeDict[p3Coor] = p4Coor
+                                pulledShapeDict[pulledShapeconArray.last!] = p4Coor
+                                pulledShapeconArray.append(p4Coor)
             
                             }
                         }
@@ -253,10 +265,9 @@ class RunManager: NSObject {
                         p2Coor.index = indexNewP2
                         intersectCoor.index = 9999
                         
-                        newShapeDict[p1Coor] = intersectCoor
-
+                        newShapeDict[newShapeConArray.last!] = intersectCoor
                         
-                        newShapeDict[intersectCoor] = p2Coor
+                        newShapeConArray.append(intersectCoor)
                         
                         let p3Coor = MyCoordinate2D(with: pulledP3!)
                         let p4Coor = MyCoordinate2D(with: pulledP4!)
@@ -264,15 +275,21 @@ class RunManager: NSObject {
                         p4Coor.index = indexPulledP4
                         p3Coor.index = indexPulledP3
                         
-                        pulledShapeDict[p3Coor] = intersectCoor ///////
-
+                        pulledShapeDict[pulledShapeconArray.last!] = intersectCoor ///////
                         
-                        pulledShapeDict[intersectCoor] = p4Coor ////////
-
-                        indexPulledP3 += 1
-                        indexPulledP4 += 1
+                        pulledShapeconArray.append(intersectCoor)
 
                     }
+                    if pulledShapeDict[pulledShapeconArray.last!] == nil {
+                        
+                        let p4Coor = MyCoordinate2D(with: pulledP4!)
+                        
+                        pulledShapeDict[pulledShapeconArray.last!] = p4Coor
+                        
+                        indexPulledP3 += 1
+                        indexPulledP4 += 1
+                    }
+                    
                 }
             }
 
@@ -283,13 +300,12 @@ class RunManager: NSObject {
             p1Coor.index = indexNewP1
             p2Coor.index = indexNewP2
             
-            if newShapeDict[p1Coor] == nil {
+            if newShapeDict[newShapeConArray.last!] == nil {
                 
                 // No intersection
                 
-                
-                newShapeDict[p1Coor] = p2Coor
-                
+                newShapeDict[newShapeConArray.last!] = p2Coor
+                newShapeConArray.append(p2Coor)
             }
             
             indexNewP1 += 1
@@ -323,29 +339,43 @@ class RunManager: NSObject {
         
         if losingRun == activeRun {
             
-            cutLoserShapeBeginningWith(previousCoor: newShapeDict.keys.first!, currentDict: newShapeDict, otherDict: pulledShapeDict, winningShapePath: existingShapeArray, losingShapePath: newShapeArray, isOnWinningPath: false)
+            losingShapeCheckArray = Array(newShapeDict.keys)
             
-            activeRun.shapeArray = losingShapeArray
-            existingRun.shapeArray = existingShapeArray
-            activeRun.storeNewShape()
-            
-            self.activeRun = activeRun
-            self.existingRun = existingRun
-            
+            for coordinate in losingShapeCheckArray{
+                
+                if coordinate.hasBeenChecked == false{
+                    
+                    cutLoserShapeBeginningWith(previousCoor: newShapeDict.keys.first!, currentDict: newShapeDict, otherDict: pulledShapeDict, winningShapePath: existingShapeArray, losingShapePath: newShapeArray, isOnWinningPath: false)
+                    
+                    activeRun.shapeArray = losingShapeArray
+                    existingRun.shapeArray = existingShapeArray
+                    activeRun.storeNewShape()
+                    
+                    self.activeRun = activeRun
+                    self.existingRun = existingRun
+                }
+            }
         } else {
             
-            cutLoserShapeBeginningWith(previousCoor: pulledShapeDict.keys.first!, currentDict: pulledShapeDict, otherDict: newShapeDict, winningShapePath: newShapeArray, losingShapePath: existingShapeArray, isOnWinningPath: false)
+            losingShapeCheckArray = Array(pulledShapeDict.keys)
             
-            existingRun.shapeArray = losingShapeArray
-        
-            activeRun.shapeArray = newShapeArray
-            activeRun.storeNewShape()
-            existingRun.overwriteExistingShape()
-            
-            self.activeRun = activeRun
-            self.existingRun = existingRun
-            
-            
+            for coordinate in losingShapeCheckArray {
+                
+                if coordinate.hasBeenChecked == false{
+                    
+                    cutLoserShapeBeginningWith(previousCoor: pulledShapeDict.keys.first!, currentDict: pulledShapeDict, otherDict: newShapeDict, winningShapePath: newShapeArray, losingShapePath: existingShapeArray, isOnWinningPath: false)
+                    
+                    existingRun.shapeArray = losingShapeArray
+                    
+                    activeRun.shapeArray = newShapeArray
+                    activeRun.storeNewShape()
+                    existingRun.overwriteExistingShape()
+                    
+                    self.activeRun = activeRun
+                    self.existingRun = existingRun
+                }
+                
+            }
         }
         
     }
@@ -359,15 +389,30 @@ class RunManager: NSObject {
         if losingShapeArray.count == 0 {
             
             var nextCoor = otherDict[previousCoor]
+            
+            if nextCoor?.hasBeenChecked == false {
+                
+                
+            } else {
+                
+                
+                
+            }
             if nextCoor != nil {
                 
+                
                 if isPointInPolygon(myPoint: otherDict[previousCoor]!, path: losingShapePath) && isOnWinningPath == false{
+                    // runs while current is inside winning shape and not on intersection
                     // looking at next point to see if inside losingShape
                     
                     moveAlongOtherShapePath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: !isOnWinningPath)
                     return
                     
+                    
                 } else if !isPointInPolygon(myPoint: otherDict[previousCoor]!, path: losingShapePath) && isOnWinningPath == false{
+                    
+                    //if point is not in winning polygon and not on winning path filp otherpath and hop onto other path
+                    // other terms joining winning path
                     
                     let invertedDictionary = invert(originalDict: otherDict)
                     
@@ -377,6 +422,9 @@ class RunManager: NSObject {
                     
                     
                 } else if isPointInPolygon(myPoint: otherDict[previousCoor]!, path: winningShapePath) && isOnWinningPath == true{
+                    
+                    // if point is in other polygon and on winning path flip other and hop on
+                    // other terms rejoin losing path
                     
                     let invertedDictionary = invert(originalDict: otherDict)
                     
@@ -390,18 +438,27 @@ class RunManager: NSObject {
             } else if isPointInPolygon(myPoint: previousCoor, path: winningShapePath) {
                 
                 if isOnWinningPath {
+                    
+                    // continue down path
                     nextCoor = currentDict[previousCoor]
                     
                     moveAlongCurrentPath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
                     return
                 } else {
                     
+                    // hop to next poiont without adding point to array
                     nextCoor = currentDict[previousCoor]
+                    
+                    let index = losingShapeCheckArray.index(of: previousCoor)
+                    losingShapeCheckArray[index!].hasBeenChecked = true
+                    
                     cutLoserShapeBeginningWith(previousCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
                     return
                 }
                 
             } else {
+                
+                // continue down path
                 
                 nextCoor = currentDict[previousCoor]
                 moveAlongCurrentPath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
@@ -413,32 +470,42 @@ class RunManager: NSObject {
             var nextCoor = otherDict[previousCoor]
             if nextCoor != nil {
                 
-                if isPointInPolygon(myPoint: otherDict[previousCoor]!, path: losingShapePath) && isOnWinningPath == false{
+                if isPointInPolygon(myPoint: nextCoor!, path: losingShapePath) && isOnWinningPath == false{
+                    
+                    // runs while current is inside winning shape and not on intersection
                     // looking at next point to see if inside losingShape
                     
                     moveAlongOtherShapePath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: !isOnWinningPath)
                     return
                     
-                } else if !isPointInPolygon(myPoint: otherDict[previousCoor]!, path: losingShapePath) && isOnWinningPath == false{
+                } else if !isPointInPolygon(myPoint: nextCoor!, path: losingShapePath) && isOnWinningPath == false{
+                    
+                    //if point is not in winning polygon and not on winning path filp otherpath and hop onto other path
+                    // other terms joining winning path
                     
                     let invertedDictionary = invert(originalDict: otherDict)
                     
                     nextCoor = invertedDictionary[previousCoor]
-
+                    
                     moveAlongOtherShapePath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: invertedDictionary, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: !isOnWinningPath)
                     return
                     
                     
-                } else if isPointInPolygon(myPoint: otherDict[previousCoor]!, path: winningShapePath) && isOnWinningPath == true{
+                } else if isPointInPolygon(myPoint: nextCoor!, path: winningShapePath) && isOnWinningPath == true{
+                    
+                    // if point is in other polygon and on winning path flip other and hop on
+                    // other terms rejoin losing path
                     
                     let invertedDictionary = invert(originalDict: otherDict)
                     
                     nextCoor = invertedDictionary[previousCoor]
-
+                    
                     moveAlongOtherShapePath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: invertedDictionary, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: !isOnWinningPath)
                     return
                     
-                } else if isPointInPolygon(myPoint: otherDict[previousCoor]!, path: losingShapePath) && isOnWinningPath == true{
+                } else if isPointInPolygon(myPoint: nextCoor!, path: losingShapePath) && isOnWinningPath == true{
+                    
+                    // continue down path
                     
                     moveAlongOtherShapePath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: !isOnWinningPath)
                     return
@@ -450,22 +517,33 @@ class RunManager: NSObject {
                 if isOnWinningPath {
                     nextCoor = currentDict[previousCoor]
                     
+                    // continue down path
+                    
                     moveAlongCurrentPath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
                     return
                 } else {
                     
+                    // hop to next poiont without adding point to array
+                    
                     nextCoor = currentDict[previousCoor]
+                    
+                    let index = losingShapeCheckArray.index(of: previousCoor)
+                    losingShapeCheckArray[index!].hasBeenChecked = true
+                    
                     cutLoserShapeBeginningWith(previousCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
                     return
                 }
                 
             } else {
                 
+                // continue down path
+                
                 nextCoor = currentDict[previousCoor]
                 moveAlongCurrentPath(nextCoor: nextCoor!, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
                 return
             }
         }
+            
     }
     
     func findLoserWithSpeed(activeRun: Run, existingRun: Run) -> Run{
@@ -525,6 +603,10 @@ class RunManager: NSObject {
     
     func moveAlongCurrentPath(nextCoor: MyCoordinate2D, currentDict: [MyCoordinate2D : MyCoordinate2D], otherDict: [MyCoordinate2D : MyCoordinate2D], winningShapePath: [MyCoordinate2D], losingShapePath: [MyCoordinate2D], isOnWinningPath: Bool){
         losingShapeArray.append(nextCoor)
+        
+        let index = losingShapeCheckArray.index(of: nextCoor)
+        losingShapeCheckArray[index!].hasBeenChecked = true
+        
         self.cutLoserShapeBeginningWith(previousCoor: nextCoor, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
         return
         
@@ -532,8 +614,43 @@ class RunManager: NSObject {
     
     func moveAlongOtherShapePath(nextCoor: MyCoordinate2D, currentDict: [MyCoordinate2D : MyCoordinate2D], otherDict: [MyCoordinate2D : MyCoordinate2D], winningShapePath: [MyCoordinate2D], losingShapePath: [MyCoordinate2D], isOnWinningPath: Bool){
         
+        let index = losingShapeCheckArray.index(of: nextCoor)
+        losingShapeCheckArray[index!].hasBeenChecked = true
+        
         losingShapeArray.append(nextCoor)
         self.cutLoserShapeBeginningWith(previousCoor: nextCoor, currentDict: otherDict, otherDict: currentDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
         return
+    }
+    
+    func makeActiveShapeClockwise(){
+        
+        var totalCourse: Double = 0
+        
+        var courseArray = [Double]()
+        
+        for location in (activeRun?.smartArray)!{
+            
+            var courseDifference:Double = 0
+            
+            if courseArray.count > 0 {
+                
+                courseDifference = location.course - courseArray.last!
+                
+            } else {
+             
+                courseDifference = location.course
+                
+            }
+            
+            courseArray.append(location.course as Double)
+            totalCourse += courseDifference
+            
+        }
+        
+        if totalCourse < 0 {
+            
+            activeRun?.smartArray.reverse()
+            
+        }
     }
 }

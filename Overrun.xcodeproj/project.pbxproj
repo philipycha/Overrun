@@ -19,7 +19,6 @@
 		158BCA6D1DB17A490058B340 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA6C1DB17A490058B340 /* Assets.xcassets */; };
 		158BCA701DB17A490058B340 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 158BCA6E1DB17A490058B340 /* LaunchScreen.storyboard */; };
 		7D3B78DD1DB5469F001061D1 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3B78DC1DB5469F001061D1 /* LocationManager.swift */; };
-		7D5483B71DBEBF69006E9C74 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D5483B61DBEBF69006E9C74 /* art.scnassets */; };
 		7D6E8E9E1DB832E400B7F23B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6E8E9D1DB832E400B7F23B /* User.swift */; };
 		7DA6BCA61DB9B91500041C73 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 7DA6BCA51DB9B91500041C73 /* style.json */; };
 		7DC6139F1DB6AF7900B4CD69 /* Run.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC6139E1DB6AF7900B4CD69 /* Run.swift */; };
@@ -56,7 +55,6 @@
 		158BCA711DB17A490058B340 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		31E83FA20E8330ADFE3CDC68 /* Pods-Overrun.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Overrun.release.xcconfig"; path = "Pods/Target Support Files/Pods-Overrun/Pods-Overrun.release.xcconfig"; sourceTree = "<group>"; };
 		7D3B78DC1DB5469F001061D1 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		7D5483B61DBEBF69006E9C74 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
 		7D6E8E9D1DB832E400B7F23B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7DA6BCA51DB9B91500041C73 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = style.json; path = ../style.json; sourceTree = "<group>"; };
 		7DC6139E1DB6AF7900B4CD69 /* Run.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Run.swift; sourceTree = "<group>"; };
@@ -115,7 +113,6 @@
 			children = (
 				7DA6BCA51DB9B91500041C73 /* style.json */,
 				158BCA651DB17A480058B340 /* AppDelegate.swift */,
-				7D5483B61DBEBF69006E9C74 /* art.scnassets */,
 				158BCA671DB17A480058B340 /* ViewController.swift */,
 				15227D1F1DC7FF6A001DFFAF /* TransitionAnimation.swift */,
 				7DF7304D1DC0413800888C39 /* RunManager.swift */,
@@ -256,7 +253,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				158BCA701DB17A490058B340 /* LaunchScreen.storyboard in Resources */,
-				7D5483B71DBEBF69006E9C74 /* art.scnassets in Resources */,
 				15561FEA1DB7EF72009DFB10 /* GoogleService-Info.plist in Resources */,
 				158BCA6D1DB17A490058B340 /* Assets.xcassets in Resources */,
 				7DA6BCA61DB9B91500041C73 /* style.json in Resources */,
