@@ -289,7 +289,6 @@ class RunManager: NSObject {
                         indexPulledP3 += 1
                         indexPulledP4 += 1
                     }
-                    
                 }
             }
 
@@ -374,10 +373,8 @@ class RunManager: NSObject {
                     self.activeRun = activeRun
                     self.existingRun = existingRun
                 }
-                
             }
         }
-        
     }
     
     func cutLoserShapeBeginningWith(previousCoor: MyCoordinate2D, currentDict: [MyCoordinate2D :MyCoordinate2D], otherDict: [MyCoordinate2D : MyCoordinate2D], winningShapePath: [MyCoordinate2D], losingShapePath: [MyCoordinate2D], isOnWinningPath: Bool){
@@ -391,7 +388,7 @@ class RunManager: NSObject {
             var nextCoor = otherDict[previousCoor]
             
             if nextCoor?.hasBeenChecked == false {
-                
+    
                 
             } else {
                 
