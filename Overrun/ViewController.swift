@@ -327,6 +327,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
 
             
             self.menuHeight.constant = 150
+            //setting menu height to 150
             
             UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
                 self.view.layoutIfNeeded()
