@@ -29,12 +29,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     @IBOutlet var endRunButton: UIButton!
     @IBOutlet weak var speedView: UIView!
     @IBOutlet weak var speedLabel: UILabel!
+    @IBOutlet weak var menuHeight: NSLayoutConstraint!
+    @IBOutlet weak var menuView: UIView!
     
     let locationManager = LocationManager()
     let animate = TransitionAnimation()
     let runManager = RunManager()
     var mapView:GMSMapView!
     var centerCoordinate: CLLocationCoordinate2D?
+    
     
     var activeRun: Run! = nil
     var polylineArray: [GMSPolyline] = []
@@ -312,6 +315,39 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         }
     }
     
+    @IBAction func MenuButtonPressed(_ sender: UIButton) {
+        
+        menuDropAnimation()
+        
+    }
+    
+    func menuDropAnimation() {
+        
+        if self.menuHeight.constant == 5 {
+
+            
+            self.menuHeight.constant = 150
+            
+            UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
+                self.view.layoutIfNeeded()
+                }, completion: { (value: Bool) in
+                    
+            })
+            
+        }
+        
+        else {
+            self.menuHeight.constant = 5
+            
+            UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
+                self.view.layoutIfNeeded()
+                }, completion: { (value: Bool) in
+                    
+            })
+
+        }
+        
+    }
 
     @IBAction func signOut(_ sender: UIButton) {
 //        AppState.sharedInstance.signedIn = false
