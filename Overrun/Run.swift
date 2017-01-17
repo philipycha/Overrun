@@ -35,15 +35,6 @@ class Run: NSObject {
     
     func makeSmartCoordinateArrayfrom(runLocations: [CLLocation]) -> [CLLocation] {
         
-        var averageSpeed: Double = 0
-        
-        for location in runLocations {
-            averageSpeed += location.speed
-            averageSpeed = averageSpeed / Double(runLocations.count)
-        }
-        
-        self.averageSpeed = averageSpeed
-        
         let startTime = runLocations.first?.timestamp
         let endTime = runLocations.last?.timestamp
         
@@ -247,5 +238,22 @@ class Run: NSObject {
             totalDistance += (runLocations.last?.distance(from: lastKnownLocation))!
         }
         lastKnownLocation = runLocations.last!
-    }    
+    }
+    
+    func calculateAvgSpeed(){
+        var averageSpeed: Double = 0
+        
+        if runLocations.count > 1 {
+            
+            for location in runLocations {
+                averageSpeed += location.speed
+            }
+            
+            averageSpeed = averageSpeed / Double(runLocations.count)
+            
+            self.averageSpeed = averageSpeed
+            
+        }
+        
+    }
 }

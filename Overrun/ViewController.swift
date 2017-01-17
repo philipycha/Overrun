@@ -27,6 +27,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     @IBOutlet var startRunButtonView: UIView!
     @IBOutlet var endRunButtonView: UIView!
     @IBOutlet var endRunButton: UIButton!
+    @IBOutlet weak var speedView: UIView!
+    @IBOutlet weak var speedLabel: UILabel!
     
     let locationManager = LocationManager()
     let animate = TransitionAnimation()
@@ -83,6 +85,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         view.insertSubview(mapView, at: 0)
         
         distanceView.isHidden = true
+        speedView.isHidden = true
         
         runManager.pullRunsFromFirebase()
         
@@ -114,6 +117,14 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             
             let distanceStr = String(format: "%i m", distanceInt)
             distanceLabel.text = distanceStr
+    }
+    
+    func displayUserAverageSpeed(speed: Double) {
+        
+        let speedFloat = Float(speed)
+        
+        let speedStr = String(format: "%f avg m/s", speedFloat)
+        speedLabel.text = speedStr
     }
     
     func dropDownAnimation(label: UILabel) {
@@ -161,13 +172,15 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             
             view.bringSubview(toFront: endRunButton)
             view.sendSubview(toBack: startRunButton)
-//            startRunButton.isHidden = true
             distanceView.isHidden = false
+            speedView.isHidden = false
             
             distanceView.alpha = 0
+            speedView.alpha = 0
             
             UIView.animate(withDuration: 0.75, delay: 1, options: [.curveEaseIn], animations: {
                 
+                self.speedView.alpha = 1
                 self.distanceView.alpha = 1
                 
                 }, completion: { (false) in
@@ -233,7 +246,6 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             startRunButton.isHidden = false
             view.bringSubview(toFront: startRunButton)
             view.sendSubview(toBack: endRunButton)
-//            endRunButton.isHidden = true
             
             distanceView.isHidden = true
             
