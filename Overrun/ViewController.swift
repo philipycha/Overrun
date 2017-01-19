@@ -31,6 +31,7 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
     @IBOutlet weak var speedLabel: UILabel!
     @IBOutlet weak var menuHeight: NSLayoutConstraint!
     @IBOutlet weak var menuView: UIView!
+    @IBOutlet weak var ejectButton: UIButton!
     
     let locationManager = LocationManager()
     let animate = TransitionAnimation()
@@ -67,6 +68,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
 //        endRunButtonView.isHidden = true
         distanceLabel.isHidden = true
         distanceRedUI.isHidden = true
+        menuView.isHidden = true
+        ejectButton.isHidden = true
         
         mapView.settings.zoomGestures = false
         mapView.settings.scrollGestures = false
@@ -331,6 +334,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             
             UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
                 self.view.layoutIfNeeded()
+                self.menuView.isHidden = false
+                self.ejectButton.isHidden = false
                 }, completion: { (value: Bool) in
                     
             })
@@ -340,9 +345,19 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         else {
             self.menuHeight.constant = 5
             
-            UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 0.8, options: .curveLinear, animations: {
                 self.view.layoutIfNeeded()
+                
+                self.ejectButton.isHidden = true
+                
+                //immediate hidden looks kinda abrupt 
+                
                 }, completion: { (value: Bool) in
+                    self.menuView.isHidden = true
+//                    self.menuView.isHidden = true
+//                    self.ejectButton.isHidden = true
+                    
+                    //after it shoots back up there's a delay then it dissapears
                     
             })
 
