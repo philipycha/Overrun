@@ -158,7 +158,11 @@ class RunManager: NSObject {
             var indexPulledP3 = 0
             var indexPulledP4 = 1
             
-            for _ in 0..<(existingRun.coorArray?.count)! {
+            var loopCounter = 0
+            
+            for _ in 0..<((existingRun.coorArray?.count)!) {
+                
+                
                 
                 if indexPulledP3 == (existingRun.coorArray?.count)! - 1{
                     
@@ -218,11 +222,13 @@ class RunManager: NSObject {
                                 
                                 pulledShapeDict[pulledShapeconArray.last!] = p4Coor
                                 pulledShapeconArray.append(p4Coor)
+                                
+                                print("point a: \(pulledShapeconArray.last)\npoint b: \(p4Coor.latitude)\(p4Coor.longitude)")
                             }
                         }
                         
-                        indexPulledP3 += 1
-                        indexPulledP4 += 1
+//                        indexPulledP3 += 1
+//                        indexPulledP4 += 1
                         
                     } else if (v < 0.0 || v > 1.0){
                         print("INTERSECTION POINT NOT BETWEEN p3 and p4")
@@ -241,12 +247,14 @@ class RunManager: NSObject {
                                 
                                 pulledShapeDict[pulledShapeconArray.last!] = p4Coor
                                 pulledShapeconArray.append(p4Coor)
+                                
+                                print("point a: \(pulledShapeconArray.last)\npoint b: \(p4Coor.latitude)\(p4Coor.longitude)")
             
                             }
                         }
                         
-                        indexPulledP3 += 1
-                        indexPulledP4 += 1
+//                        indexPulledP3 += 1
+//                        indexPulledP4 += 1
 
                         
                     } else {
@@ -267,6 +275,8 @@ class RunManager: NSObject {
                         
                         newShapeDict[newShapeConArray.last!] = intersectCoor
                         
+                        print("point a: \(newShapeConArray.last)\npoint b: \(intersectCoor.latitude)\(intersectCoor.longitude)")
+                        
                         newShapeConArray.append(intersectCoor)
                         
                         let p3Coor = MyCoordinate2D(with: pulledP3!)
@@ -277,6 +287,8 @@ class RunManager: NSObject {
                         
                         pulledShapeDict[pulledShapeconArray.last!] = intersectCoor ///////
                         
+                        print("point a: \(pulledShapeconArray.last)\npoint b: \(intersectCoor.latitude)\(intersectCoor.longitude)")
+                        
                         pulledShapeconArray.append(intersectCoor)
 
                     }
@@ -286,10 +298,15 @@ class RunManager: NSObject {
                         
                         pulledShapeDict[pulledShapeconArray.last!] = p4Coor
                         
+                        print("point a: \(pulledShapeconArray.last)\npoint b: \(p4Coor.latitude)\(p4Coor.longitude)")
+                        
                         indexPulledP3 += 1
                         indexPulledP4 += 1
                     }
                 }
+                
+                loopCounter += 1
+                print(loopCounter)
             }
 
             let p1Coor = MyCoordinate2D(with: newP1)
@@ -305,11 +322,14 @@ class RunManager: NSObject {
                 
                 newShapeDict[newShapeConArray.last!] = p2Coor
                 newShapeConArray.append(p2Coor)
+                
+                print("point a: \(newShapeConArray.last)\npoint b: \(p2Coor.latitude)\(p2Coor.longitude)")
             }
             
             indexNewP1 += 1
             indexNewP2 += 1
-
+            
+            
         } // end of for loop
         
         return (previousCoor: newShapeDict.keys.first!, newShapeDict: newShapeDict, pulledShapeDict: pulledShapeDict)
