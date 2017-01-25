@@ -298,6 +298,8 @@ class RunManager: NSObject {
                         
                         pulledShapeDict[pulledShapeconArray.last!] = p4Coor
                         
+                        pulledShapeconArray.append(p4Coor)
+                        
                         print("point a: \(pulledShapeconArray.last)\npoint b: \(p4Coor.latitude)\(p4Coor.longitude)")
                         
                         indexPulledP3 += 1
@@ -331,6 +333,20 @@ class RunManager: NSObject {
             
             
         } // end of for loop
+        
+        for coor in newShapeDict {
+            print("new")
+            print(coor.key.coordinate())
+            print(coor.value.coordinate())
+            
+        }
+        
+        for coor in pulledShapeDict {
+            print("pulled")
+            print(coor.key.coordinate())
+            print(coor.value.coordinate())
+            
+        }
         
         return (previousCoor: newShapeDict.keys.first!, newShapeDict: newShapeDict, pulledShapeDict: pulledShapeDict)
     }

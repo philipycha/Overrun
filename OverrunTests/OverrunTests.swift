@@ -88,14 +88,10 @@ class OverrunTests: XCTestCase {
         ]
         
         let coorArray = [
-            CLLocationCoordinate2D(latitude: 10, longitude: 10),
-            CLLocationCoordinate2D(latitude: 50, longitude: 20),
-            CLLocationCoordinate2D(latitude: 20, longitude: 30),
-            CLLocationCoordinate2D(latitude: 50, longitude: 40),
-            CLLocationCoordinate2D(latitude: 20, longitude: 50),
-            CLLocationCoordinate2D(latitude: 50, longitude: 60),
-            CLLocationCoordinate2D(latitude: 20, longitude: 70),
-            CLLocationCoordinate2D(latitude: 50, longitude: 80),
+            CLLocationCoordinate2D(latitude: 10, longitude: 40),
+            CLLocationCoordinate2D(latitude: 50, longitude: 50),
+            CLLocationCoordinate2D(latitude: 20, longitude: 60),
+            CLLocationCoordinate2D(latitude: 50, longitude: 70),
             CLLocationCoordinate2D(latitude: 10, longitude: 90)
         ]
         pulledRun.coorArray = coorArray
