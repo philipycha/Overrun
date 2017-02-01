@@ -71,8 +71,8 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         menuView.isHidden = true
         ejectButton.isHidden = true
         
-        mapView.settings.zoomGestures = false
-        mapView.settings.scrollGestures = false
+//        mapView.settings.zoomGestures = false
+//        mapView.settings.scrollGestures = false
         
         
         do{
@@ -229,6 +229,9 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
         }
     }
     
+    
+    
+    
     @IBAction func endRunButtonPressed(_ sender: AnyObject) {
         if activeRun != nil {
                         
@@ -362,6 +365,52 @@ class ViewController: UIViewController, GMSMapViewDelegate, LocationManagerDeleg
             })
 
         }
+        
+    }
+    @IBAction func testButtonPressed(_ sender: UIButton) {
+        
+        let activeRun = Run(user: currentUser)
+        let pulledRun = pulledRunArray.first
+        
+        let smartArray = [
+//            CLLocation(latitude: 37.329622, longitude: -122.028357),
+//            CLLocation(latitude: 37.329985, longitude: -122.028366),
+//            CLLocation(latitude: 37.330456, longitude: -122.028402),
+//            CLLocation(latitude: 37.330767, longitude: -122.028275),
+//            CLLocation(latitude: 37.331275, longitude: -122.027719),
+//            CLLocation(latitude: 37.331717, longitude: -122.024437),
+//            CLLocation(latitude: 37.330811, longitude: -122.024346),
+//            CLLocation(latitude: 37.329916, longitude: -122.024440),
+//            CLLocation(latitude: 37.329358, longitude: -122.022671),
+//            CLLocation(latitude: 37.330043, longitude: -122.025069),
+//            CLLocation(latitude: 37.330457, longitude: -122.025350),
+//            CLLocation(latitude: 37.330335, longitude: -122.025465),
+//            CLLocation(latitude: 37.330132, longitude: -122.025588),
+//            CLLocation(latitude: 37.329687, longitude: -122.026901)
+            
+            CLLocation(latitude: 37.329637, longitude: -122.027521),
+            CLLocation(latitude: 37.330957, longitude: -122.026691),
+            CLLocation(latitude: 37.329912, longitude: -122.026345),
+            CLLocation(latitude: 37.330972, longitude: -122.025596),
+            CLLocation(latitude: 37.329912, longitude: -122.024740),
+            CLLocation(latitude: 37.328591, longitude: -122.026005),
+
+        ]
+        
+        activeRun.smartArray = smartArray
+        
+        activeRun.averageSpeed = 20
+        
+        let (previousCoor, newShapeDict, pullShapeDict) = runManager.createIntersectingDictionaries(existingRun: pulledRun!, activeRun: activeRun)
+        
+        
+        runManager.checkShapeIntersection(existingRun: pulledRun!, activeRun: activeRun, previousCoor: previousCoor, newShapeDict: newShapeDict, pulledShapeDict: pullShapeDict)
+        
+        
+        let newShape = activeRun.createNewShape()
+        displayNewShapeWith(newShape: newShape, username: activeRun.username!)
+        
+        self.view.setNeedsDisplay()
         
     }
 

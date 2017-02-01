@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k9m-FD-Lye">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="k9m-FD-Lye">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -336,6 +336,22 @@
                                     <constraint firstAttribute="width" constant="115" id="WoI-kY-XMR"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bMW-DC-cpE">
+                                <rect key="frame" x="296" y="39" width="63" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Activate"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NVR-pC-Jas">
+                                <rect key="frame" x="296" y="39" width="63" height="27"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="63" id="Jfb-d6-lGy"/>
+                                    <constraint firstAttribute="height" constant="30" id="SfY-Gn-687"/>
+                                </constraints>
+                                <state key="normal" title="Activate"/>
+                                <connections>
+                                    <action selector="testButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hMi-l1-7Ey"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="230" id="2Ex-jy-4OJ"/>
@@ -353,11 +369,13 @@
                             <constraint firstAttribute="trailingMargin" secondItem="BHK-uP-E0e" secondAttribute="trailing" constant="215" id="O9L-4b-RMq"/>
                             <constraint firstItem="BHK-uP-E0e" firstAttribute="top" secondItem="y5T-Kp-O9W" secondAttribute="bottom" constant="-4" id="Q6P-Nm-E2u"/>
                             <constraint firstItem="B1X-nS-trX" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-71" id="Qeg-Ww-ofR"/>
+                            <constraint firstItem="NVR-pC-Jas" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="Xbp-aX-Ju5"/>
                             <constraint firstItem="NlL-3x-1Rm" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ZLi-F8-tlX"/>
                             <constraint firstItem="9Zr-NX-tmk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cUj-vz-zbr"/>
                             <constraint firstItem="9dW-NP-DjU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eHW-K7-COo"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="9Zi-ix-X0o" secondAttribute="bottom" constant="16" id="iFT-Zv-CxN"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="CdG-tX-ZVq" secondAttribute="bottom" constant="16" id="iZy-Fv-inv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NVR-pC-Jas" secondAttribute="trailing" id="ihw-vc-CGl"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Mah-Ft-zjg" secondAttribute="bottom" constant="16" id="lSx-eS-fRN"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="NlL-3x-1Rm" secondAttribute="bottom" constant="16" id="mZY-cF-0RP"/>
                             <constraint firstItem="YCG-7c-quU" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sB2-ys-A5b"/>
