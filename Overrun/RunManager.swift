@@ -64,6 +64,8 @@ class RunManager: NSObject {
     var activeRun: Run?
     var existingRun: Run?
     var losingShapeCheckArray = [MyCoordinate2D]()
+    var intersectionCheckList = [MyCoordinate2D]()
+    var startingIntersectionPoint: MyCoordinate2D?
     
     
     private let sharedRunManager = RunManager()
@@ -290,6 +292,7 @@ class RunManager: NSObject {
                         print("point a: \(pulledShapeconArray.last)\npoint b: \(intersectCoor.latitude)\(intersectCoor.longitude)")
                         
                         pulledShapeconArray.append(intersectCoor)
+                        intersectionCheckList.append(intersectCoor)
 
                     }
                     if pulledShapeDict[pulledShapeconArray.last!] == nil {
@@ -376,11 +379,11 @@ class RunManager: NSObject {
             
             losingShapeCheckArray = Array(newShapeDict.keys)
             
-            for coordinate in losingShapeCheckArray{
+            for coordinate in intersectionCheckList{
                 
                 if coordinate.hasBeenChecked == false{
                     
-                    cutLoserShapeBeginningWith(previousCoor: newShapeDict.keys.first!, currentDict: newShapeDict, otherDict: pulledShapeDict, winningShapePath: existingShapeArray, losingShapePath: newShapeArray, isOnWinningPath: false)
+                    cutLoserShapeBeginningWith(previousCoor: coordinate, currentDict: newShapeDict, otherDict: pulledShapeDict, winningShapePath: existingShapeArray, losingShapePath: newShapeArray, isOnWinningPath: false)
                     
                     activeRun.shapeArray = losingShapeArray
                     existingRun.shapeArray = existingShapeArray
@@ -394,11 +397,11 @@ class RunManager: NSObject {
             
             losingShapeCheckArray = Array(pulledShapeDict.keys)
             
-            for coordinate in losingShapeCheckArray {
+            for coordinate in intersectionCheckList {
                 
                 if coordinate.hasBeenChecked == false{
                     
-                    cutLoserShapeBeginningWith(previousCoor: pulledShapeDict.keys.first!, currentDict: pulledShapeDict, otherDict: newShapeDict, winningShapePath: newShapeArray, losingShapePath: existingShapeArray, isOnWinningPath: false)
+                    cutLoserShapeBeginningWith(previousCoor: coordinate, currentDict: pulledShapeDict, otherDict: newShapeDict, winningShapePath: newShapeArray, losingShapePath: existingShapeArray, isOnWinningPath: false)
                     
                     existingRun.shapeArray = losingShapeArray
                     
@@ -413,11 +416,28 @@ class RunManager: NSObject {
         }
     }
     
+    func findUncheckedIntersectionIn(checkList: [MyCoordinate2D]){
+        
+        for coor in checkList{
+            
+            if coor.hasBeenChecked == false{
+                startingIntersectionPoint = coor
+            }
+        }
+        
+    }
+    
     func cutLoserShapeBeginningWith(previousCoor: MyCoordinate2D, currentDict: [MyCoordinate2D :MyCoordinate2D], otherDict: [MyCoordinate2D : MyCoordinate2D], winningShapePath: [MyCoordinate2D], losingShapePath: [MyCoordinate2D], isOnWinningPath: Bool){
         
         if (otherDict[previousCoor] == nil && currentDict[previousCoor] == nil) {
             print("AHHHHHHHH!!!!! \(previousCoor)")
         }
+        
+//        if previousCoor.hasBeenChecked == true{
+//            
+//            return
+//            
+//        }
         
         if losingShapeArray.count == 0 {
             
@@ -637,8 +657,12 @@ class RunManager: NSObject {
     func moveAlongCurrentPath(nextCoor: MyCoordinate2D, currentDict: [MyCoordinate2D : MyCoordinate2D], otherDict: [MyCoordinate2D : MyCoordinate2D], winningShapePath: [MyCoordinate2D], losingShapePath: [MyCoordinate2D], isOnWinningPath: Bool){
         losingShapeArray.append(nextCoor)
         
-        let index = losingShapeCheckArray.index(of: nextCoor)
-        losingShapeCheckArray[index!].hasBeenChecked = true
+        if intersectionCheckList.contains(nextCoor){
+            nextCoor.hasBeenChecked = true
+        }
+        
+//        let index = losingShapeCheckArray.index(of: nextCoor)
+//        losingShapeCheckArray[index!].hasBeenChecked = true
         
         self.cutLoserShapeBeginningWith(previousCoor: nextCoor, currentDict: currentDict, otherDict: otherDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
         return
@@ -647,10 +671,15 @@ class RunManager: NSObject {
     
     func moveAlongOtherShapePath(nextCoor: MyCoordinate2D, currentDict: [MyCoordinate2D : MyCoordinate2D], otherDict: [MyCoordinate2D : MyCoordinate2D], winningShapePath: [MyCoordinate2D], losingShapePath: [MyCoordinate2D], isOnWinningPath: Bool){
         
-        let index = losingShapeCheckArray.index(of: nextCoor)
-        losingShapeCheckArray[index!].hasBeenChecked = true
+//        let index = losingShapeCheckArray.index(of: nextCoor)
+//        losingShapeCheckArray[index!].hasBeenChecked = true
         
         losingShapeArray.append(nextCoor)
+        
+        if intersectionCheckList.contains(nextCoor){
+            nextCoor.hasBeenChecked = true
+        }
+        
         self.cutLoserShapeBeginningWith(previousCoor: nextCoor, currentDict: otherDict, otherDict: currentDict, winningShapePath: winningShapePath, losingShapePath: losingShapePath, isOnWinningPath: isOnWinningPath)
         return
     }
