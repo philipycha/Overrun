@@ -218,7 +218,7 @@ class RunManager: NSObject {
                             let p4Coor = MyCoordinate2D(with: pulledP4!)
                             let p3Coor = MyCoordinate2D(with: pulledP3!)
                             
-                            if pulledShapeDict[p3Coor] == nil {
+                            if pulledShapeDict[pulledShapeconArray.last!] == nil {
                                 
                                 // No intersection
                                 
@@ -229,8 +229,8 @@ class RunManager: NSObject {
                             }
                         }
                         
-//                        indexPulledP3 += 1
-//                        indexPulledP4 += 1
+                        indexPulledP3 += 1
+                        indexPulledP4 += 1
                         
                     } else if (v < 0.0 || v > 1.0){
                         print("INTERSECTION POINT NOT BETWEEN p3 and p4")
@@ -243,7 +243,7 @@ class RunManager: NSObject {
                             p4Coor.index = indexPulledP4
                             p3Coor.index = indexPulledP3
                             
-                            if pulledShapeDict[p3Coor] == nil {
+                            if pulledShapeDict[pulledShapeconArray.last!] == nil {
                                 
                                 // No intersection
                                 
@@ -255,8 +255,8 @@ class RunManager: NSObject {
                             }
                         }
                         
-//                        indexPulledP3 += 1
-//                        indexPulledP4 += 1
+                        indexPulledP3 += 1
+                        indexPulledP4 += 1
 
                         
                     } else {
@@ -294,20 +294,24 @@ class RunManager: NSObject {
                         pulledShapeconArray.append(intersectCoor)
                         intersectionCheckList.append(intersectCoor)
 
-                    }
-                    if pulledShapeDict[pulledShapeconArray.last!] == nil {
-                        
-                        let p4Coor = MyCoordinate2D(with: pulledP4!)
-                        
-                        pulledShapeDict[pulledShapeconArray.last!] = p4Coor
-                        
-                        pulledShapeconArray.append(p4Coor)
-                        
-                        print("point a: \(pulledShapeconArray.last)\npoint b: \(p4Coor.latitude)\(p4Coor.longitude)")
-                        
                         indexPulledP3 += 1
                         indexPulledP4 += 1
+                        
                     }
+//                        if pulledShapeDict[pulledShapeconArray.last!] == nil {
+//                        
+//                            let p4Coor = MyCoordinate2D(with: pulledP4!)
+//                            
+//                            pulledShapeDict[pulledShapeconArray.last!] = p4Coor
+//                            
+//                            pulledShapeconArray.append(p4Coor)
+//                            
+//                            print("point a: \(pulledShapeconArray.last)\npoint b: \(p4Coor.latitude)\(p4Coor.longitude)")
+//                            
+//                            indexPulledP3 += 1
+//                            indexPulledP4 += 1
+//                        }
+                    
                 }
                 
                 loopCounter += 1
@@ -321,15 +325,15 @@ class RunManager: NSObject {
             p1Coor.index = indexNewP1
             p2Coor.index = indexNewP2
             
-            if newShapeDict[newShapeConArray.last!] == nil {
-                
+//            if newShapeDict[newShapeConArray.last!] == nil {
+            
                 // No intersection
                 
                 newShapeDict[newShapeConArray.last!] = p2Coor
                 newShapeConArray.append(p2Coor)
                 
                 print("point a: \(newShapeConArray.last)\npoint b: \(p2Coor.latitude)\(p2Coor.longitude)")
-            }
+//            }
             
             indexNewP1 += 1
             indexNewP2 += 1
