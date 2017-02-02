@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OverrunTests/OverrunTests.swift"
-            timestampString = "507067271.233516"
+            timestampString = "507683951.67849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "testToDetermineIfTwoDictionariesAreCreatedWithCyclicalArray()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OverrunTests/OverrunTests.swift"
-            timestampString = "507067271.233516"
+            timestampString = "507683951.67849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "testToDetermineIfTwoDictionariesAreCreatedWithCyclicalArray()"
             landmarkType = "7">
          </BreakpointContent>
@@ -38,15 +38,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "OverrunTests/OverrunTests.swift"
-            timestampString = "507067271.233516"
+            timestampString = "507683951.67849"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
+            startingLineNumber = "163"
+            endingLineNumber = "163"
             landmarkName = "testToDetermineIfTwoDictionariesAreCreatedWithCyclicalArray()"
             landmarkType = "7">
          </BreakpointContent>
@@ -116,11 +116,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507076461.408712"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "525"
-            endingLineNumber = "525"
+            startingLineNumber = "529"
+            endingLineNumber = "529"
             landmarkName = "cutLoserShapeBeginningWith(previousCoor:currentDict:otherDict:winningShapePath:losingShapePath:isOnWinningPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -164,11 +164,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507076461.408712"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "434"
-            endingLineNumber = "434"
+            startingLineNumber = "438"
+            endingLineNumber = "438"
             landmarkName = "cutLoserShapeBeginningWith(previousCoor:currentDict:otherDict:winningShapePath:losingShapePath:isOnWinningPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -180,11 +180,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507077621.214526"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "522"
-            endingLineNumber = "522"
+            startingLineNumber = "526"
+            endingLineNumber = "526"
             landmarkName = "cutLoserShapeBeginningWith(previousCoor:currentDict:otherDict:winningShapePath:losingShapePath:isOnWinningPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -196,11 +196,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507077434.329266"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "599"
-            endingLineNumber = "599"
+            startingLineNumber = "603"
+            endingLineNumber = "603"
             landmarkName = "cutLoserShapeBeginningWith(previousCoor:currentDict:otherDict:winningShapePath:losingShapePath:isOnWinningPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -212,11 +212,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507077697.273131"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "657"
-            endingLineNumber = "657"
+            startingLineNumber = "661"
+            endingLineNumber = "661"
             landmarkName = "moveAlongCurrentPath(nextCoor:currentDict:otherDict:winningShapePath:losingShapePath:isOnWinningPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -228,11 +228,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507077698.226764"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "672"
-            endingLineNumber = "672"
+            startingLineNumber = "676"
+            endingLineNumber = "676"
             landmarkName = "moveAlongOtherShapePath(nextCoor:currentDict:otherDict:winningShapePath:losingShapePath:isOnWinningPath:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -244,11 +244,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507082874.998016"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "358"
-            endingLineNumber = "358"
+            startingLineNumber = "362"
+            endingLineNumber = "362"
             landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -260,11 +260,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507082883.200657"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "357"
+            endingLineNumber = "357"
             landmarkName = "createIntersectingDictionaries(existingRun:activeRun:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -292,27 +292,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507083075.268585"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "createIntersectingDictionaries(existingRun:activeRun:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Overrun/RunManager.swift"
-            timestampString = "507083087.970265"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "379"
-            endingLineNumber = "379"
+            startingLineNumber = "383"
+            endingLineNumber = "383"
             landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -324,11 +308,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507083090.292116"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "399"
-            endingLineNumber = "399"
+            startingLineNumber = "403"
+            endingLineNumber = "403"
             landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -340,11 +324,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507083092.689779"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "404"
-            endingLineNumber = "404"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
             landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -356,11 +340,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507083094.883812"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "386"
-            endingLineNumber = "386"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
             landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -372,11 +356,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507083101.069705"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "420"
-            endingLineNumber = "420"
+            startingLineNumber = "424"
+            endingLineNumber = "424"
             landmarkName = "findUncheckedIntersectionIn(checkList:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -388,11 +372,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507083369.026611"
+            timestampString = "507686525.695513"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "295"
-            endingLineNumber = "295"
+            startingLineNumber = "402"
+            endingLineNumber = "402"
+            landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overrun/RunManager.swift"
+            timestampString = "507686525.695513"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "384"
+            endingLineNumber = "384"
+            landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overrun/RunManager.swift"
+            timestampString = "507684657.531594"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "createIntersectingDictionaries(existingRun:activeRun:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -400,32 +416,64 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507084110.128977"
+            timestampString = "507686246.329475"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "398"
-            endingLineNumber = "398"
-            landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "createIntersectingDictionaries(existingRun:activeRun:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Overrun/RunManager.swift"
-            timestampString = "507084114.936337"
+            timestampString = "507686251.887272"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
-            landmarkName = "checkShapeIntersection(existingRun:activeRun:previousCoor:newShapeDict:pulledShapeDict:)"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
+            landmarkName = "createIntersectingDictionaries(existingRun:activeRun:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overrun/RunManager.swift"
+            timestampString = "507686329.894456"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "createIntersectingDictionaries(existingRun:activeRun:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Overrun/RunManager.swift"
+            timestampString = "507686333.342758"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "createIntersectingDictionaries(existingRun:activeRun:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

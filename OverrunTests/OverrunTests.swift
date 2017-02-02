@@ -81,18 +81,20 @@ class OverrunTests: XCTestCase {
         let pulledRun = Run()
         
         let smartArray = [
-                            CLLocation(latitude: 0, longitude: 0),
-                            CLLocation(latitude: 30, longitude: 0),
-                            CLLocation(latitude: 30, longitude: 100),
-                            CLLocation(latitude: 0, longitude: 100)
+            CLLocation(latitude: 20, longitude: 30),
+            CLLocation(latitude: 40, longitude: 80),
+            CLLocation(latitude: 50, longitude: 30),
+            CLLocation(latitude: 60, longitude: 80),
+            CLLocation(latitude: 80, longitude: 30),
+            CLLocation(latitude: 50, longitude: 10)
         ]
         
         let coorArray = [
-            CLLocationCoordinate2D(latitude: 10, longitude: 40),
-            CLLocationCoordinate2D(latitude: 50, longitude: 50),
-            CLLocationCoordinate2D(latitude: 20, longitude: 60),
-            CLLocationCoordinate2D(latitude: 50, longitude: 70),
-            CLLocationCoordinate2D(latitude: 10, longitude: 90)
+            CLLocationCoordinate2D(latitude: 90, longitude: 100),
+            CLLocationCoordinate2D(latitude: 90, longitude: 50),
+            CLLocationCoordinate2D(latitude: 10, longitude: 50),
+            CLLocationCoordinate2D(latitude: 30, longitude: 100)
+
         ]
         pulledRun.coorArray = coorArray
         activeRun.smartArray = smartArray
@@ -143,18 +145,19 @@ class OverrunTests: XCTestCase {
         let activeRun = Run()
         
         let smartArray = [
-                        CLLocation(latitude: 100, longitude: 100),
-                        CLLocation(latitude: 70, longitude: 30),
-                        CLLocation(latitude: 30, longitude: 30),
-                        CLLocation(latitude: 20, longitude: 70),
-                        CLLocation(latitude: 40, longitude: 90)
+                        CLLocation(latitude: 20, longitude: 30),
+                        CLLocation(latitude: 40, longitude: 80),
+                        CLLocation(latitude: 50, longitude: 30),
+                        CLLocation(latitude: 60, longitude: 80),
+                        CLLocation(latitude: 80, longitude: 30),
+                        CLLocation(latitude: 50, longitude: 10)
         ]
         
         let coorArray = [
-                            CLLocationCoordinate2D(latitude: 10, longitude: 10),
-                            CLLocationCoordinate2D(latitude: 50, longitude: 20),
-                            CLLocationCoordinate2D(latitude: 60, longitude: 60),
-                            CLLocationCoordinate2D(latitude: 30, longitude: 50)
+                            CLLocationCoordinate2D(latitude: 90, longitude: 100),
+                            CLLocationCoordinate2D(latitude: 90, longitude: 50),
+                            CLLocationCoordinate2D(latitude: 10, longitude: 50),
+                            CLLocationCoordinate2D(latitude: 30, longitude: 100)
         ]
         
         pulledRun.coorArray = coorArray
